@@ -59,7 +59,7 @@
      <None Include="Assets\Graphics\Spritesheet\spritesheetInfo.txt" />
      <None Include="Assets\Graphics\License.txt" />
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>/Users/bernardolimon/Desktop/Bedmelt/Sliding Puzzle/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>/Users/bernardolimon/Desktop/Bedmelt/Slider-Puzzle/Sliding Puzzle/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
