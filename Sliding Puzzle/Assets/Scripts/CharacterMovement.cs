@@ -16,6 +16,7 @@ public class CharacterMovement : MonoBehaviour {
 	bool canmove;
 	GameObject tiletaker;
 	public string nextaction;
+	public bool beingdragged;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -24,6 +25,7 @@ public class CharacterMovement : MonoBehaviour {
 		cantakeinput = true;
 		canmove = true;
 		nextaction = null;
+		beingdragged = false;
 
 
 	}
@@ -96,7 +98,7 @@ public class CharacterMovement : MonoBehaviour {
 			QWERTYMove ();
 		}
 		//if the desired tile is not the place you're standing in it moves there
-		if (currenttile != transform.position) {
+		if (currenttile != transform.position && beingdragged == false ) {
 			transform.position = Vector3.MoveTowards (transform.position, currenttile, Time.deltaTime * speed); 
 		}
 	}

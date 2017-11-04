@@ -6,6 +6,7 @@ public class Goal_Behaviour : MonoBehaviour {
 	Vector3 myPosition;
 	GameObject tileobject;
 	TileHandler tilescript;
+	GameObject mytile;
 	//bool istiletaken;
 
 
@@ -31,6 +32,8 @@ public class Goal_Behaviour : MonoBehaviour {
 				tilescript.myTaker = this.gameObject;
 				tilescript.isTaken = true;
 				Debug.Log ("Kaplunk");
+				mytile = tileobject;
+
 			}
 		}
 	}

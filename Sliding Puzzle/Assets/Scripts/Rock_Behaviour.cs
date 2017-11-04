@@ -8,6 +8,7 @@ public class Rock_Behaviour : MonoBehaviour {
 	GameObject tileobject;
 	TileHandler tilescript;
 	bool readyfordrag;
+	GameObject mytile;
 	//bool istiletaken;
 
 
@@ -23,9 +24,6 @@ public class Rock_Behaviour : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (readyfordrag) {
-			
-		}
 
 	}
 	void FindTileTag(){
@@ -37,6 +35,8 @@ public class Rock_Behaviour : MonoBehaviour {
 				tilescript.myTaker = this.gameObject;
 				tilescript.isTaken = true;
 				Debug.Log ("Pew");
+				mytile = tileobject;
+
 			}
 		}
 	}

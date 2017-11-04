@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterMovement.cs" />
+     <Compile Include="Assets\Scripts\Dragger.cs" />
      <Compile Include="Assets\Scripts\Goal_Behaviour.cs" />
      <Compile Include="Assets\Scripts\Rock_Behaviour.cs" />
      <Compile Include="Assets\Scripts\SceneHandler.cs" />

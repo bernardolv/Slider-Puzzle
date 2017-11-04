@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212511316958741686}
   - component: {fileID: 61190068073581118}
   - component: {fileID: 114106135380363554}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ice_Tile
   m_TagString: Ground
   m_Icon: {fileID: 0}

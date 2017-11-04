@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Start_Behaviour : MonoBehaviour {
 
-	Vector3 myPosition;
+	public Vector3 myPosition;
 	GameObject tileobject;
 	TileHandler tilescript;
 	bool readyfordrag;
@@ -17,7 +17,10 @@ public class Start_Behaviour : MonoBehaviour {
 	public Sprite ogSprite;
 	Sprite currentsprite; 
 	Wall_Behaviour myWallBehaviour;
-
+	public float playerx;
+	public float playery;
+	public float mypositionx;
+	public float mypositiony;
 	// Use this for initialization
 	void Start () {
 		myPosition = transform.position;
@@ -40,20 +43,25 @@ public class Start_Behaviour : MonoBehaviour {
 			//Debug.Log(difference);
 			float xdif = difference.x;
 			float ydif = difference.y;
-			if (Mathf.Abs(xdif)+Mathf.Abs(ydif) >= 1f){
-				Debug.Log("Too big man");
+			if (Mathf.Abs (xdif) + Mathf.Abs (ydif) >= 1f) {
+				Debug.Log ("Too big man");
 				mySprite.sprite = newSprite;
 				gameObject.tag = "Wall";
 				myWallBehaviour.enabled = true;
 				stillastarttile = false;
-				}
 			}
-			if(myPlayer.transform.position == myPosition && stillastarttile == false){
-			Debug.Log("BISH");
+		}
+
+		playerx= myPlayer.transform.position.x;
+		playery = myPlayer.transform.position.y;
+		mypositionx = myPosition.x;
+		mypositiony = myPosition.y;
+		if (mypositionx == playerx && mypositiony == playery && stillastarttile == false) {
+			Debug.Log ("BISH");
 			mySprite.sprite = ogSprite;
 			myWallBehaviour.enabled = false;
 			stillastarttile = true;
-			}
+		}
 		//	CheckForPlayerAndLeave ();
 
 	}
