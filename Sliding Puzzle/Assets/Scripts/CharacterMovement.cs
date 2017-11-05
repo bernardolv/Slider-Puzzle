@@ -105,7 +105,7 @@ public class CharacterMovement : MonoBehaviour {
 	//Individual Behaviours to be stored in the following.
 	void ActOnTile(){
 		if (istiletaken == false) {
-			//move and keep moving if theres nothing but ice
+			//move and keep moving i	f theres nothing but ice
 			currenttile = tiletotest;
 		} 
 		else {
@@ -119,6 +119,8 @@ public class CharacterMovement : MonoBehaviour {
 				canmove = false;
 				//Qeue up an action when reaching the tile
 				nextaction = "Goal_Action";
+			} else {
+				canmove = false;
 			}
 		}
 	}
