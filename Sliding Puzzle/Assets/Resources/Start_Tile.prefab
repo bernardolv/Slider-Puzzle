@@ -53,8 +53,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbe6c948d0dd4277bf37602cde65384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myPosition: {x: 0, y: 0, z: 0}
   myPlayer: {fileID: 0}
   newSprite: {fileID: 21300358, guid: 59c40bfbe37264ac7a39ebc7166b2cdf, type: 3}
+  ogSprite: {fileID: 0}
+  playerx: 0
+  playery: 0
+  mypositionx: 0
+  mypositiony: 0
 --- !u!114 &114703707143261124
 MonoBehaviour:
   m_ObjectHideFlags: 1

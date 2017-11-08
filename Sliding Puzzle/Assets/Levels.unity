@@ -434,25 +434,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0080e09fe41f34122957d159770f51d6, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &386869656 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1950892738127008, guid: 246333f82692c427db32f357f008caf7,
-    type: 2}
-  m_PrefabInternal: {fileID: 710108825}
---- !u!114 &386869657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 386869656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 831a4459c0a41498ca8c9dc756de19fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tentativetile: {fileID: 0}
-  needtooccupy: 0
-  newtile: {fileID: 0}
 --- !u!1001 &416766658
 Prefab:
   m_ObjectHideFlags: 0
@@ -814,18 +795,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 58
       objectReference: {fileID: 0}
-    - target: {fileID: 114411549110100404, guid: 246333f82692c427db32f357f008caf7,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114411549110100404, guid: 246333f82692c427db32f357f008caf7,
-        type: 2}
-      propertyPath: myDragger
-      value: 
-      objectReference: {fileID: 386869657}
-    m_RemovedComponents:
-    - {fileID: 114776053196710722, guid: 246333f82692c427db32f357f008caf7, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 246333f82692c427db32f357f008caf7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &747006199
@@ -2360,10 +2330,6 @@ Prefab:
     - target: {fileID: 4424384738347212, guid: 735b68fe6443c4129aae60fe5a2d3ecb, type: 2}
       propertyPath: m_RootOrder
       value: 57
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267158777292466, guid: 735b68fe6443c4129aae60fe5a2d3ecb, type: 2}
-      propertyPath: m_TagString
-      value: Goal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 735b68fe6443c4129aae60fe5a2d3ecb, type: 2}
