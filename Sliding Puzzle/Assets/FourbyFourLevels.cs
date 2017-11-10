@@ -23,9 +23,8 @@ public class FourbyFourLevels : MonoBehaviour {
 		public Transform floor_start;
 		public Transform floor_goal;
 		public Transform floor_hole;
-
-	public bool readytodraw;
 	public int levelnum;
+	public bool readytodraw;
 
 		public const string sfloor_ice = "0";
 		public const string sfloor_wall = "1";
@@ -34,47 +33,42 @@ public class FourbyFourLevels : MonoBehaviour {
 		public const string sgoal = "G";
 		public const string sfloor_hole = "H";
 
+
 		/*void Start() {
-		string[][] jagged = readFile ("Assets/Resources/Level1.txt");
+		//LevelManager.levelselector = this;
+		levelnum = LevelManager.levelnum;
+		if (levelnum == null || levelnum == 0) {
+			levelnum = 1;
+			LevelManager.levelnum = 1;
+		}
+		DrawIce ();
+		DrawNextLevel (1);
+		}*/
+	void Update(){
+		if (readytodraw) {
+			DestroyAllExceptCamera ();
+			DrawIce ();
+			DrawNextLevel (levelnum);
+			readytodraw = false;
+		}
+	}
+	public void DrawIce(){
+		string leveltext = ("Assets/Resources/8by8ice.txt");
+		string[][] jagged = readFile (leveltext);
 
 		// create planes based on matrix
 		for (int y = 0; y < jagged.Length; y++) {
 			for (int x = 0; x < jagged [0].Length; x++) {
 				switch (jagged [y] [x]) {
-				case sstart:
-					Instantiate (floor_start, new Vector3 (x, -y, 0), Quaternion.identity);
-					Instantiate (player, new Vector3 (x, -y, 0), Quaternion.identity);
-					break;
-				case sgoal:
-					Instantiate (floor_goal, new Vector3 (x, -y, 0), Quaternion.identity);
-					break;
 				case sfloor_ice:
 					Instantiate (floor_ice, new Vector3 (x, -y, 0), Quaternion.identity);
 					break;
-				case sfloor_wall:
-					Instantiate (floor_wall, new Vector3 (x, -y, 0), Quaternion.identity);
-					break;
-				case sfloor_hole:
-					Instantiate (floor_hole, new Vector3 (x, -y, 0), Quaternion.identity);
-					break;
-				case sfloor_rock:
-					Instantiate (floor_rock, new Vector3 (x, -y, 0), Quaternion.identity);
-					break;
 				}
 			}
-		}     
-	}*/
-	void Update(){
-		if (readytodraw) {
-			//BackToTheIce ();
-			DrawNextLevel (levelnum);
-			bool readytodraw = false;	
-		}
+		} 
 	}
-	void BackToTheIce(){
-		//Destroy everything except Ice_tiles
-	}
-	void DrawNextLevel(int levelnumber){
+
+	public void DrawNextLevel(int levelnumber){
 
 		string leveltext = ("Assets/Resources/Level" + levelnumber.ToString() + ".txt");
 		string[][] jagged = readFile (leveltext);
@@ -90,9 +84,9 @@ public class FourbyFourLevels : MonoBehaviour {
 				case sgoal:
 					Instantiate (floor_goal, new Vector3 (x, -y, 0), Quaternion.identity);
 					break;
-				case sfloor_ice:
-					Instantiate (floor_ice, new Vector3 (x, -y, 0), Quaternion.identity);
-					break;
+			//	case sfloor_ice:
+				//	Instantiate (floor_ice, new Vector3 (x, -y, 0), Quaternion.identity);
+					//break;
 				case sfloor_wall:
 					Instantiate (floor_wall, new Vector3 (x, -y, 0), Quaternion.identity);
 					break;
@@ -105,7 +99,15 @@ public class FourbyFourLevels : MonoBehaviour {
 				}
 			}
 		} 
-		readytodraw = false;	
+	}
+	public void DestroyAllExceptCamera(){
+		GameObject[] gameobjects = GameObject.FindObjectsOfType <GameObject>();
 
+		foreach (GameObject component in gameobjects)
+		{
+			if (component.tag != "MainCamera") {
+				Destroy (component);
+			}
+		}
 	}
 }

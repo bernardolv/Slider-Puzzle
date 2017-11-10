@@ -51,19 +51,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CheckInstance.cs" />
      <Compile Include="Assets\FourbyFourLevels.cs" />
-     <Compile Include="Assets\LevelReader.cs" />
+     <Compile Include="Assets\LevelManager.cs" />
      <Compile Include="Assets\Scripts\CharacterMovement.cs" />
      <Compile Include="Assets\Scripts\Dragger.cs" />
      <Compile Include="Assets\Scripts\Goal_Behaviour.cs" />
      <Compile Include="Assets\Scripts\Rock_Behaviour.cs" />
      <Compile Include="Assets\Scripts\SceneHandler.cs" />
+     <Compile Include="Assets\Scripts\SceneLoading.cs" />
      <Compile Include="Assets\Scripts\Start_Behaviour.cs" />
      <Compile Include="Assets\Scripts\TileHandler.cs" />
      <Compile Include="Assets\Scripts\Wall_Behaviour.cs" />
      <None Include="Assets\Resources\Level6.txt" />
      <None Include="Assets\Resources\Level4.txt" />
      <None Include="Assets\Resources\Level1.txt" />
+     <None Include="Assets\Resources\8by8ice.txt" />
      <None Include="Assets\Resources\Level2.txt" />
      <None Include="Assets\Resources\TestLevel2.txt" />
      <None Include="Assets\Resources\Level3.txt" />
