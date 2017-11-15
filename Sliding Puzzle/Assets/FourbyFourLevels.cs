@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 
 public class FourbyFourLevels : MonoBehaviour {
+	
 
 	string[][] readFile(string file){
 		string text = System.IO.File.ReadAllText (file);
@@ -24,7 +25,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		public Transform floor_goal;
 		public Transform floor_hole;
 	public int levelnum;
-	public bool readytodraw;
+	//public bool readytodraw;
 
 		public const string sfloor_ice = "0";
 		public const string sfloor_wall = "1";
@@ -34,24 +35,23 @@ public class FourbyFourLevels : MonoBehaviour {
 		public const string sfloor_hole = "H";
 
 
-		/*void Start() {
+		void Start() {
 		//LevelManager.levelselector = this;
 		levelnum = LevelManager.levelnum;
-		if (levelnum == null || levelnum == 0) {
-			levelnum = 1;
-			LevelManager.levelnum = 1;
-		}
 		DrawIce ();
 		DrawNextLevel (1);
-		}*/
-	void Update(){
-		if (readytodraw) {
+		}
+
+
+		/*if (LevelManager.readytodraw) {
+			
+			Debug.Log ("OW");
 			DestroyAllExceptCamera ();
 			DrawIce ();
 			DrawNextLevel (levelnum);
-			readytodraw = false;
-		}
-	}
+			LevelManager.readytodraw = false;
+		}*/
+	//}
 	public void DrawIce(){
 		string leveltext = ("Assets/Resources/8by8ice.txt");
 		string[][] jagged = readFile (leveltext);

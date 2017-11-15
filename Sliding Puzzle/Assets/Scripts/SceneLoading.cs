@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoading : MonoBehaviour {
+	public int num;
 
-	public void LoadScene(){
+	public void LoadScene(int num){
 		Debug.Log ("BOOP");
+		LevelManager.levelnum = num;
+		LevelManager.readytodraw = true;
 		SceneManager.LoadScene(1);
 	}
 }
