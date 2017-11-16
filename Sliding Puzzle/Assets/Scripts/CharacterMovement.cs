@@ -39,11 +39,15 @@ public class CharacterMovement : MonoBehaviour {
 				canmove = true;
 			}
 			if (nextaction == "Goal_Action") {
-				currenttile = startingposition;
+				/*currenttile = startingposition;
 				transform.position = startingposition;
 				cantakeinput = true;
 				canmove = true;
-				nextaction = null;
+				nextaction = null;*/
+				LevelManager.levelnum++;
+				int nextlevel = LevelManager.levelnum;
+				LevelManager.NextLevel (nextlevel);
+
 			}
 		}
 	}

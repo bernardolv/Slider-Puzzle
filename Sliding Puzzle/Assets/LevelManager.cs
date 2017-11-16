@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 
 	public static int levelnum;
-	public FourbyFourLevels levelselector;
+	public static FourbyFourLevels levelselector;
 	//static int levelwidth;
 	public static bool readytodraw;
 
@@ -23,10 +23,10 @@ public class LevelManager : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 
-	public void NextLevel(){
+	public static void NextLevel(int mynum){
 		levelselector.DestroyAllExceptCamera ();
 		levelselector.DrawIce ();
-		levelselector.DrawNextLevel (levelnum);
+		levelselector.DrawNextLevel (mynum);
 	}
 
 }
