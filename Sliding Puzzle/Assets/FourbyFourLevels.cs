@@ -37,9 +37,12 @@ public class FourbyFourLevels : MonoBehaviour {
 
 		void Start() {
 		LevelManager.levelselector = this;
+		if (LevelManager.levelnum == null || LevelManager.levelnum == 0) {
+			LevelManager.levelnum = 1;
+		}
 		levelnum = LevelManager.levelnum;
 		DrawIce ();
-		DrawNextLevel (1);
+		DrawNextLevel (levelnum);
 		}
 
 
