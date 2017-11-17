@@ -194,6 +194,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114646674708309688, guid: 47c03310939614fc7be80f35258a9d0e,
+        type: 2}
+      propertyPath: floor_wood
+      value: 
+      objectReference: {fileID: 4677497549714388, guid: dee2adf62d5d94a22b59967b180e4113,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47c03310939614fc7be80f35258a9d0e, type: 2}
   m_IsPrefabParent: 0

@@ -10,6 +10,7 @@ public class TileHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		isTaken = false;
+		myTaker = null;
 	}
 	
 	// Update is called once per frame
@@ -24,5 +25,8 @@ public class TileHandler : MonoBehaviour {
 			myTaker = null;
 
 		}
-	}
+		//if (myTaker == null) {
+			//Debug.Log ("Mesolonely");
+		//}
+	}	
 }

@@ -123,7 +123,11 @@ public class CharacterMovement : MonoBehaviour {
 				canmove = false;
 				//Qeue up an action when reaching the tile
 				nextaction = "Goal_Action";
-			} else {
+			}
+			if (tilescript.myTaker.tag ==	 "Wood"){
+				currenttile = tiletotest;
+			}
+				else {
 				canmove = false;
 			}
 		}

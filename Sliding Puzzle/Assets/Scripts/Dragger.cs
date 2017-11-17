@@ -12,9 +12,10 @@ public class Dragger : MonoBehaviour {
 	TileHandler tilescript;
 	public bool needtooccupy;
 	public GameObject newtile;
+	private Vector3 restingpoint;
 
 	void Start(){
-		
+		restingpoint = transform.position;
 	}
 
 	void Update(){
@@ -41,10 +42,15 @@ public class Dragger : MonoBehaviour {
  
  void OnMouseUp()
  {
-    Cursor.visible = true;
-		transform.position = tentativetile.transform.position + new Vector3 (0, 0, -.01f);
-		newtile = tentativetile;
-		needtooccupy = true;
+   	 Cursor.visible = true;
+		if (tilescript.myTaker == null) {
+			needtooccupy = true;
+			transform.position = tentativetile.transform.position + new Vector3 (0, 0, -.01f);
+			newtile = tentativetile;
+		} 
+		else {
+			transform.position = restingpoint;
+		}
 		//float z = -.01f;
 		//transform.position.z = z;
  }

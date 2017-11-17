@@ -22,7 +22,10 @@ public class Wall_Behaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		/*if (tilescript != null) {
+			FindmyTileHandler ();
+		}
+	*/
 	}
 	void FindTileTag(){
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(myPosition, .1f); ///Presuming the object you are testing also has a collider 0 otherwise{
@@ -35,6 +38,11 @@ public class Wall_Behaviour : MonoBehaviour {
 				Debug.Log ("Pew");
 				mytile = tileobject;
 			}
+		}
+	}
+	void FindmyTileHandler(){
+		if (tilescript.myTaker != this.gameObject) {
+			Debug.Log ("WHOUTHINKUIS");
 		}
 	}
 }

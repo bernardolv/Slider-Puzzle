@@ -39,6 +39,8 @@ public class Rock_Behaviour : MonoBehaviour {
 		//if (myDragger.newtile != mytile) {
 			//Debug.Log ("Not my tile");
 		//}
+
+		//Does the following when releasing after drag. Triggered by Dragger.OnmouseUp
 		if(myDragger.needtooccupy ==true){
 			Debug.Log ("occupy");
 			myPosition = transform.position;
@@ -53,11 +55,12 @@ public class Rock_Behaviour : MonoBehaviour {
 			if (component.tag == "Ground") {
 				tileobject = component.gameObject;
 				tilescript = tileobject.GetComponent<TileHandler> ();
-				tilescript.myTaker = this.gameObject;
+				if(tilescript.myTaker == null){
 				tilescript.isTaken = true;
 				Debug.Log ("Pew");
 				mytile = tileobject;
-
+				tilescript.myTaker = this.gameObject;
+				}
 			}
 		}
 	}
