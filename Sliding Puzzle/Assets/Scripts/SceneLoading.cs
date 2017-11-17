@@ -15,4 +15,12 @@ public class SceneLoading : MonoBehaviour {
 	public void LoadMenu(){
 		SceneManager.LoadScene(0);
 	}
+	public void NextlevelButton(){
+		LevelManager.levelnum++;
+		LevelManager.NextLevel (LevelManager.levelnum);
+	}
+	public void PreviousLevelButton(){
+		LevelManager.levelnum--;
+		LevelManager.NextLevel (LevelManager.levelnum);
+	}
 }
