@@ -114,9 +114,10 @@ public class FourbyFourLevels : MonoBehaviour {
 
 		foreach (GameObject component in gameobjects)
 		{
-			if (component.tag != "MainCamera") {
+			if (component.tag != "MainCamera" && component.tag != "Canvas") {
 				Destroy (component);
 			}
+
 		}
 	}
 }

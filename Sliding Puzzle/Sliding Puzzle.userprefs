@@ -1,6 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneLoading.cs">
+    <Files>
+      <File FileName="Assets/LevelDisplayScript.cs" Line="19" Column="47" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="17" Column="1" />
+      <File FileName="Assets/Scripts/FourbyFourLevels.cs" Line="119" Column="5" />
+      <File FileName="Assets/Scripts/SceneLoading.cs" Line="18" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
