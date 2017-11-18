@@ -9,6 +9,7 @@ TagManager:
   - Goal
   - Wood
   - Canvas
+  - Hole
   layers:
   - Default
   - TransparentFX

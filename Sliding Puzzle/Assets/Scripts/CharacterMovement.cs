@@ -48,6 +48,16 @@ public class CharacterMovement : MonoBehaviour {
 				int nextlevel = LevelManager.levelnum;
 				LevelManager.NextLevel (nextlevel);
 
+			}			
+			if (nextaction == "Hole_Action") {
+				/*currenttile = startingposition;
+				transform.position = startingposition;
+				cantakeinput = true;
+				canmove = true;
+				nextaction = null;*/
+				int nextlevel = LevelManager.levelnum;
+				LevelManager.NextLevel (nextlevel);
+
 			}
 		}
 	}
@@ -123,6 +133,13 @@ public class CharacterMovement : MonoBehaviour {
 				canmove = false;
 				//Qeue up an action when reaching the tile
 				nextaction = "Goal_Action";
+			}			
+			if (tilescript.myTaker.tag == "Hole") {
+				//you'll stop in the tile you checked and stop moving.
+				currenttile = tiletotest;
+				canmove = false;
+				//Qeue up an action when reaching the tile
+				nextaction = "Hole_Action";
 			}
 			if (tilescript.myTaker.tag ==	 "Wood"){
 				currenttile = tiletotest;

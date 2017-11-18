@@ -1,12 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneLoading.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Hole_Behaviour.cs">
     <Files>
+      <File FileName="Assets/Scripts/Hole_Behaviour.cs" Line="27" Column="34" />
+      <File FileName="Assets/Scripts/Goal_Behaviour.cs" Line="40" Column="2" />
       <File FileName="Assets/Resources/Level29.txt" Line="6" Column="8" />
-      <File FileName="Assets/LevelDisplayScript.cs" Line="19" Column="47" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="17" Column="1" />
+      <File FileName="Assets/LevelDisplayScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/FourbyFourLevels.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SceneLoading.cs" Line="24" Column="50" />
+      <File FileName="Assets/Scripts/SceneLoading.cs" Line="10" Column="22" />
+      <File FileName="Assets/Scripts/CharacterMovement.cs" Line="52" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Dragger.cs" />
      <Compile Include="Assets\Scripts\FourbyFourLevels.cs" />
      <Compile Include="Assets\Scripts\Goal_Behaviour.cs" />
+     <Compile Include="Assets\Scripts\Hole_Behaviour.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Pause_Behaviour.cs" />
      <Compile Include="Assets\Scripts\Rock_Behaviour.cs" />
