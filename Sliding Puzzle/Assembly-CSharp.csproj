@@ -72,8 +72,10 @@
      <None Include="Assets\Resources\Level35.txt" />
      <None Include="Assets\Resources\Level6.txt" />
      <None Include="Assets\Resources\Level38.txt" />
+     <None Include="Assets\Resources\Level45.txt" />
      <None Include="Assets\StreamingAssets\Level2.txt" />
      <None Include="Assets\StreamingAssets\8by8ice.txt" />
+     <None Include="Assets\Resources\Level46.txt" />
      <None Include="Assets\Resources\Level27.txt" />
      <None Include="Assets\StreamingAssets\Level1.txt" />
      <None Include="Assets\StreamingAssets\Level13.txt" />
@@ -106,10 +108,12 @@
      <None Include="Assets\Resources\8by8ice.txt" />
      <None Include="Assets\StreamingAssets\Level9.txt" />
      <None Include="Assets\StreamingAssets\Level15.txt" />
+     <None Include="Assets\Resources\Level47.txt" />
      <None Include="Assets\Resources\Level20.txt" />
      <None Include="Assets\Resources\Level2.txt" />
      <None Include="Assets\Resources\Level36.txt" />
      <None Include="Assets\Resources\Level19.txt" />
+     <None Include="Assets\Resources\Level48.txt" />
      <None Include="Assets\Resources\TestLevel2.txt" />
      <None Include="Assets\Resources\Level8.txt" />
      <None Include="Assets\Resources\Level13.txt" />
@@ -131,6 +135,7 @@
      <None Include="Assets\Graphics\License.txt" />
      <None Include="Assets\Resources\Level33.txt" />
      <None Include="Assets\Resources\Level31.txt" />
+     <None Include="Assets\Resources\Level44.txt" />
      <None Include="Assets\StreamingAssets\Level18.txt" />
      <None Include="Assets\StreamingAssets\Level20.txt" />
      <None Include="Assets\Resources\Level41.txt" />

@@ -25,6 +25,11 @@ public class FourbyFourLevels : MonoBehaviour {
 		public Transform floor_goal;
 		public Transform floor_hole;
 		public Transform floor_wood;
+		public Transform floor_left;
+		public Transform floor_right;
+		public Transform floor_up;
+		public Transform floor_down;
+
 		
 		public int levelnum;
 		//public bool readytodraw;
@@ -36,6 +41,10 @@ public class FourbyFourLevels : MonoBehaviour {
 		public const string sgoal = "G";
 		public const string sfloor_hole = "H";
 		public const string sfloor_wood = "#";
+		public const string sfloor_left = "L";
+		public const string sfloor_right = "R";
+		public const string sfloor_up = "U";
+		public const string sfloor_down = "D";
 
 
 		void Start() {
@@ -105,7 +114,20 @@ public class FourbyFourLevels : MonoBehaviour {
 				case sfloor_wood:
 					Instantiate (floor_wood, new Vector3 (x, -y, 0), Quaternion.identity);
 					break;
+				case sfloor_left:
+					Instantiate	(floor_left, new Vector3 (x, -y, 0), floor_left.transform.rotation);
+					break;
+				case sfloor_right:
+					Instantiate	(floor_right, new Vector3 (x, -y, 0), floor_right.transform.rotation);
+					break;
+				case sfloor_up:
+					Instantiate	(floor_up, new Vector3 (x, -y, 0), floor_up.transform.rotation);
+					break;
+				case sfloor_down:
+					Instantiate	(floor_down, new Vector3 (x, -y, 0), floor_down.transform.rotation);
+					break;
 				}
+
 			}
 		} 
 	}

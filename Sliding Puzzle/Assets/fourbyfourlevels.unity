@@ -283,6 +283,30 @@ Prefab:
       propertyPath: m_TagString
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 114646674708309688, guid: 47c03310939614fc7be80f35258a9d0e,
+        type: 2}
+      propertyPath: floor_down
+      value: 
+      objectReference: {fileID: 4567880626323366, guid: 9d1b92fd51e0945ab9601f034351908a,
+        type: 2}
+    - target: {fileID: 114646674708309688, guid: 47c03310939614fc7be80f35258a9d0e,
+        type: 2}
+      propertyPath: floor_left
+      value: 
+      objectReference: {fileID: 4002668937461708, guid: 8a61fe5e9039849bdbcb8dcaec1b4448,
+        type: 2}
+    - target: {fileID: 114646674708309688, guid: 47c03310939614fc7be80f35258a9d0e,
+        type: 2}
+      propertyPath: floor_right
+      value: 
+      objectReference: {fileID: 4986784971777966, guid: 9a517342bfd0946549f59810353721d0,
+        type: 2}
+    - target: {fileID: 114646674708309688, guid: 47c03310939614fc7be80f35258a9d0e,
+        type: 2}
+      propertyPath: floor_up
+      value: 
+      objectReference: {fileID: 4193627656710500, guid: e640915be122e4677b54594c1a3b1b2d,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47c03310939614fc7be80f35258a9d0e, type: 2}
   m_IsPrefabParent: 0
