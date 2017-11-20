@@ -59,6 +59,54 @@ public class CharacterMovement : MonoBehaviour {
 				LevelManager.NextLevel (nextlevel);
 
 			}
+			if (nextaction == "Left_Action") {
+				tiletotest = currenttile;
+				canmove = true;
+				while (canmove == true) {
+					tiletotest += Vector3.left;
+					FindTileTag ();
+					ActOnTile ();
+				}
+				if (nextaction == "Left_Action") {
+					nextaction = null;
+				}
+			}
+			if (nextaction == "Right_Action") {
+				tiletotest = currenttile;
+				canmove = true;
+				while (canmove == true) {
+					tiletotest += Vector3.right;
+					FindTileTag ();
+					ActOnTile ();
+				}
+				if (nextaction == "Right_Action") {
+					nextaction = null;
+				}
+			}
+			if (nextaction == "Up_Action") {
+				tiletotest = currenttile;
+				canmove = true;
+				while (canmove == true) {
+					tiletotest += Vector3.up;
+					FindTileTag ();
+					ActOnTile ();
+				}
+				if (nextaction == "Up_Action") {
+					nextaction = null;
+				}
+			}
+			if (nextaction == "Down_Action") {
+				tiletotest = currenttile;
+				canmove = true;
+				while (canmove == true) {
+					tiletotest += Vector3.down;
+					FindTileTag ();
+					ActOnTile ();
+				}
+				if (nextaction == "Down_Action") {
+					nextaction = null;
+				}
+			}
 		}
 	}
 
@@ -127,24 +175,47 @@ public class CharacterMovement : MonoBehaviour {
 				//the desired tile is the previous one and u stop looking for next tiles.
 				canmove = false;
 			}
-			if (tilescript.myTaker.tag == "Goal") {
+			else if (tilescript.myTaker.tag == "Goal") {
 				//you'll stop in the tile you checked and stop moving.
 				currenttile = tiletotest;
 				canmove = false;
 				//Qeue up an action when reaching the tile
 				nextaction = "Goal_Action";
 			}			
-			if (tilescript.myTaker.tag == "Hole") {
+			else if (tilescript.myTaker.tag == "Hole") {
 				//you'll stop in the tile you checked and stop moving.
 				currenttile = tiletotest;
 				canmove = false;
 				//Qeue up an action when reaching the tile
 				nextaction = "Hole_Action";
 			}
-			if (tilescript.myTaker.tag ==	 "Wood"){
+			else if (tilescript.myTaker.tag == "Wood"){
 				currenttile = tiletotest;
+				Debug.Log ("Pink");
+				//canmove = true;
+			}
+			else if (tilescript.myTaker.tag == "Left") {
+				currenttile = tiletotest;
+				canmove = false;
+				nextaction = "Left_Action";
+			}	
+				else if (tilescript.myTaker.tag == "Right") {
+				currenttile = tiletotest;
+				canmove = false;
+				nextaction = "Right_Action";
+			}			
+				else if (tilescript.myTaker.tag == "Up") {
+				currenttile = tiletotest;
+				canmove = false;
+				nextaction = "Up_Action";
+			}	
+				else if (tilescript.myTaker.tag == "Down") {
+				currenttile = tiletotest;
+				canmove = false;
+				nextaction = "Down_Action";
 			}
 				else {
+				Debug.Log ("Dong");
 				canmove = false;
 			}
 		}

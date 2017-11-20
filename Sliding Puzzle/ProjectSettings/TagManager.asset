@@ -10,6 +10,10 @@ TagManager:
   - Wood
   - Canvas
   - Hole
+  - Left
+  - Right
+  - Up
+  - Down
   layers:
   - Default
   - TransparentFX

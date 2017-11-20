@@ -619,6 +619,10 @@ Prefab:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1696678188988834, guid: 323e672969b79479cbb6b8d9b2063dfb, type: 2}
+      propertyPath: m_TagString
+      value: Left
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 323e672969b79479cbb6b8d9b2063dfb, type: 2}
   m_IsPrefabParent: 0
