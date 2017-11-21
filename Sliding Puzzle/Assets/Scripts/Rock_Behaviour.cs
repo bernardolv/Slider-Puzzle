@@ -49,7 +49,7 @@ public class Rock_Behaviour : MonoBehaviour {
 		}
 
 	}
-	void GiveTileTag(){
+	public void GiveTileTag(){
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(myPosition, .1f); ///Presuming the object you are testing also has a collider 0 otherwise{
 		foreach(Collider2D component in colliders){
 			if (component.tag == "Ground") {
@@ -60,6 +60,21 @@ public class Rock_Behaviour : MonoBehaviour {
 				Debug.Log ("Pew");
 				mytile = tileobject;
 				tilescript.myTaker = this.gameObject;
+				}
+			}
+		}
+	}
+	public void MakeHole(){
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(myPosition, .1f); ///Presuming the object you are testing also has a collider 0 otherwise{
+		foreach(Collider2D component in colliders){
+			if (component.tag == "Ground") {
+				tileobject = component.gameObject;
+				tilescript = tileobject.GetComponent<TileHandler> ();
+				if(tilescript.myTaker == this.gameObject){
+					tilescript.isTaken = true;
+					Debug.Log ("Pew");
+					mytile = tileobject;
+					tilescript.myTaker = this.gameObject;
 				}
 			}
 		}

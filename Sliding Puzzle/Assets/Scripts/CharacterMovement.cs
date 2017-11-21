@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour {
 	GameObject tiletaker;
 	public string nextaction;
 	public bool beingdragged;
+	public GameObject lastFragile;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -26,19 +27,26 @@ public class CharacterMovement : MonoBehaviour {
 		canmove = true;
 		nextaction = null;
 		beingdragged = false;
-
+		lastFragile = null;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 			Movement ();
 		if (currenttile == transform.position) {
-			if (nextaction == null) {
+			//Debug.Log (tilescript.myTaker.tag);
+			if (lastFragile != null && lastFragile.transform.position == transform.position) {
+				Debug.Log ("Kaplunk");
+				int nextlevel = LevelManager.levelnum;
+				LevelManager.NextLevel (nextlevel);
+			}
+			else if (nextaction == null) {
 				cantakeinput = true;
 				canmove = true;
-			}
-			if (nextaction == "Goal_Action") {
+			}  
+			else if (nextaction == "Goal_Action") {
 				/*currenttile = startingposition;
 				transform.position = startingposition;
 				cantakeinput = true;
@@ -49,7 +57,7 @@ public class CharacterMovement : MonoBehaviour {
 				LevelManager.NextLevel (nextlevel);
 
 			}			
-			if (nextaction == "Hole_Action") {
+			else if (nextaction == "Hole_Action") {
 				/*currenttile = startingposition;
 				transform.position = startingposition;
 				cantakeinput = true;
@@ -59,7 +67,7 @@ public class CharacterMovement : MonoBehaviour {
 				LevelManager.NextLevel (nextlevel);
 
 			}
-			if (nextaction == "Left_Action") {
+			else if (nextaction == "Left_Action") {
 				tiletotest = currenttile;
 				canmove = true;
 				while (canmove == true) {
@@ -71,7 +79,7 @@ public class CharacterMovement : MonoBehaviour {
 					nextaction = null;
 				}
 			}
-			if (nextaction == "Right_Action") {
+			else if (nextaction == "Right_Action") {
 				tiletotest = currenttile;
 				canmove = true;
 				while (canmove == true) {
@@ -83,7 +91,7 @@ public class CharacterMovement : MonoBehaviour {
 					nextaction = null;
 				}
 			}
-			if (nextaction == "Up_Action") {
+			else if (nextaction == "Up_Action") {
 				tiletotest = currenttile;
 				canmove = true;
 				while (canmove == true) {
@@ -95,7 +103,7 @@ public class CharacterMovement : MonoBehaviour {
 					nextaction = null;
 				}
 			}
-			if (nextaction == "Down_Action") {
+			else if (nextaction == "Down_Action") {
 				tiletotest = currenttile;
 				canmove = true;
 				while (canmove == true) {
@@ -174,45 +182,43 @@ public class CharacterMovement : MonoBehaviour {
 			if (tilescript.myTaker.tag == "Wall") {
 				//the desired tile is the previous one and u stop looking for next tiles.
 				canmove = false;
-			}
-			else if (tilescript.myTaker.tag == "Goal") {
+			} else if (tilescript.myTaker.tag == "Goal") {
 				//you'll stop in the tile you checked and stop moving.
 				currenttile = tiletotest;
 				canmove = false;
 				//Qeue up an action when reaching the tile
 				nextaction = "Goal_Action";
-			}			
-			else if (tilescript.myTaker.tag == "Hole") {
+			} else if (tilescript.myTaker.tag == "Hole") {
 				//you'll stop in the tile you checked and stop moving.
 				currenttile = tiletotest;
 				canmove = false;
 				//Qeue up an action when reaching the tile
 				nextaction = "Hole_Action";
-			}
-			else if (tilescript.myTaker.tag == "Wood"){
+			} else if (tilescript.myTaker.tag == "Wood") {
 				currenttile = tiletotest;
 				Debug.Log ("Pink");
 				//canmove = true;
-			}
-			else if (tilescript.myTaker.tag == "Left") {
+			} else if (tilescript.myTaker.tag == "Left") {
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Left_Action";
-			}	
-				else if (tilescript.myTaker.tag == "Right") {
+			} else if (tilescript.myTaker.tag == "Right") {
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Right_Action";
-			}			
-				else if (tilescript.myTaker.tag == "Up") {
+			} else if (tilescript.myTaker.tag == "Up") {
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Up_Action";
-			}	
-				else if (tilescript.myTaker.tag == "Down") {
+			} else if (tilescript.myTaker.tag == "Down") {
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Down_Action";
+			} else if (tilescript.myTaker.tag == "Fragile") {
+				currenttile = tiletotest;
+				lastFragile = tilescript.myTaker;
+				tilescript.myTaker.tag = "Hole";
+		
 			}
 				else {
 				Debug.Log ("Dong");

@@ -227,7 +227,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next Level
+  m_Text: Previous Level
 --- !u!222 &494556258
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -306,6 +306,12 @@ Prefab:
       propertyPath: floor_up
       value: 
       objectReference: {fileID: 4193627656710500, guid: e640915be122e4677b54594c1a3b1b2d,
+        type: 2}
+    - target: {fileID: 114646674708309688, guid: 47c03310939614fc7be80f35258a9d0e,
+        type: 2}
+      propertyPath: floor_fragile
+      value: 
+      objectReference: {fileID: 4340884235802714, guid: 4d510a3e0979e462c82593f1211f86af,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47c03310939614fc7be80f35258a9d0e, type: 2}

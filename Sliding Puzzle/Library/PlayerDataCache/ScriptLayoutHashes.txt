@@ -1,4 +1,4 @@
-OSXStandalone
+WindowsStandalone
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -14,6 +14,7 @@ af723155c251fcfa0e66530a75f3ea4c UnityEngine.Timeline.dll:UnityEngine.Timeline.T
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pause_Behaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Wall_Behaviour
 36bac45d41cc13993c227065f7c1a034 Assembly-CSharp.dll:.Rock_Behaviour
+36bac45d41cc13993c227065f7c1a034 Assembly-CSharp.dll:.Left_Behaviour
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -78,6 +79,7 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Wood_Behaviour
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -114,9 +116,11 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-1acff7bf64428a01ea9ce5c633bafce7 Assembly-CSharp.dll:.FourbyFourLevels
+d6b243e7f182d8d31b87308b442bf664 Assembly-CSharp.dll:.FourbyFourLevels
+6ff4030a9ecf01e7f3be55a41dfcc42c Assembly-CSharp.dll:.LevelDisplayScript
 4f4b6d80f671820db5a1a1025783db9a Assembly-CSharp.dll:.SceneLoading
 e9baaa927c58f67ae470e95ed59e0bfb Assembly-CSharp.dll:.TileHandler
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Hole_Behaviour
 32e8fe00b63ed946490b898f6024a2f2 Facebook.Unity.Settings.dll:Facebook.Unity.Settings.FacebookSettings
 1179c81a2a972dff43b78671a54ae65c Assembly-CSharp.dll:.Dragger
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SceneHandler

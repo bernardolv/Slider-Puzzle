@@ -29,6 +29,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		public Transform floor_right;
 		public Transform floor_up;
 		public Transform floor_down;
+		public Transform floor_fragile;
 
 		
 		public int levelnum;
@@ -45,6 +46,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		public const string sfloor_right = "R";
 		public const string sfloor_up = "U";
 		public const string sfloor_down = "D";
+		public const string sfloor_fragile = "F";
 
 
 		void Start() {
@@ -68,8 +70,9 @@ public class FourbyFourLevels : MonoBehaviour {
 		}*/
 	//}
 	public void DrawIce(){
-		string leveltext = ("Assets/Resources/8by8ice.txt");
-		string[][] jagged = readFile (leveltext);
+		string filePath = System.IO.Path.Combine (Application.streamingAssetsPath, "8by8ice.txt");
+		//string leveltext = ("Assets/Resources/8by8ice.txt");
+		string[][] jagged = readFile (filePath);
 
 		// create planes based on matrix
 		for (int y = 0; y < jagged.Length; y++) {
@@ -85,8 +88,9 @@ public class FourbyFourLevels : MonoBehaviour {
 
 	public void DrawNextLevel(int levelnumber){
 
-		string leveltext = ("Assets/Resources/Level" + levelnumber.ToString() + ".txt");
-		string[][] jagged = readFile (leveltext);
+		string leveltext = ("Level" + levelnumber.ToString() + ".txt");
+		string filePath = System.IO.Path.Combine (Application.streamingAssetsPath, leveltext);
+		string[][] jagged = readFile (filePath);
 
 		// create planes based on matrix
 		for (int y = 0; y < jagged.Length; y++) {
@@ -125,6 +129,9 @@ public class FourbyFourLevels : MonoBehaviour {
 					break;
 				case sfloor_down:
 					Instantiate	(floor_down, new Vector3 (x, -y, 0), floor_down.transform.rotation);
+					break;
+				case sfloor_fragile:
+					Instantiate (floor_fragile, new Vector3 (x, -y, 0), Quaternion.identity);
 					break;
 				}
 
