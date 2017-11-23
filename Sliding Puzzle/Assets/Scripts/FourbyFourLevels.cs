@@ -2,9 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using UnityEngine.Networking;
 
 public class FourbyFourLevels : MonoBehaviour {
-	
+	private string filePath;
+	private string result;
+
+	IEnumerator checkAndroid(string file)
+	{
+		filePath = System.IO.Path.Combine(Application.streamingAssetsPath, file);
+		Debug.Log (filePath);
+		result = " ";
+		if (file.Contains ("://")) {
+			UnityWebRequest www = UnityWebRequest.Get (file);
+			yield return www.SendWebRequest ();
+			result = www.downloadHandler.text;
+			Debug.Log (result);
+
+		} else
+			result = System.IO.File.ReadAllText (filePath);
+		Debug.Log (result);
+		Debug.Log (filePath);
+	}
 
 	string[][] readFile(string file){
 		string text = System.IO.File.ReadAllText (file);
@@ -71,6 +90,8 @@ public class FourbyFourLevels : MonoBehaviour {
 	//}
 	public void DrawIce(){
 		string filePath = System.IO.Path.Combine (Application.streamingAssetsPath, "8by8ice.txt");
+		//checkAndroid ("8by8ice.txt");
+		Debug.Log (filePath);
 		//string leveltext = ("Assets/Resources/8by8ice.txt");
 		string[][] jagged = readFile (filePath);
 
@@ -89,6 +110,7 @@ public class FourbyFourLevels : MonoBehaviour {
 	public void DrawNextLevel(int levelnumber){
 
 		string leveltext = ("Level" + levelnumber.ToString() + ".txt");
+		checkAndroid (leveltext);
 		string filePath = System.IO.Path.Combine (Application.streamingAssetsPath, leveltext);
 		string[][] jagged = readFile (filePath);
 

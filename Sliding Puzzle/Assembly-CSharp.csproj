@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\TileHandler.cs" />
      <Compile Include="Assets\Scripts\Wall_Behaviour.cs" />
      <Compile Include="Assets\Scripts\Wood_Behaviour.cs" />
+     <Compile Include="Assets\ScrollSnapRect.cs" />
      <None Include="Assets\StreamingAssets\Level35.txt" />
      <None Include="Assets\StreamingAssets\Level6.txt" />
      <None Include="Assets\StreamingAssets\Level55.txt" />
