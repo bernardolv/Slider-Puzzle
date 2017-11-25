@@ -15,6 +15,7 @@ TagManager:
   - Up
   - Down
   - Fragile
+  - Countme
   layers:
   - Default
   - TransparentFX

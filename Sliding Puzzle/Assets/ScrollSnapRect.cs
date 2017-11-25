@@ -38,7 +38,7 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     private bool _horizontal;
     
     // number of pages in container
-    private int _pageCount;
+    public int _pageCount;
     private int _currentPage;
 
     // whether lerping is in progress and target lerp position
@@ -64,7 +64,9 @@ public class ScrollSnapRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         _scrollRectComponent = GetComponent<ScrollRect>();
         _scrollRectRect = GetComponent<RectTransform>();
         _container = _scrollRectComponent.content;
-        _pageCount = _container.childCount;
+
+
+        //_pageCount = _container.childCount;
 
         // is it horizontal or vertical scrollrect
         if (_scrollRectComponent.horizontal && !_scrollRectComponent.vertical) {
