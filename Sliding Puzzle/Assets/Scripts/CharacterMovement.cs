@@ -33,7 +33,9 @@ public class CharacterMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (transform.position != startingposition && TurnBehaviour.turn == 0) {
+			TurnBehaviour.turn = 1;
+		}
 			Movement ();
 		if (currenttile == transform.position) {
 			//Debug.Log (tilescript.myTaker.tag);

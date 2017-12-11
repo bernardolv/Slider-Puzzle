@@ -24,24 +24,31 @@ public class Dragger : MonoBehaviour {
 	 void OnMouseDown() {
     //screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); // I removed this line to prevent centring 
    // _lockedYPosition = screenPoint.y;
-    offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-    Cursor.visible = false;
+		if (TurnBehaviour.turn == 0) {
+			offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+			Cursor.visible = false;
+		}
 		//notmoving = false;
  }
  
  void OnMouseDrag()
 	{ 
-		Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-		Vector3 curPosition = Camera.main.ScreenToWorldPoint (curScreenPoint) + offset;
-		// curPosition.x = _lockedYPosition;
-		transform.position = curPosition;
-		myPosition = transform.position;
-		FindHoveredTile ();
+		if (TurnBehaviour.turn == 0) {
+			
+			Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+			Vector3 curPosition = Camera.main.ScreenToWorldPoint (curScreenPoint) + offset;
+			// curPosition.x = _lockedYPosition;
+			transform.position = curPosition;
+			myPosition = transform.position;
+			FindHoveredTile ();
+		}
 
 	}
  
  void OnMouseUp()
  {
+		if (TurnBehaviour.turn == 0) {
+			
    	 Cursor.visible = true;
 		if (tilescript.myTaker == null) {
 			needtooccupy = true;
@@ -53,6 +60,7 @@ public class Dragger : MonoBehaviour {
 		}
 		//float z = -.01f;
 		//transform.position.z = z;
+		}
  }
 	void FindHoveredTile(){
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(myPosition, .1f); ///Presuming the object you are testing also has a collider 0 otherwise{

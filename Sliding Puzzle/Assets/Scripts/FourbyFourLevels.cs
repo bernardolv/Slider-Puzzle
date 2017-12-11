@@ -161,6 +161,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		} 
 	}
 	public void DestroyAllExceptCamera(){
+		TurnBehaviour.turn = 0;
 		GameObject[] gameobjects = GameObject.FindObjectsOfType <GameObject>();
 
 		foreach (GameObject component in gameobjects)

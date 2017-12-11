@@ -10,7 +10,7 @@ public class SceneLoading : MonoBehaviour {
 		Debug.Log ("BOOP");
 		LevelManager.levelnum = num;
 		LevelManager.readytodraw = true;
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(2);
 	}
 	public void LoadMenu(){
 		SceneManager.LoadScene(0);
@@ -22,5 +22,14 @@ public class SceneLoading : MonoBehaviour {
 	public void PreviousLevelButton(){
 		LevelManager.levelnum--;
 		LevelManager.NextLevel (LevelManager.levelnum);
+	}
+	public void GoToWorld(int worldnumber){
+
+		LevelManager.worldnum = worldnumber;
+		SceneManager.LoadScene(1);
+		//change camera position depending on 
+	}
+	public void GoToWorldSelect(){
+		SceneManager.LoadScene (1);
 	}
 }

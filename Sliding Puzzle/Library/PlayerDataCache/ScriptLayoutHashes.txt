@@ -1,4 +1,4 @@
-WindowsStandalone
+OSXStandalone
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -123,6 +123,7 @@ e9baaa927c58f67ae470e95ed59e0bfb Assembly-CSharp.dll:.TileHandler
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Hole_Behaviour
 32e8fe00b63ed946490b898f6024a2f2 Facebook.Unity.Settings.dll:Facebook.Unity.Settings.FacebookSettings
 1179c81a2a972dff43b78671a54ae65c Assembly-CSharp.dll:.Dragger
+e8566df797140d5e015c187c6da1eb2f Assembly-CSharp.dll:.ScrollSnapRect
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SceneHandler
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -153,3 +154,4 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 00014daf9e9e5c526eedfad7282a48fb Assembly-CSharp.dll:.Fragile_Behaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CheckInstance
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Goal_Behaviour
+28144fc234708003731dabfd1b4f44bf Assembly-CSharp.dll:.Buttonbuilder

@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour {
 	public static FourbyFourLevels levelselector;
 	//static int levelwidth;
 	public static bool readytodraw;
+	public static int worldnum;
 
 	private static LevelManager instance = null;
 
@@ -28,5 +29,6 @@ public class LevelManager : MonoBehaviour {
 		levelselector.DrawIce ();
 		levelselector.DrawNextLevel (mynum);
 	}
-
+	void Update(){
+	}
 }
