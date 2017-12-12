@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4452446195448124}
   - component: {fileID: 212248383985406518}
   - component: {fileID: 114362199084196394}
-  - component: {fileID: 114283172088503372}
   - component: {fileID: 61733068148044346}
   m_Layer: 0
   m_Name: Player
@@ -68,20 +67,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114283172088503372
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832154775011318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 831a4459c0a41498ca8c9dc756de19fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tentativetile: {fileID: 0}
-  needtooccupy: 0
-  newtile: {fileID: 0}
 --- !u!114 &114362199084196394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,6 +85,7 @@ MonoBehaviour:
   tileobject: {fileID: 0}
   nextaction: 
   beingdragged: 0
+  lastFragile: {fileID: 0}
 --- !u!212 &212248383985406518
 SpriteRenderer:
   m_ObjectHideFlags: 1

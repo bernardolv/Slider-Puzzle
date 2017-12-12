@@ -16,6 +16,7 @@ TagManager:
   - Down
   - Fragile
   - Countme
+  - Quicksand
   layers:
   - Default
   - TransparentFX

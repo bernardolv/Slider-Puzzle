@@ -27,6 +27,7 @@ public class Dragger : MonoBehaviour {
 		if (TurnBehaviour.turn == 0) {
 			offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 			Cursor.visible = false;
+			Debug.Log (this.gameObject);
 		}
 		//notmoving = false;
  }

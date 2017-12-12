@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour {
 	public string nextaction;
 	public bool beingdragged;
 	public GameObject lastFragile;
+	public static bool isspeeding;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -28,7 +29,7 @@ public class CharacterMovement : MonoBehaviour {
 		nextaction = null;
 		beingdragged = false;
 		lastFragile = null;
-
+		isspeeding = false;
 	}
 	
 	// Update is called once per frame
@@ -47,6 +48,7 @@ public class CharacterMovement : MonoBehaviour {
 			else if (nextaction == null) {
 				cantakeinput = true;
 				canmove = true;
+				isspeeding = false;
 			}  
 			else if (nextaction == "Goal_Action") {
 				/*currenttile = startingposition;
@@ -76,6 +78,7 @@ public class CharacterMovement : MonoBehaviour {
 					tiletotest += Vector3.left;
 					FindTileTag ();
 					ActOnTile ();
+					isspeeding = true;
 				}
 				if (nextaction == "Left_Action") {
 					nextaction = null;
@@ -88,6 +91,7 @@ public class CharacterMovement : MonoBehaviour {
 					tiletotest += Vector3.right;
 					FindTileTag ();
 					ActOnTile ();
+					isspeeding = true;
 				}
 				if (nextaction == "Right_Action") {
 					nextaction = null;
@@ -100,6 +104,7 @@ public class CharacterMovement : MonoBehaviour {
 					tiletotest += Vector3.up;
 					FindTileTag ();
 					ActOnTile ();
+					isspeeding = true;
 				}
 				if (nextaction == "Up_Action") {
 					nextaction = null;
@@ -112,6 +117,7 @@ public class CharacterMovement : MonoBehaviour {
 					tiletotest += Vector3.down;
 					FindTileTag ();
 					ActOnTile ();
+					isspeeding = true;
 				}
 				if (nextaction == "Down_Action") {
 					nextaction = null;
@@ -121,7 +127,7 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	void QWERTYMove(){
-		if (Input.GetKeyDown (KeyCode.W)) {
+		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
 			tiletotest = currenttile;
 			while (canmove == true) {
 				tiletotest += Vector3.up;
@@ -129,15 +135,15 @@ public class CharacterMovement : MonoBehaviour {
 				ActOnTile ();
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.A)) {
+		if (Input.GetKeyDown (KeyCode.A)|| Input.GetKeyDown(KeyCode.LeftArrow)) {
 			tiletotest = currenttile;
-			while (canmove == true) {
+			while (canmove == true) {	
 				tiletotest += Vector3.left;
 				FindTileTag ();
 				ActOnTile ();
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.S)) {
+		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
 			tiletotest = currenttile;
 			while (canmove == true) {
 				tiletotest += Vector3.down;
@@ -145,7 +151,7 @@ public class CharacterMovement : MonoBehaviour {
 				ActOnTile ();
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.D)) {
+		if (Input.GetKeyDown (KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow)) {
 			tiletotest = currenttile;
 			while (canmove == true) {
 				tiletotest += Vector3.right;
@@ -204,23 +210,39 @@ public class CharacterMovement : MonoBehaviour {
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Left_Action";
+				isspeeding = true;
+
 			} else if (tilescript.myTaker.tag == "Right") {
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Right_Action";
+				isspeeding = true;
 			} else if (tilescript.myTaker.tag == "Up") {
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Up_Action";
+				isspeeding = true;
+
 			} else if (tilescript.myTaker.tag == "Down") {
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Down_Action";
+				isspeeding = true;
+
 			} else if (tilescript.myTaker.tag == "Fragile") {
 				currenttile = tiletotest;
 				lastFragile = tilescript.myTaker;
 				tilescript.myTaker.tag = "Hole";
 		
+			} else if (tilescript.myTaker.tag == "Quicksand") {
+				currenttile = tiletotest;
+				lastFragile = tilescript.myTaker;
+				if (isspeeding == false) {
+					currenttile = tiletotest;
+					canmove = false;
+					nextaction = "Hole_action";
+				}
+
 			}
 				else {
 				Debug.Log ("Dong");

@@ -353,6 +353,12 @@ Prefab:
       value: 
       objectReference: {fileID: 4340884235802714, guid: 4d510a3e0979e462c82593f1211f86af,
         type: 2}
+    - target: {fileID: 114646674708309688, guid: 47c03310939614fc7be80f35258a9d0e,
+        type: 2}
+      propertyPath: floor_quicksand
+      value: 
+      objectReference: {fileID: 4340884235802714, guid: ed36e7a8853a74ec3beceb08f8415583,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47c03310939614fc7be80f35258a9d0e, type: 2}
   m_IsPrefabParent: 0
