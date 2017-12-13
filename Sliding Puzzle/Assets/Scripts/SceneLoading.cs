@@ -25,11 +25,13 @@ public class SceneLoading : MonoBehaviour {
 	}
 	public void GoToWorld(int worldnumber){
 
+
 		//LevelManager.worldnum = worldnumber;
 		SceneManager.LoadScene(worldnumber);
 		//change camera position depending on 
 	}
-	public void GoToWorldSelect(){
+
+	public void GoToLevelSelect(){
 		if (LevelManager.levelnum < 34) {
 			SceneManager.LoadScene (1);
 		} else if (LevelManager.levelnum < 67) {
@@ -37,5 +39,9 @@ public class SceneLoading : MonoBehaviour {
 		} else if (LevelManager.levelnum < 101) {
 			SceneManager.LoadScene (3);
 		}
+	}
+
+	public void GoToWorldSelect(){
+			SceneManager.LoadScene (1);
 	}
 }
