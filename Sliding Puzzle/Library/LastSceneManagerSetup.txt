@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/World3.unity
+- path: Assets/fourbyfourlevels.unity
   isLoaded: 1
   isActive: 1

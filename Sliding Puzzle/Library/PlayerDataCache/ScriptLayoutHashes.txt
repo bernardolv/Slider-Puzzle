@@ -1,4 +1,4 @@
-WindowsStandalone
+OSXStandalone
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -117,8 +117,9 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-4019726190ee229481f6a1fdb746f155 Assembly-CSharp.dll:.FourbyFourLevels
+931f78659e0cc8453a4813697752bac1 Assembly-CSharp.dll:.FourbyFourLevels
 6ff4030a9ecf01e7f3be55a41dfcc42c Assembly-CSharp.dll:.LevelDisplayScript
+e1111f876f6bff0625f00b729d8b51b6 Assembly-CSharp.dll:.Boss_Behaviour
 4f4b6d80f671820db5a1a1025783db9a Assembly-CSharp.dll:.SceneLoading
 e9baaa927c58f67ae470e95ed59e0bfb Assembly-CSharp.dll:.TileHandler
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Hole_Behaviour

@@ -50,6 +50,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		public Transform floor_down;
 		public Transform floor_fragile;
 		public Transform floor_quicksand;
+		public Transform floor_boss;
 
 
 		
@@ -69,6 +70,8 @@ public class FourbyFourLevels : MonoBehaviour {
 		public const string sfloor_down = "D";
 		public const string sfloor_fragile = "F";
 		public const string sfloor_quicksand = "Q";
+		public const string sfloor_boss = "B";
+
 
 
 
@@ -161,6 +164,9 @@ public class FourbyFourLevels : MonoBehaviour {
 					break;
 				case sfloor_quicksand:
 					Instantiate (floor_quicksand, new Vector3 (x, -y, 0), Quaternion.identity);
+					break;
+				case sfloor_boss:
+					Instantiate (floor_boss, new Vector3 (x, -y, 0), Quaternion.identity);
 					break;
 				}
 

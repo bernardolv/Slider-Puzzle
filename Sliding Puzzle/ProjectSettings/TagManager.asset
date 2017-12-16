@@ -17,6 +17,7 @@ TagManager:
   - Fragile
   - Countme
   - Quicksand
+  - Boss
   layers:
   - Default
   - TransparentFX

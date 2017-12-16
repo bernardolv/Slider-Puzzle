@@ -19,6 +19,7 @@ public class CharacterMovement : MonoBehaviour {
 	public bool beingdragged;
 	public GameObject lastFragile;
 	public static bool isspeeding;
+	public static string character_direction;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -130,6 +131,7 @@ public class CharacterMovement : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
 			tiletotest = currenttile;
 			while (canmove == true) {
+				character_direction = "Up";
 				tiletotest += Vector3.up;
 				FindTileTag ();
 				ActOnTile ();
@@ -138,6 +140,8 @@ public class CharacterMovement : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.A)|| Input.GetKeyDown(KeyCode.LeftArrow)) {
 			tiletotest = currenttile;
 			while (canmove == true) {	
+				character_direction = "Left";
+
 				tiletotest += Vector3.left;
 				FindTileTag ();
 				ActOnTile ();
@@ -146,6 +150,7 @@ public class CharacterMovement : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
 			tiletotest = currenttile;
 			while (canmove == true) {
+				character_direction = "Down";
 				tiletotest += Vector3.down;
 				FindTileTag ();
 				ActOnTile ();
@@ -154,6 +159,7 @@ public class CharacterMovement : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow)) {
 			tiletotest = currenttile;
 			while (canmove == true) {
+				character_direction = "Right";
 				tiletotest += Vector3.right;
 				FindTileTag ();
 				ActOnTile ();
@@ -242,6 +248,23 @@ public class CharacterMovement : MonoBehaviour {
 					canmove = false;
 					nextaction = "Hole_action";
 				}
+
+			} else if (tilescript.myTaker.tag == "Boss") {
+				currenttile = tiletotest;
+				canmove = false;
+				/*if (character_direction == "Up") {
+					Boss_Behaviour.bosstile.y++;
+				}
+				if (character_direction == "Right") {
+					Boss_Behaviour.bosstile.x++;
+				}
+				if (character_direction == "Left") {
+					Boss_Behaviour.bosstile.x--;
+				}
+				if (character_direction == "Down") {
+					Boss_Behaviour.bosstile.y--;
+				}*/
+
 
 			}
 				else {
