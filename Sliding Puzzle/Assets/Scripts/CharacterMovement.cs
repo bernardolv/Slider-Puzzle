@@ -20,6 +20,8 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject lastFragile;
 	public static bool isspeeding;
 	public static string character_direction;
+	public GameObject lastSeed;
+	Seed_Behaviour myseedbehaviour;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -248,6 +250,14 @@ public class CharacterMovement : MonoBehaviour {
 					canmove = false;
 					nextaction = "Hole_action";
 				}
+
+			}
+			else if (tilescript.myTaker.tag == "Seed") {
+				currenttile = tiletotest;
+				lastSeed = tilescript.myTaker;
+				myseedbehaviour = lastSeed.GetComponent<Seed_Behaviour> ();
+				myseedbehaviour.Unseed ();
+
 
 			} else if (tilescript.myTaker.tag == "Boss") {
 				currenttile = tiletotest;

@@ -52,6 +52,12 @@ public class FourbyFourLevels : MonoBehaviour {
 		public Transform floor_quicksand;
 		public Transform floor_boss;
 
+		public Transform s_floor_left;
+		public Transform s_floor_right;
+		public Transform s_floor_up;
+		public Transform s_floor_down;
+		public Transform s_floor_rock;
+
 
 		
 		public int levelnum;
@@ -71,6 +77,12 @@ public class FourbyFourLevels : MonoBehaviour {
 		public const string sfloor_fragile = "F";
 		public const string sfloor_quicksand = "Q";
 		public const string sfloor_boss = "B";
+
+	public const string ssfloor_left = "l";
+	public const string ssfloor_right = "r";
+	public const string ssfloor_up = "u";
+	public const string ssfloor_down = "d";
+	public const string ssfloor_rock = "w";
 
 
 
@@ -117,6 +129,7 @@ public class FourbyFourLevels : MonoBehaviour {
 	public void DrawNextLevel(int levelnumber){
 
 		string leveltext = ("Level" + levelnumber.ToString() + ".txt");
+		string levelname = ("Level" + levelnumber.ToString ());
 		checkAndroid (leveltext);
 		string filePath = System.IO.Path.Combine (Application.streamingAssetsPath, leveltext);
 		string[][] jagged = readFile (filePath);
@@ -167,6 +180,21 @@ public class FourbyFourLevels : MonoBehaviour {
 					break;
 				case sfloor_boss:
 					Instantiate (floor_boss, new Vector3 (x, -y, 0), Quaternion.identity);
+					break;
+				case ssfloor_left:
+					Instantiate	(s_floor_left, new Vector3 (x, -y, 0), s_floor_left.transform.rotation);
+					break;
+				case ssfloor_right:
+					Instantiate	(s_floor_right, new Vector3 (x, -y, 0), s_floor_right.transform.rotation);
+					break;
+				case ssfloor_up:
+					Instantiate	(s_floor_up, new Vector3 (x, -y, 0), s_floor_up.transform.rotation);
+					break;
+				case ssfloor_down:
+					Instantiate	(s_floor_down, new Vector3 (x, -y, 0), s_floor_down.transform.rotation);
+					break;
+				case ssfloor_rock:
+					Instantiate (s_floor_rock, new Vector3 (x, -y, 0), Quaternion.identity);
 					break;
 				}
 

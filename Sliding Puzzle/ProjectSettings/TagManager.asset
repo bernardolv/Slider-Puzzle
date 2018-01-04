@@ -18,6 +18,8 @@ TagManager:
   - Countme
   - Quicksand
   - Boss
+  - Small
+  - Seed
   layers:
   - Default
   - TransparentFX
