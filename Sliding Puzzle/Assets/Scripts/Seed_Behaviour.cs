@@ -7,11 +7,12 @@ public class Seed_Behaviour : MonoBehaviour {
 	public string mytag;
 	public Sprite small;
 	public Sprite big;
+	SpriteRenderer mySpriterenderer;
 
 	// Use this for initialization
 	void Start () {
 		isseed = true;
-
+		mySpriterenderer = GetComponent<SpriteRenderer> ();
 
 	}
 	
@@ -23,5 +24,6 @@ public class Seed_Behaviour : MonoBehaviour {
 	public void Unseed(){
 		isseed = false;
 		this.gameObject.tag = mytag;
+		mySpriterenderer.sprite = big;
 	}
 }

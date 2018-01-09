@@ -22,6 +22,7 @@ public class CharacterMovement : MonoBehaviour {
 	public static string character_direction;
 	public GameObject lastSeed;
 	Seed_Behaviour myseedbehaviour;
+	bool firstmove; //used to count turns
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -54,22 +55,13 @@ public class CharacterMovement : MonoBehaviour {
 				isspeeding = false;
 			}  
 			else if (nextaction == "Goal_Action") {
-				/*currenttile = startingposition;
-				transform.position = startingposition;
-				cantakeinput = true;
-				canmove = true;
-				nextaction = null;*/
+
 				LevelManager.levelnum++;
 				int nextlevel = LevelManager.levelnum;
 				LevelManager.NextLevel (nextlevel);
 
 			}			
 			else if (nextaction == "Hole_Action") {
-				/*currenttile = startingposition;
-				transform.position = startingposition;
-				cantakeinput = true;
-				canmove = true;
-				nextaction = null;*/
 				int nextlevel = LevelManager.levelnum;
 				LevelManager.NextLevel (nextlevel);
 
@@ -132,6 +124,9 @@ public class CharacterMovement : MonoBehaviour {
 	void QWERTYMove(){
 		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
 			tiletotest = currenttile;
+			if (canmove = true) {
+				firstmove = true;
+			}
 			while (canmove == true) {
 				character_direction = "Up";
 				tiletotest += Vector3.up;
@@ -141,6 +136,9 @@ public class CharacterMovement : MonoBehaviour {
 		}
 		if (Input.GetKeyDown (KeyCode.A)|| Input.GetKeyDown(KeyCode.LeftArrow)) {
 			tiletotest = currenttile;
+			if (canmove = true) {
+				firstmove = true;
+			}
 			while (canmove == true) {	
 				character_direction = "Left";
 
@@ -151,6 +149,9 @@ public class CharacterMovement : MonoBehaviour {
 		}
 		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
 			tiletotest = currenttile;
+			if (canmove = true) {
+				firstmove = true;
+			}
 			while (canmove == true) {
 				character_direction = "Down";
 				tiletotest += Vector3.down;
@@ -160,6 +161,9 @@ public class CharacterMovement : MonoBehaviour {
 		}
 		if (Input.GetKeyDown (KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow)) {
 			tiletotest = currenttile;
+			if (canmove = true) {
+				firstmove = true;
+			}
 			while (canmove == true) {
 				character_direction = "Right";
 				tiletotest += Vector3.right;
@@ -188,20 +192,32 @@ public class CharacterMovement : MonoBehaviour {
 			transform.position = Vector3.MoveTowards (transform.position, currenttile, Time.deltaTime * speed); 
 		}
 	}
+	void Count(){
+		if(firstmove == true && canmove == true){
+			TurnCounter.turncount++;
+			Debug.Log (TurnCounter.turncount);
+		}
+		if(firstmove == true){
+			firstmove = false;
+		}
+	}
 	//Individual Behaviours to be stored in the following.
 	void ActOnTile(){
 		if (istiletaken == false) {
 			//move and keep moving i	f theres nothing but ice
 			currenttile = tiletotest;
+			Count ();
 		} 
 		else {
 			if (tilescript.myTaker.tag == "Wall") {
 				//the desired tile is the previous one and u stop looking for next tiles.
 				canmove = false;
+				//Count ();
 			} else if (tilescript.myTaker.tag == "Goal") {
 				//you'll stop in the tile you checked and stop moving.
 				currenttile = tiletotest;
 				canmove = false;
+				// Count ();
 				//Qeue up an action when reaching the tile
 				nextaction = "Goal_Action";
 			} else if (tilescript.myTaker.tag == "Hole") {
@@ -281,6 +297,8 @@ public class CharacterMovement : MonoBehaviour {
 				Debug.Log ("Dong");
 				canmove = false;
 			}
+			Count ();
+
 		}
 	}
 }
