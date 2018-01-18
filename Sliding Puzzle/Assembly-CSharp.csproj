@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Buttonbuilder.cs" />
+     <Compile Include="Assets\LevelButton.cs" />
      <Compile Include="Assets\LevelHandler.cs" />
      <Compile Include="Assets\LevelStats.cs" />
      <Compile Include="Assets\PlayerTurns.cs" />

@@ -7,8 +7,20 @@ public class RatingBehaviour : MonoBehaviour {
 	static float curturns;
 	static float turnratio;
 	public static int rating;
+	private static RatingBehaviour instance = null;
+
 
 	// Use this for initialization
+	void Awake(){
+		if(instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad(this.gameObject);
+			return;
+		}
+		Destroy(this.gameObject);
+	}
+
 	void Start () {
 		
 	}

@@ -314,7 +314,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1251666649}
+  m_Camera: {fileID: 1284486995}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -333,11 +333,11 @@ RectTransform:
   m_GameObject: {fileID: 180756939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: -3.5, z: 90}
-  m_LocalScale: {x: 0.015618661, y: 0.015618661, z: 0.015618661}
+  m_LocalScale: {x: 0.016666666, y: 0.016666666, z: 0.016666666}
   m_Children:
   - {fileID: 1564343825}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1209,12 +1209,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.00000166893}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!20 &1251666649 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20070743190516932, guid: bfefe8a0719714c72bb76474820711e3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1318746547}
---- !u!1001 &1318746547
+--- !u!1001 &1284486994
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1235,15 +1230,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4416048535420062, guid: bfefe8a0719714c72bb76474820711e3, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4416048535420062, guid: bfefe8a0719714c72bb76474820711e3, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4416048535420062, guid: bfefe8a0719714c72bb76474820711e3, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4416048535420062, guid: bfefe8a0719714c72bb76474820711e3, type: 2}
       propertyPath: m_LocalRotation.w
@@ -1251,17 +1246,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4416048535420062, guid: bfefe8a0719714c72bb76474820711e3, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114588508562159964, guid: bfefe8a0719714c72bb76474820711e3,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 1543015720740714, guid: bfefe8a0719714c72bb76474820711e3, type: 2}
+      propertyPath: m_Name
+      value: Main Camera (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114588508562159964, guid: bfefe8a0719714c72bb76474820711e3, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfefe8a0719714c72bb76474820711e3, type: 2}
   m_IsPrefabParent: 0
+--- !u!20 &1284486995 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20070743190516932, guid: bfefe8a0719714c72bb76474820711e3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1284486994}
 --- !u!1 &1564343824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,7 +1321,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1785741551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.16235352, y: 53.129883, z: 0}
+  m_LocalPosition: {x: 0, y: 33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 657211929}

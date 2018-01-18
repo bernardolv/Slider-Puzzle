@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class LevelHandler : MonoBehaviour {
 	public static int efficientturns;
-	static Dictionary<int, LevelStats> leveldic = new Dictionary<int, LevelStats>();
+	public static Dictionary<int, LevelStats> leveldic = new Dictionary<int, LevelStats>();
 	static public int maxlevels;
 	bool hasinitd;
+	private static LevelHandler instance = null;
+
+
+	// Use this for initialization
+	void Awake(){
+		if(instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad(this.gameObject);
+			return;
+		}
+		Destroy(this.gameObject);
+	}
 	// Use this for initialization
 	void Start () {
 		
@@ -108,11 +121,11 @@ public class LevelHandler : MonoBehaviour {
 
 	}
 
-	void Update () {
+	/*void Update () {
 		if (efficientturns <= 0) {
 			Lookfor (LevelManager.levelnum);
 		}
-	}
+	}*/
 	public static void Lookfor(int levelnum){
 		maxlevels = leveldic.Count ;
 		Debug.Log ("maxcount" + maxlevels);
@@ -124,5 +137,12 @@ public class LevelHandler : MonoBehaviour {
 			Debug.Log ("No turn number stored" + levelnum + efficientturns);
 
 		}
+	}
+	public static void UnlockLevel(int levelnum){
+		int x = leveldic [levelnum].levelnum;
+		int y = leveldic [levelnum].turns;
+		bool z = false;
+		LevelStats newvalue = new LevelStats(x,y,z); 
+		leveldic [x] = newvalue;
 	}
 }

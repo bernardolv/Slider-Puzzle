@@ -42,9 +42,12 @@ public class CharacterMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		Debug.Log (TurnBehaviour.turn + "BEHAV");
 		if (transform.position != startingposition && TurnBehaviour.turn == 0) {
 			TurnBehaviour.turn = 1;
+		}
+		if (TurnBehaviour.turn == 1 && transform.position == startingposition) {
+			TurnBehaviour.turn = 0;
 		}
 			Movement ();
 		if (currenttile == transform.position) {
@@ -62,14 +65,8 @@ public class CharacterMovement : MonoBehaviour {
 			}  
 			else if (nextaction == "Goal_Action") {
 				levelWonBoard.SetActive (true);
-				//RatingPopUp.GiveRating ();
 				this.enabled = false;
 				Debug.Log ("Whatsgoingon");
-				//LevelManager.levelnum++;
-				//int nextlevel = LevelManager.levelnum;
-				//LevelManager.NextLevel (nextlevel);
-				//here popup and whatever comes next
-
 			}			
 			else if (nextaction == "Hole_Action") {
 				int nextlevel = LevelManager.levelnum;
