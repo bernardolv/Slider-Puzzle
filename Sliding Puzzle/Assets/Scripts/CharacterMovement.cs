@@ -23,6 +23,8 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject lastSeed;
 	Seed_Behaviour myseedbehaviour;
 	bool firstmove; //used to count turns
+	public GameObject levelWonBoard;
+	RatingPopUp PopupScript;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -34,10 +36,13 @@ public class CharacterMovement : MonoBehaviour {
 		beingdragged = false;
 		lastFragile = null;
 		isspeeding = false;
+		levelWonBoard = GameObject.Find ("GameWon");
+		levelWonBoard.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (transform.position != startingposition && TurnBehaviour.turn == 0) {
 			TurnBehaviour.turn = 1;
 		}
@@ -45,7 +50,8 @@ public class CharacterMovement : MonoBehaviour {
 		if (currenttile == transform.position) {
 			//Debug.Log (tilescript.myTaker.tag);
 			if (lastFragile != null && lastFragile.transform.position == transform.position) {
-				Debug.Log ("Kaplunk");
+				Debug.Log ("UNUL");
+				//this.enabled = false;
 				int nextlevel = LevelManager.levelnum;
 				LevelManager.NextLevel (nextlevel);
 			}
@@ -55,10 +61,13 @@ public class CharacterMovement : MonoBehaviour {
 				isspeeding = false;
 			}  
 			else if (nextaction == "Goal_Action") {
-
-				LevelManager.levelnum++;
-				int nextlevel = LevelManager.levelnum;
-				LevelManager.NextLevel (nextlevel);
+				levelWonBoard.SetActive (true);
+				//RatingPopUp.GiveRating ();
+				this.enabled = false;
+				Debug.Log ("Whatsgoingon");
+				//LevelManager.levelnum++;
+				//int nextlevel = LevelManager.levelnum;
+				//LevelManager.NextLevel (nextlevel);
 				//here popup and whatever comes next
 
 			}			

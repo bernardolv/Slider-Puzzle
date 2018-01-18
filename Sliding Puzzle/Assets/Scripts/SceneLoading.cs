@@ -27,6 +27,11 @@ public class SceneLoading : MonoBehaviour {
 		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);
 	}
+	public void ResetLevelButton(){
+		LevelHandler.Lookfor (LevelManager.levelnum);
+		TurnCounter.turncount = 0;
+		LevelManager.NextLevel (LevelManager.levelnum);
+	}
 	public void GoToWorld(int worldnumber){
 
 

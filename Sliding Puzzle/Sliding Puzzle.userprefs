@@ -1,15 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneLoading.cs">
     <Files>
-      <File FileName="Assets/RatingBehaviour.cs" Line="8" Column="9" />
-      <File FileName="Assets/Scripts/CharacterMovement.cs" Line="60" Column="43" />
-      <File FileName="Assets/TurnCounter.cs" Line="18" Column="1" />
-      <File FileName="Assets/LevelHandler.cs" Line="33" Column="36" />
-      <File FileName="Assets/Scripts/FourbyFourLevels.cs" Line="95" Column="36" />
-      <File FileName="Assets/LevelStats.cs" Line="6" Column="22" />
-      <File FileName="Assets/Scripts/SceneLoading.cs" Line="27" Column="29" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="21" Column="20" />
+      <File FileName="Assets/Scripts/CharacterMovement.cs" Line="65" Column="7" />
+      <File FileName="Assets/TurnCounter.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FourbyFourLevels.cs" Line="1" Column="1" />
+      <File FileName="Assets/LevelStats.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SceneLoading.cs" Line="30" Column="33" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/LevelHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets/PlayerTurns.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/LevelDisplayScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/RatingPopUp.cs" Line="23" Column="1" />
+      <File FileName="Assets/RatingBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Goal_Behaviour.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
