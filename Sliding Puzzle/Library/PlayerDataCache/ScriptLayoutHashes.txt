@@ -1,4 +1,5 @@
-WindowsStandalone
+OSXStandalone
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ResolutionBehaviour
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -108,6 +109,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Quicksand_Behaviour
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+0bb4873bb4869e7f713dc5a2cff75198 Assembly-CSharp.dll:.TurnCounter
 255aacd7f36e0fd0e978940709eddddc Assembly-CSharp.dll:.ButtonBuilder
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LevelManager
 7abcbf549681206aec91f4f8fb8f4de5 Assembly-CSharp.dll:.Start_Behaviour
@@ -158,5 +160,6 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 00014daf9e9e5c526eedfad7282a48fb Assembly-CSharp.dll:.Fragile_Behaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CheckInstance
 034239ff178ff086dc62cd7efd6d24b4 Assembly-CSharp.dll:.Seed_Behaviour
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LevelHandler
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Goal_Behaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TurnBehaviour

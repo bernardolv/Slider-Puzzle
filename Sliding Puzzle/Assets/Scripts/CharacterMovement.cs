@@ -59,11 +59,13 @@ public class CharacterMovement : MonoBehaviour {
 				LevelManager.levelnum++;
 				int nextlevel = LevelManager.levelnum;
 				LevelManager.NextLevel (nextlevel);
+				//here popup and whatever comes next
 
 			}			
 			else if (nextaction == "Hole_Action") {
 				int nextlevel = LevelManager.levelnum;
 				LevelManager.NextLevel (nextlevel);
+				//here popup "Gameover" try again
 
 			}
 			else if (nextaction == "Left_Action") {
@@ -200,6 +202,7 @@ public class CharacterMovement : MonoBehaviour {
 		if(firstmove == true){
 			firstmove = false;
 		}
+		RatingBehaviour.CalculateRating ();
 	}
 	//Individual Behaviours to be stored in the following.
 	void ActOnTile(){

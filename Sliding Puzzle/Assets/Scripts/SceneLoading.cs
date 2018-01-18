@@ -17,10 +17,14 @@ public class SceneLoading : MonoBehaviour {
 	}
 	public void NextlevelButton(){
 		LevelManager.levelnum++;
+		LevelHandler.Lookfor (LevelManager.levelnum);
+		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);
 	}
 	public void PreviousLevelButton(){
 		LevelManager.levelnum--;
+		LevelHandler.Lookfor (LevelManager.levelnum);
+		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);
 	}
 	public void GoToWorld(int worldnumber){

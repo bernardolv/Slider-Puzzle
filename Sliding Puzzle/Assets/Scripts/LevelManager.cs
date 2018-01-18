@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
 	//static int levelwidth;
 	public static bool readytodraw;
 	public static int worldnum;
+	public static int myefficientturns;
 
 	private static LevelManager instance = null;
 
@@ -25,6 +26,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public static void NextLevel(int mynum){
+		LevelHandler.Lookfor (mynum);
+		TurnCounter.turncount = 0;
 		levelselector.DestroyAllExceptCamera ();
 		levelselector.DrawIce ();
 		levelselector.DrawNextLevel (mynum);

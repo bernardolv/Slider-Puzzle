@@ -54,6 +54,7 @@
      <Compile Include="Assets\Buttonbuilder.cs" />
      <Compile Include="Assets\LevelHandler.cs" />
      <Compile Include="Assets\LevelStats.cs" />
+     <Compile Include="Assets\RatingBehaviour.cs" />
      <Compile Include="Assets\ResolutionBehaviour.cs" />
      <Compile Include="Assets\Scripts\Boss_Behaviour.cs" />
      <Compile Include="Assets\Scripts\ButtonBuilder.cs" />

@@ -3,22 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelHandler : MonoBehaviour {
-	public List<LevelStats> levelstats = new List<LevelStats> ();
+	public static int efficientturns;
+	static Dictionary<int, LevelStats> leveldic = new Dictionary<int, LevelStats>();
+	static public int maxlevels;
+	bool hasinitd;
 	// Use this for initialization
 	void Start () {
-	//	List<LevelStats> levelstats = new List<LevelStats> ();
-		levelstats.Add (new LevelStats (0, 0, false));
-		levelstats.Add (new LevelStats (1, 3, false));
-		levelstats.Add (new LevelStats (2, 4, true));
-		Debug.Log ("Ping");
+		
+		/*if (PlayerPrefs.HasKey ("Loaded")) {
+			Debug.Log ("Has playerpref");
+		} else {*/
+			//Load levels for the first time. Init values. only level 1 unlocked.
+			Debug.Log ("Giving loaded");
+			LevelStats lv1 = new LevelStats(1,2,false);
+			LevelStats lv2 = new LevelStats(2,3,true); 
+
+			leveldic.Add (1, lv1);
+			leveldic.Add (2, lv2);
+			PlayerPrefs.SetInt ("Loaded", 1);
+		//}
+		//PlayerPrefs.DeleteAll();
+
 
 
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-		foreach (LevelStats ls in levelstats) {
-			Debug.Log (ls.levelnum);
+		if (efficientturns <= 0) {
+			Lookfor (LevelManager.levelnum);
+		}
+	}
+	public static void Lookfor(int levelnum){
+		maxlevels = leveldic.Count ;
+		Debug.Log ("maxcount" + maxlevels);
+		if (levelnum <= maxlevels) {
+			efficientturns = leveldic [levelnum].turns;
+			Debug.Log ("The number of turns for level " + levelnum + " is " + efficientturns);
+		} 
+		else {
+			Debug.Log ("No turn number stored" + levelnum + efficientturns);
+
 		}
 	}
 }

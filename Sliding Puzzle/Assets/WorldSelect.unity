@@ -166,7 +166,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300430, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
+  m_Sprite: {fileID: 21303414, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -235,7 +235,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300238, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 59c40bfbe37264ac7a39ebc7166b2cdf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -333,7 +333,7 @@ RectTransform:
   m_GameObject: {fileID: 180756939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: -3.5, z: 90}
-  m_LocalScale: {x: 0.016666666, y: 0.016666666, z: 0.016666666}
+  m_LocalScale: {x: 0.015618661, y: 0.015618661, z: 0.015618661}
   m_Children:
   - {fileID: 1564343825}
   m_Father: {fileID: 0}
@@ -728,7 +728,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300430, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
+  m_Sprite: {fileID: 21303414, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1023,7 +1023,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300430, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
+  m_Sprite: {fileID: 21303414, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1323,7 +1323,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1785741551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 33, z: 0}
+  m_LocalPosition: {x: -0.16235352, y: 53.129883, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 657211929}
@@ -1353,8 +1353,8 @@ MonoBehaviour:
   decelerationRate: 10
   prevButton: {fileID: 0}
   nextButton: {fileID: 0}
-  unselectedPage: {fileID: 21300430, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
-  selectedPage: {fileID: 21300434, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
+  unselectedPage: {fileID: 21303414, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
+  selectedPage: {fileID: 21303416, guid: 4981c1027cb894540b31b026b9ec8486, type: 3}
   pageSelectionIcons: {fileID: 1162749773}
   _pageCount: 3
 --- !u!114 &1785741554

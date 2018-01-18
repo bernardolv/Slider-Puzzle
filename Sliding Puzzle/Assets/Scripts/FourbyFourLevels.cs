@@ -93,6 +93,7 @@ public class FourbyFourLevels : MonoBehaviour {
 			LevelManager.levelnum = 1;
 		}
 		levelnum = LevelManager.levelnum;
+		LevelHandler.Lookfor (levelnum);
 		DrawIce ();
 		DrawNextLevel (levelnum);
 		}
@@ -110,7 +111,7 @@ public class FourbyFourLevels : MonoBehaviour {
 	public void DrawIce(){
 		string filePath = System.IO.Path.Combine (Application.streamingAssetsPath, "8by8ice.txt");
 		//checkAndroid ("8by8ice.txt");
-		Debug.Log (filePath);
+		//Debug.Log (filePath);
 		//string leveltext = ("Assets/Resources/8by8ice.txt");
 		string[][] jagged = readFile (filePath);
 

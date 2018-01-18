@@ -35,7 +35,7 @@ public class Wall_Behaviour : MonoBehaviour {
 				tilescript = tileobject.GetComponent<TileHandler> ();
 				tilescript.myTaker = this.gameObject;
 				tilescript.isTaken = true;
-				Debug.Log ("Pew");
+				//Debug.Log ("Pew");
 				mytile = tileobject;
 			}
 		}
