@@ -37,17 +37,25 @@ public class CharacterMovement : MonoBehaviour {
 		lastFragile = null;
 		isspeeding = false;
 		levelWonBoard = GameObject.Find ("GameWon");
+		if (levelWonBoard != null) {
+			SceneLoading.gamewon = levelWonBoard;
+		}
 		levelWonBoard.SetActive (false);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (levelWonBoard);
+		if (levelWonBoard == null) {
+			levelWonBoard = SceneLoading.gamewon;
+		}
 		Debug.Log (TurnBehaviour.turn + "BEHAV");
 		if (transform.position != startingposition && TurnBehaviour.turn == 0) {
 			TurnBehaviour.turn = 1;
 		}
 		if (TurnBehaviour.turn == 1 && transform.position == startingposition) {
-			TurnBehaviour.turn = 0;
+			TurnBehaviour.turn = 0; 
 		}
 			Movement ();
 		if (currenttile == transform.position) {

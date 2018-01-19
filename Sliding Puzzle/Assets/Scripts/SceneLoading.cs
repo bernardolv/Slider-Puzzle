@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class SceneLoading : MonoBehaviour {
 	public int num;
+	public static GameObject gamewon;
 
 	public void LoadScene(int num){
 		Debug.Log ("BOOP");
@@ -53,5 +55,8 @@ public class SceneLoading : MonoBehaviour {
 
 	public void GoToWorldSelect(){
 			SceneManager.LoadScene (1);
+	}
+	void Update(){
+		Debug.Log (gamewon);
 	}
 }

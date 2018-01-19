@@ -210,6 +210,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		{
 			if (component.tag != "MainCamera" && component.tag != "Canvas") {
 				Destroy (component);
+				Debug.Log ("destroyed" + component);
 			}
 
 		}
