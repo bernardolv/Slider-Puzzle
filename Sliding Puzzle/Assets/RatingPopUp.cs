@@ -7,14 +7,20 @@ public class RatingPopUp : MonoBehaviour {
 	public Text myText;
 	static int myrating;
 	public Text mySecondText;
+	//int previous rating;
 
 	// Use this for initialization
 
 	public static void GiveRating () {
+		
 		RatingBehaviour.CalculateRating ();
 		myrating = RatingBehaviour.rating;
 		string prefname = "Level" + LevelManager.levelnum + "Rating";
-		PlayerPrefs.SetInt (prefname, myrating);
+		int previousrating = PlayerPrefs.GetInt (prefname);
+		if (myrating > previousrating) {
+			PlayerPrefs.SetInt (prefname, myrating);
+
+		}
 		//PlayerPrefs.Save();
 		Debug.Log ("GIVEN");
 //		myText.text = "You got " + RatingBehaviour.rating + " Stars";

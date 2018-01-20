@@ -235,7 +235,6 @@ public class CharacterMovement : MonoBehaviour {
 			} else if (tilescript.myTaker.tag == "Goal") {
 				//you'll stop in the tile you checked and stop moving.
 				Count ();
-
 				currenttile = tiletotest;
 				canmove = false;
 				//Qeue up an action when reaching the tile
@@ -247,33 +246,39 @@ public class CharacterMovement : MonoBehaviour {
 				//Qeue up an action when reaching the tile
 				nextaction = "Hole_Action";
 			} else if (tilescript.myTaker.tag == "Wood") {
+				Count ();
 				currenttile = tiletotest;
 				Debug.Log ("Pink");
 				//canmove = true;
 			} else if (tilescript.myTaker.tag == "Left") {
+				Count ();
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Left_Action";
 				isspeeding = true;
 
 			} else if (tilescript.myTaker.tag == "Right") {
+				Count ();
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Right_Action";
 				isspeeding = true;
 			} else if (tilescript.myTaker.tag == "Up") {
+				Count ();
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Up_Action";
 				isspeeding = true;
 
 			} else if (tilescript.myTaker.tag == "Down") {
+				Count ();
 				currenttile = tiletotest;
 				canmove = false;
 				nextaction = "Down_Action";
 				isspeeding = true;
 
 			} else if (tilescript.myTaker.tag == "Fragile") {
+				Count ();
 				currenttile = tiletotest;
 				lastFragile = tilescript.myTaker;
 				tilescript.myTaker.tag = "Hole";
@@ -281,6 +286,7 @@ public class CharacterMovement : MonoBehaviour {
 			} else if (tilescript.myTaker.tag == "Quicksand") {
 				currenttile = tiletotest;
 				lastFragile = tilescript.myTaker;
+				Count ();
 				if (isspeeding == false) {
 					currenttile = tiletotest;
 					canmove = false;

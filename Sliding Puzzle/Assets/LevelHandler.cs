@@ -68,6 +68,71 @@ public class LevelHandler : MonoBehaviour {
 			LevelStats lv38 = new LevelStats(38,5,true,0); 
 			LevelStats lv39 = new LevelStats(39,7,true,0); 
 			LevelStats lv40 = new LevelStats(40,5,true,0); 
+			LevelStats lv41 = new LevelStats(41,3,true,0); 
+			LevelStats lv42 = new LevelStats(42,4,true,0); 
+			LevelStats lv43 = new LevelStats(43,5,true,0); 
+			LevelStats lv44 = new LevelStats(44,6,true,0); 
+			LevelStats lv45 = new LevelStats(45,4,true,0); 
+			LevelStats lv46 = new LevelStats(46,3,true,0); 
+			LevelStats lv47 = new LevelStats(47,3,true,0); 
+			LevelStats lv48 = new LevelStats(48,3,true,0); 
+			LevelStats lv49 = new LevelStats(49,4,true,0); 
+			LevelStats lv50 = new LevelStats(50,7,true,0); 
+			LevelStats lv51 = new LevelStats(51,5,true,0); 
+			LevelStats lv52 = new LevelStats(52,4,true,0); 
+			LevelStats lv53 = new LevelStats(53,5,true,0); 
+			LevelStats lv54 = new LevelStats(54,5,true,0); 
+			LevelStats lv55 = new LevelStats(55,4,true,0);  //save 1
+			LevelStats lv56 = new LevelStats(56,5,true,0); 
+			LevelStats lv57 = new LevelStats(57,7,true,0); 
+			LevelStats lv58 = new LevelStats(58,7,true,0); 
+			LevelStats lv59 = new LevelStats(59,4,true,0); 
+			LevelStats lv60 = new LevelStats(60,6,true,0); //swap with 62
+			LevelStats lv61 = new LevelStats(61,8,true,0); 
+			LevelStats lv62 = new LevelStats(62,9,true,0); 
+			LevelStats lv63 = new LevelStats(63,8,true,0); 
+			LevelStats lv64 = new LevelStats(64,7,true,0); 
+			LevelStats lv65 = new LevelStats(65,7,true,0); 
+			LevelStats lv66 = new LevelStats(66,7,true,0); 
+			LevelStats lv67 = new LevelStats(67,1,true,0); 
+			LevelStats lv68 = new LevelStats(68,7,true,0); 
+			LevelStats lv69 = new LevelStats(69,4,true,0); 
+			LevelStats lv70 = new LevelStats(70,4,true,0); 
+			LevelStats lv71 = new LevelStats(71,6,true,0); 
+			LevelStats lv72 = new LevelStats(72,6,true,0); 
+			LevelStats lv73 = new LevelStats(73,5,true,0); 
+			LevelStats lv74 = new LevelStats(74,6,true,0); 
+			LevelStats lv75 = new LevelStats(75,3,true,0); 
+			LevelStats lv76 = new LevelStats(76,7,true,0); 
+			LevelStats lv77 = new LevelStats(77,7,true,0); 
+			LevelStats lv78 = new LevelStats(78,2,true,0); 
+			LevelStats lv79 = new LevelStats(79,5,true,0); 
+			LevelStats lv80 = new LevelStats(80,5,true,0); 
+			LevelStats lv81 = new LevelStats(81,5,true,0); 
+			LevelStats lv82 = new LevelStats(82,5,true,0); 
+			LevelStats lv83 = new LevelStats(83,5,true,0); 
+			LevelStats lv84 = new LevelStats(84,5,true,0); 
+			LevelStats lv85 = new LevelStats(85,5,true,0); 
+			LevelStats lv86 = new LevelStats(86,5,true,0); 
+			LevelStats lv87 = new LevelStats(87,5,true,0); 
+			LevelStats lv88 = new LevelStats(88,5,true,0); 
+			LevelStats lv89 = new LevelStats(89,5,true,0); 
+			LevelStats lv90 = new LevelStats(90,5,true,0); 
+			LevelStats lv91 = new LevelStats(91,5,true,0); 
+			LevelStats lv92 = new LevelStats(92,5,true,0); 
+			LevelStats lv93 = new LevelStats(93,5,true,0); 
+			LevelStats lv94 = new LevelStats(94,5,true,0); 
+			LevelStats lv95 = new LevelStats(95,5,true,0); 
+			LevelStats lv96 = new LevelStats(96,5,true,0); 
+			LevelStats lv97 = new LevelStats(97,5,true,0); 
+			LevelStats lv98 = new LevelStats(98,5,true,0); 
+			LevelStats lv99 = new LevelStats(99,5,true,0); 
+			LevelStats lv100 = new LevelStats(100,5,true,0); 
+	
+
+
+
+
 
 				
 
@@ -111,6 +176,74 @@ public class LevelHandler : MonoBehaviour {
 			leveldic.Add (38, lv38);
 			leveldic.Add (39, lv39);
 			leveldic.Add (40, lv40);
+			leveldic.Add (41, lv41);
+			leveldic.Add (42, lv42);
+			leveldic.Add (43, lv43);
+			leveldic.Add (44, lv44);
+			leveldic.Add (45, lv45);
+			leveldic.Add (46, lv46);
+			leveldic.Add (47, lv47);
+			leveldic.Add (48, lv48);
+			leveldic.Add (49, lv49);
+			leveldic.Add (50, lv50);
+			leveldic.Add (51, lv51);
+			leveldic.Add (52, lv52);
+			leveldic.Add (53, lv53);
+			leveldic.Add (54, lv54);
+			leveldic.Add (55, lv55);
+			leveldic.Add (56, lv56);
+			leveldic.Add (57, lv57);
+			leveldic.Add (58, lv58);
+			leveldic.Add (59, lv59);
+			leveldic.Add (60, lv60);
+			leveldic.Add (61, lv61);
+			leveldic.Add (62, lv62);
+			leveldic.Add (63, lv63);
+			leveldic.Add (64, lv64);
+			leveldic.Add (65, lv65);
+			leveldic.Add (66, lv66);
+			leveldic.Add (67, lv67);
+			leveldic.Add (68, lv68);
+			leveldic.Add (69, lv69);
+			leveldic.Add (70, lv70);
+			leveldic.Add (71, lv71);
+			leveldic.Add (72, lv72);
+			leveldic.Add (73, lv73);
+			leveldic.Add (74, lv74);
+			leveldic.Add (75, lv75);
+			leveldic.Add (76, lv76);
+			leveldic.Add (77, lv77);
+			leveldic.Add (78, lv78);
+			leveldic.Add (79, lv79);
+			leveldic.Add (80, lv80);
+			leveldic.Add (81, lv81);
+			leveldic.Add (82, lv82);
+			leveldic.Add (83, lv83);
+			leveldic.Add (84, lv84);
+			leveldic.Add (85, lv85);
+			leveldic.Add (86, lv86);
+			leveldic.Add (87, lv87);
+			leveldic.Add (88, lv88);
+			leveldic.Add (89, lv89);
+			leveldic.Add (90, lv90);
+			leveldic.Add (91, lv91);
+			leveldic.Add (92, lv92);
+			leveldic.Add (93, lv93);
+			leveldic.Add (94, lv94);
+			leveldic.Add (95, lv95);
+			leveldic.Add (96, lv96);
+			leveldic.Add (97, lv97);
+			leveldic.Add (98, lv98);
+			leveldic.Add (99, lv99);
+			leveldic.Add (100, lv100);
+
+
+
+
+
+
+
+
 
 			
 			PlayerPrefs.SetInt ("Loaded", 1);

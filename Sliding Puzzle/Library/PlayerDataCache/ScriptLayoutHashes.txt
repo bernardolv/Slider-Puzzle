@@ -14,7 +14,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 af723155c251fcfa0e66530a75f3ea4c UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pause_Behaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Wall_Behaviour
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ButtonRating
+ebd0c4cdb01dda68cd9c210f1eebae3a Assembly-CSharp.dll:.ButtonRating
 36bac45d41cc13993c227065f7c1a034 Assembly-CSharp.dll:.Rock_Behaviour
 36bac45d41cc13993c227065f7c1a034 Assembly-CSharp.dll:.Left_Behaviour
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -121,7 +121,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-cfd5c41f1c61e875168e64f3e2d62c9f Assembly-CSharp.dll:.LevelButton
+3fab3babf5c0f5497e3c2ad1ab592f7b Assembly-CSharp.dll:.LevelButton
 5814d172908a4a092ca126e1f90b6fd4 Assembly-CSharp.dll:.FourbyFourLevels
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RatingBehaviour
 6ff4030a9ecf01e7f3be55a41dfcc42c Assembly-CSharp.dll:.LevelDisplayScript
@@ -158,13 +158,13 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+3d76ec4fed2acd7bea821622100ed894 Assembly-CSharp.dll:.AssignCamera
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 541e4b9e3a37cc58ce80266bd9aef5de Assembly-CSharp.dll:.RatingPopUp
-fffd283aa8d3693e9805b663371776f5 Assembly-CSharp.dll:.Buttonbuilder
+e548cd3e366beef12ae856ee1ee236ed Assembly-CSharp.dll:.Buttonbuilder
 00014daf9e9e5c526eedfad7282a48fb Assembly-CSharp.dll:.Fragile_Behaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CheckInstance
 034239ff178ff086dc62cd7efd6d24b4 Assembly-CSharp.dll:.Seed_Behaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LevelHandler
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Goal_Behaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TurnBehaviour
-3d76ec4fed2acd7bea821622100ed894 Assembly-CSharp.dll:.AssignCamera
