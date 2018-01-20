@@ -20,6 +20,7 @@ TagManager:
   - Boss
   - Small
   - Seed
+  - RatingNumber
   layers:
   - Default
   - TransparentFX

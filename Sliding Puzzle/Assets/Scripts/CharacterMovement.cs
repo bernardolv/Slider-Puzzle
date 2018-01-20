@@ -54,9 +54,9 @@ public class CharacterMovement : MonoBehaviour {
 		if (transform.position != startingposition && TurnBehaviour.turn == 0) {
 			TurnBehaviour.turn = 1;
 		}
-		if (TurnBehaviour.turn == 1 && transform.position == startingposition) {
+		/*if (TurnBehaviour.turn == 1 && transform.position == startingposition) {
 			TurnBehaviour.turn = 0; 
-		}
+		}*/
 			Movement ();
 		if (currenttile == transform.position) {
 			//Debug.Log (tilescript.myTaker.tag);
@@ -72,6 +72,7 @@ public class CharacterMovement : MonoBehaviour {
 				isspeeding = false;
 			}  
 			else if (nextaction == "Goal_Action") {
+				RatingPopUp.GiveRating ();
 				levelWonBoard.SetActive (true);
 				this.enabled = false;
 				Debug.Log ("Whatsgoingon");
@@ -206,6 +207,7 @@ public class CharacterMovement : MonoBehaviour {
 		//if the desired tile is not the place you're standing in it moves there
 		if (currenttile != transform.position && beingdragged == false ) {
 			transform.position = Vector3.MoveTowards (transform.position, currenttile, Time.deltaTime * speed); 
+			cantakeinput = false;
 		}
 	}
 	void Count(){
