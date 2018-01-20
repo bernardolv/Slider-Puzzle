@@ -57,6 +57,6 @@ public class SceneLoading : MonoBehaviour {
 			SceneManager.LoadScene (1);
 	}
 	void Update(){
-		Debug.Log (gamewon);
+//		Debug.Log (gamewon);
 	}
 }

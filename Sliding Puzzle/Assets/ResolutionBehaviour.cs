@@ -55,4 +55,21 @@ public class ResolutionBehaviour : MonoBehaviour {
 
 
 	}
+	public static void GetResolutionStats (){
+		leftX = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0)).x;
+		rightX = Camera.main.ViewportToWorldPoint(new Vector3(1,0,0)).x;
+		upY = Camera.main.ViewportToWorldPoint(new Vector3(0,1,0)).y;
+		downY = Camera.main.ViewportToWorldPoint(new Vector3(0,0,0)).y;
+
+		Debug.Log (leftX);
+		Debug.Log (rightX);
+		Debug.Log (upY);
+		Debug.Log (downY);
+
+		xlength = Mathf.Abs (leftX - rightX);
+		ylength = Mathf.Abs (upY - downY);
+
+		originx = leftX;
+		originy = upY;
+	}
 }

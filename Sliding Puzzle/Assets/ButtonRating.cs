@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonRating : MonoBehaviour {
 	Text mytext;
-	int myrating;
+	public int myrating;
 	int mynumber;
 	LevelButton mylevelbutton;
 
@@ -21,6 +21,7 @@ public class ButtonRating : MonoBehaviour {
 		Debug.Log ("prefc    " + prefcheck);
 		Debug.Log (myrating);
 		mytext.text = myrating.ToString();
+		this.gameObject.gameObject.name = "Rating" + mynumber;
 	}
 	
 	// Update is called once per frame

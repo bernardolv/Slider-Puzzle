@@ -9,10 +9,10 @@ public class Buttonbuilder : MonoBehaviour {
 	float posy;
 	float unitx;
 	float unity;
-	int levels;
-	int counter;
+	public int levels;
+	public int counter;
 	public Transform CanvasParent;
-	private static Buttonbuilder instance = null;
+	//private static Buttonbuilder instance = null;
 
 
 	// Use this for initialization
@@ -30,18 +30,21 @@ public class Buttonbuilder : MonoBehaviour {
 	void Start () {
 		CanvasParent = GameObject.Find ("Canvas").transform;
 		GameObject Button = Instantiate(Resources.Load("LevelButton", typeof(GameObject))) as GameObject;
-		levels = 33;
-		counter = 0;
+		//levels = 33;
+		//counter = 0;
 		while (counter<=levels){
 			for(int y = 1; y<8; y++){
 
 				for (int x = 1; x < 6; x++) {
 					counter++;
+					ResolutionBehaviour.GetResolutionStats ();
+					Debug.Log (ResolutionBehaviour.xlength);
+					Debug.Log (ResolutionBehaviour.ylength);
 					unitx = ResolutionBehaviour.xlength / 6;
 					unity = ResolutionBehaviour.ylength / 8;
 					float posx = ResolutionBehaviour.originx + unitx * x;
 					float posy = ResolutionBehaviour.originy - unity * y;
-					Debug.Log (posx);
+					Debug.Log ("SPAWNING IN " + posx+ posy);
 					var newbutton = Instantiate (Button, new Vector3 (posx, posy, 0), Quaternion.identity);
 					newbutton.transform.SetParent(CanvasParent);
 					Vector3 newscale = new Vector3 (1, 1, 1);

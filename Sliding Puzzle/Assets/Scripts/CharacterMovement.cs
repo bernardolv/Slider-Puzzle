@@ -54,9 +54,9 @@ public class CharacterMovement : MonoBehaviour {
 		if (transform.position != startingposition && TurnBehaviour.turn == 0) {
 			TurnBehaviour.turn = 1;
 		}
-		/*if (TurnBehaviour.turn == 1 && transform.position == startingposition) {
+		if (TurnBehaviour.turn == 1 && transform.position == startingposition) {
 			TurnBehaviour.turn = 0; 
-		}*/
+		}
 			Movement ();
 		if (currenttile == transform.position) {
 			//Debug.Log (tilescript.myTaker.tag);
@@ -224,19 +224,20 @@ public class CharacterMovement : MonoBehaviour {
 	void ActOnTile(){
 		if (istiletaken == false) {
 			//move and keep moving i	f theres nothing but ice
-			currenttile = tiletotest;
 			Count ();
+			currenttile = tiletotest;
 		} 
 		else {
 			if (tilescript.myTaker.tag == "Wall") {
 				//the desired tile is the previous one and u stop looking for next tiles.
 				canmove = false;
-				//Count ();
+				Count ();
 			} else if (tilescript.myTaker.tag == "Goal") {
 				//you'll stop in the tile you checked and stop moving.
+				Count ();
+
 				currenttile = tiletotest;
 				canmove = false;
-				// Count ();
 				//Qeue up an action when reaching the tile
 				nextaction = "Goal_Action";
 			} else if (tilescript.myTaker.tag == "Hole") {
