@@ -7,6 +7,7 @@ public class RatingPopUp : MonoBehaviour {
 	public Text myText;
 	static int myrating;
 	public Text mySecondText;
+	static bool ready;
 	//int previous rating;
 
 	// Use this for initialization
@@ -22,21 +23,27 @@ public class RatingPopUp : MonoBehaviour {
 
 		}
 		//PlayerPrefs.Save();
+		ready = true;
 		Debug.Log ("GIVEN");
 //		myText.text = "You got " + RatingBehaviour.rating + " Stars";
 		//mySecondText.text = "You finished level " + LevelManager.levelnum + "!";
 	}
 
-	void OnEnable(){
+	/*void OnEnable(){
 		GiveRating ();
 		myText.text = "You got " + RatingBehaviour.rating + " Stars";
 		mySecondText.text = "You finished level " + LevelManager.levelnum + "!";
-	}
+	}*/
 	// Update is called once per frame
 	void Update () {
 		if (myrating != RatingBehaviour.rating) {
 			myText.text = "You got " + RatingBehaviour.rating + " Stars";
 			mySecondText.text = "You finished level " + LevelManager.levelnum + "!";
+		}
+		if (ready) {
+			myText.text = "You got " + RatingBehaviour.rating + " Stars";
+			mySecondText.text = "You finished level " + LevelManager.levelnum + "!";
+			ready = false;
 		}
 	}
 }

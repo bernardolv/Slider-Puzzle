@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 public class SceneLoading : MonoBehaviour {
 	public int num;
 	public static GameObject gamewon;
+	public static GameObject gamelost;
 
 	public void LoadScene(int num){
+		TurnCounter.turncount = 0;
 		Debug.Log ("BOOP");
 		LevelManager.levelnum = num;
 		LevelManager.readytodraw = true;

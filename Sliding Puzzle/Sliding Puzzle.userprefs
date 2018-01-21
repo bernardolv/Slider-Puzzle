@@ -1,19 +1,23 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/LevelHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FourbyFourLevels.cs">
     <Files>
-      <File FileName="Assets/LevelHandler.cs" Line="123" Column="28" />
+      <File FileName="Assets/LevelHandler.cs" Line="25" Column="42" />
       <File FileName="Assets/Scripts/LevelDisplayScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/RatingPopUp.cs" Line="23" Column="4" />
+      <File FileName="Assets/RatingPopUp.cs" Line="1" Column="1" />
       <File FileName="Assets/AssignCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets/Buttonbuilder.cs" Line="1" Column="1" />
+      <File FileName="Assets/Buttonbuilder.cs" Line="39" Column="16" />
       <File FileName="Assets/ButtonRating.cs" Line="1" Column="1" />
-      <File FileName="Assets/LevelButton.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SceneLoading.cs" Line="1" Column="1" />
+      <File FileName="Assets/LevelButton.cs" Line="46" Column="1" />
+      <File FileName="Assets/Scripts/SceneLoading.cs" Line="12" Column="17" />
       <File FileName="Assets/RatingBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CharacterMovement.cs" Line="75" Column="31" />
+      <File FileName="Assets/Scripts/CharacterMovement.cs" Line="63" Column="36" />
       <File FileName="Assets/Scripts/TurnBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets/ResolutionBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets/LevelStats.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/TurnCounter.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FourbyFourLevels.cs" Line="142" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

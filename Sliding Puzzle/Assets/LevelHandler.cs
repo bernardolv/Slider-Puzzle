@@ -8,7 +8,7 @@ public class LevelHandler : MonoBehaviour {
 	static public int maxlevels;
 	bool hasinitd;
 	private static LevelHandler instance = null;
-
+	int reset;
 
 	// Use this for initialization
 	void Awake(){
@@ -22,11 +22,16 @@ public class LevelHandler : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		
+/*		reset = PlayerPrefs.GetInt ("Reset");
+		if (reset == 0) {
+			PlayerPrefs.DeleteAll ();
+			PlayerPrefs.SetInt ("Reset", 1);
+		}*/
 		/*if (PlayerPrefs.HasKey ("Loaded")) {
 			Debug.Log ("Has playerpref");
 		} else {*/
 			//Load levels for the first time. Init values. only level 1 unlocked.
+
 			Debug.Log ("Giving loaded");
 			LevelStats lv1 = new LevelStats(1,2,false,0);
 			LevelStats lv2 = new LevelStats(2,3,true,0); 
@@ -129,11 +134,6 @@ public class LevelHandler : MonoBehaviour {
 			LevelStats lv99 = new LevelStats(99,5,true,0); 
 			LevelStats lv100 = new LevelStats(100,5,true,0); 
 	
-
-
-
-
-
 				
 
 			leveldic.Add (1, lv1);
@@ -246,9 +246,9 @@ public class LevelHandler : MonoBehaviour {
 
 
 			
-			PlayerPrefs.SetInt ("Loaded", 1);
+			//PlayerPrefs.SetInt ("Loaded", 1);
 		//}
-		//PlayerPrefs.DeleteAll();
+//		PlayerPrefs.DeleteAll();
 
 
 

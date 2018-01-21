@@ -24,6 +24,7 @@ public class CharacterMovement : MonoBehaviour {
 	Seed_Behaviour myseedbehaviour;
 	bool firstmove; //used to count turns
 	public GameObject levelWonBoard;
+	public GameObject LevelLostBoard;
 	RatingPopUp PopupScript;
 	// Use this for initialization
 	void Start () {
@@ -41,6 +42,13 @@ public class CharacterMovement : MonoBehaviour {
 			SceneLoading.gamewon = levelWonBoard;
 		}
 		levelWonBoard.SetActive (false);
+		LevelLostBoard = GameObject.Find ("GameLost");
+		if (LevelLostBoard != null) {
+			SceneLoading.gamelost = LevelLostBoard;
+		}
+		LevelLostBoard.SetActive (false);
+		Debug.Log ("TURNEDTOFF");
+
 
 	}
 	
@@ -50,6 +58,10 @@ public class CharacterMovement : MonoBehaviour {
 		if (levelWonBoard == null) {
 			levelWonBoard = SceneLoading.gamewon;
 		}
+		if (LevelLostBoard == null) {
+			LevelLostBoard = SceneLoading.gamelost;
+			LevelLostBoard.SetActive (false);
+		}
 		Debug.Log (TurnBehaviour.turn + "BEHAV");
 		if (transform.position != startingposition && TurnBehaviour.turn == 0) {
 			TurnBehaviour.turn = 1;
@@ -57,7 +69,6 @@ public class CharacterMovement : MonoBehaviour {
 		if (TurnBehaviour.turn == 1 && transform.position == startingposition) {
 			TurnBehaviour.turn = 0; 
 		}
-			Movement ();
 		if (currenttile == transform.position) {
 			//Debug.Log (tilescript.myTaker.tag);
 			if (lastFragile != null && lastFragile.transform.position == transform.position) {
@@ -72,14 +83,16 @@ public class CharacterMovement : MonoBehaviour {
 				isspeeding = false;
 			}  
 			else if (nextaction == "Goal_Action") {
-				RatingPopUp.GiveRating ();
 				levelWonBoard.SetActive (true);
+				RatingPopUp.GiveRating ();
 				this.enabled = false;
 				Debug.Log ("Whatsgoingon");
 			}			
 			else if (nextaction == "Hole_Action") {
-				int nextlevel = LevelManager.levelnum;
-				LevelManager.NextLevel (nextlevel);
+				LevelLostBoard.SetActive (true);
+				//int nextlevel = LevelManager.levelnum;
+				this.enabled=false;
+				//LevelManager.NextLevel (nextlevel);
 				//here popup "Gameover" try again
 
 			}
@@ -136,6 +149,7 @@ public class CharacterMovement : MonoBehaviour {
 				}
 			}
 		}
+			Movement ();
 	}
 
 	void QWERTYMove(){
