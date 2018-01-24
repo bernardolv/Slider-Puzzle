@@ -45,6 +45,14 @@ public class SceneLoading : MonoBehaviour {
 		//change camera position depending on 
 	}
 
+	public void unlockAll(){
+		LevelHandler.UnlockAllLevels();
+	}
+
+	public void LockAll(){
+		LevelHandler.LockAllLevels();
+	}
+
 	public void GoToLevelSelect(){
 		if (LevelManager.levelnum < 34) {
 			SceneManager.LoadScene (1);

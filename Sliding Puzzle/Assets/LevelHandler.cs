@@ -279,4 +279,31 @@ public class LevelHandler : MonoBehaviour {
 		LevelStats newvalue = new LevelStats(x,y,z,r); 
 		leveldic [x] = newvalue;
 	}
+
+	public static void LockLevel(int levelnum){
+		int x = leveldic [levelnum].levelnum;
+		int y = leveldic [levelnum].turns;
+		bool z = true;
+		int r = RatingBehaviour.rating;
+		LevelStats newvalue = new LevelStats(x,y,z,r); 
+		leveldic [x] = newvalue;
+		string mystring = "Level"+levelnum+"Rating";
+		PlayerPrefs.SetInt (mystring, 0);
+		Debug.Log (levelnum);
+
+	}
+
+	public static void UnlockAllLevels(){
+		for (int i = 1; i < leveldic.Count ; i++){
+			UnlockLevel (i);
+		}
+	}
+
+	public static void LockAllLevels(){
+		string mystring = "Level1Rating";
+		PlayerPrefs.SetInt (mystring, 0);
+		for (int i = 2; i < leveldic.Count ; i++){
+			LockLevel (i);
+		}
+	}
 }
