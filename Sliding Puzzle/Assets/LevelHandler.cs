@@ -111,15 +111,15 @@ public class LevelHandler : MonoBehaviour {
 			LevelStats lv76 = new LevelStats(76,7,true,0); 
 			LevelStats lv77 = new LevelStats(77,7,true,0); 
 			LevelStats lv78 = new LevelStats(78,2,true,0); 
-			LevelStats lv79 = new LevelStats(79,5,true,0); 
+			LevelStats lv79 = new LevelStats(79,7,true,0); 
 			LevelStats lv80 = new LevelStats(80,5,true,0); 
-			LevelStats lv81 = new LevelStats(81,5,true,0); 
-			LevelStats lv82 = new LevelStats(82,5,true,0); 
+			LevelStats lv81 = new LevelStats(81,6,true,0); 
+			LevelStats lv82 = new LevelStats(82,4,true,0); 
 			LevelStats lv83 = new LevelStats(83,5,true,0); 
-			LevelStats lv84 = new LevelStats(84,5,true,0); 
-			LevelStats lv85 = new LevelStats(85,5,true,0); 
-			LevelStats lv86 = new LevelStats(86,5,true,0); 
-			LevelStats lv87 = new LevelStats(87,5,true,0); 
+			LevelStats lv84 = new LevelStats(84,6,true,0); 
+			LevelStats lv85 = new LevelStats(85,4,true,0); 
+			LevelStats lv86 = new LevelStats(86,4,true,0); //extra
+			LevelStats lv87 = new LevelStats(87,4,true,0); 
 			LevelStats lv88 = new LevelStats(88,5,true,0); 
 			LevelStats lv89 = new LevelStats(89,5,true,0); 
 			LevelStats lv90 = new LevelStats(90,5,true,0); 
@@ -294,7 +294,7 @@ public class LevelHandler : MonoBehaviour {
 	}
 
 	public static void UnlockAllLevels(){
-		for (int i = 1; i < leveldic.Count ; i++){
+		for (int i = 1; i < leveldic.Count+1 ; i++){
 			UnlockLevel (i);
 		}
 	}
