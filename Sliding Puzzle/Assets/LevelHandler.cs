@@ -68,7 +68,7 @@ public class LevelHandler : MonoBehaviour {
 			LevelStats lv33 = new LevelStats(33,3,true,0); 
 			LevelStats lv34 = new LevelStats(34,2,true,0); 
 			LevelStats lv35 = new LevelStats(35,4,true,0); 
-			LevelStats lv36 = new LevelStats(36,3,true,0); 
+			LevelStats lv36 = new LevelStats(36,2,true,0); 
 			LevelStats lv37 = new LevelStats(37,5,true,0); 
 			LevelStats lv38 = new LevelStats(38,5,true,0); 
 			LevelStats lv39 = new LevelStats(39,7,true,0); 

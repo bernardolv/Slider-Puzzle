@@ -248,11 +248,15 @@ public class CharacterMovement : MonoBehaviour {
 				Count ();
 			} else if (tilescript.myTaker.tag == "Goal") {
 				//you'll stop in the tile you checked and stop moving.
-				Count ();
-				currenttile = tiletotest;
-				canmove = false;
-				//Qeue up an action when reaching the tile
-				nextaction = "Goal_Action";
+				if (TurnCounter.turncount == 0) {
+					canmove = false;
+				} else {
+					Count ();
+					currenttile = tiletotest;
+					canmove = false;
+					//Qeue up an action when reaching the tile
+					nextaction = "Goal_Action";
+				}
 			} else if (tilescript.myTaker.tag == "Hole") {
 				//you'll stop in the tile you checked and stop moving.
 				currenttile = tiletotest;
