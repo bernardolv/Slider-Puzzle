@@ -124,8 +124,8 @@ public class LevelHandler : MonoBehaviour {
 			LevelStats lv89 = new LevelStats(89,3,true,0); 
 			LevelStats lv90 = new LevelStats(90,5,true,0); 
 			LevelStats lv91 = new LevelStats(91,1,true,0); 
-			LevelStats lv92 = new LevelStats(92,5,true,0); 
-			LevelStats lv93 = new LevelStats(93,5,true,0); 
+			LevelStats lv92 = new LevelStats(92,7,true,0); 
+			LevelStats lv93 = new LevelStats(93,7,true,0); 
 			LevelStats lv94 = new LevelStats(94,5,true,0); 
 			LevelStats lv95 = new LevelStats(95,5,true,0); 
 			LevelStats lv96 = new LevelStats(96,5,true,0); 
