@@ -26,6 +26,7 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject levelWonBoard;
 	public GameObject LevelLostBoard;
 	RatingPopUp PopupScript;
+	string myswipe;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -54,6 +55,8 @@ public class CharacterMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		myswipe = Swiping.mydirection;
+
 		Debug.Log (levelWonBoard);
 		if (levelWonBoard == null) {
 			levelWonBoard = SceneLoading.gamewon;
@@ -153,7 +156,7 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	void QWERTYMove(){
-		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
+		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || myswipe == "Up") {
 			tiletotest = currenttile;
 			if (canmove = true) {
 				firstmove = true;
@@ -165,7 +168,7 @@ public class CharacterMovement : MonoBehaviour {
 				ActOnTile ();
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.A)|| Input.GetKeyDown(KeyCode.LeftArrow)) {
+		if (Input.GetKeyDown (KeyCode.A)|| Input.GetKeyDown(KeyCode.LeftArrow) || myswipe == "Left") {
 			tiletotest = currenttile;
 			if (canmove = true) {
 				firstmove = true;
@@ -178,7 +181,7 @@ public class CharacterMovement : MonoBehaviour {
 				ActOnTile ();
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
+		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || myswipe == "Down" ) {
 			tiletotest = currenttile;
 			if (canmove = true) {
 				firstmove = true;
@@ -190,7 +193,7 @@ public class CharacterMovement : MonoBehaviour {
 				ActOnTile ();
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow)) {
+		if (Input.GetKeyDown (KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow) || myswipe == "Right") {
 			tiletotest = currenttile;
 			if (canmove = true) {
 				firstmove = true;

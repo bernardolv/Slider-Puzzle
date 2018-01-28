@@ -1,4 +1,4 @@
-OSXStandalone
+iOS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ResolutionBehaviour
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -184,6 +184,7 @@ a9e1c36c671666e79706791e556d5100 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehav
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RatingBehaviour
 6ff4030a9ecf01e7f3be55a41dfcc42c Assembly-CSharp.dll:.LevelDisplayScript
 e1111f876f6bff0625f00b729d8b51b6 Assembly-CSharp.dll:.Boss_Behaviour
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Swiping
 4f4b6d80f671820db5a1a1025783db9a Assembly-CSharp.dll:.SceneLoading
 e9baaa927c58f67ae470e95ed59e0bfb Assembly-CSharp.dll:.TileHandler
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Hole_Behaviour
@@ -205,6 +206,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+6ff4030a9ecf01e7f3be55a41dfcc42c Assembly-CSharp.dll:.swipedisplay
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 2a56361227def9f56c2cf57a88b32f4d UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender

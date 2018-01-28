@@ -25,6 +25,7 @@ public class Dragger : MonoBehaviour {
     //screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position); // I removed this line to prevent centring 
    // _lockedYPosition = screenPoint.y;
 		if (TurnBehaviour.turn == 0) {
+			Swiping.canswipe = false;
 			offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 			Cursor.visible = false;
 			Debug.Log (this.gameObject);
@@ -35,19 +36,27 @@ public class Dragger : MonoBehaviour {
  void OnMouseDrag()
 	{ 
 		if (TurnBehaviour.turn == 0) {
-			
 			Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 			Vector3 curPosition = Camera.main.ScreenToWorldPoint (curScreenPoint) + offset;
 			// curPosition.x = _lockedYPosition;
 			transform.position = curPosition;
 			myPosition = transform.position;
 			FindHoveredTile ();
+			Touch t = Input.GetTouch(0);
+				//save began touch 2d point
+			Swiping.firstPressPos = new Vector2(t.position.x,t.position.y);
 		}
 
 	}
  
  void OnMouseUp()
  {
+		Swiping.mydirection = "Null";
+		Swiping.swiping = false;
+		Swiping.canswipe = true;
+		Touch t = Input.GetTouch(0);
+		//save began touch 2d point
+		Swiping.firstPressPos = new Vector2(t.position.x,t.position.y);
 		if (TurnBehaviour.turn == 0) {
 			
    	 Cursor.visible = true;

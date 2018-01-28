@@ -10,6 +10,7 @@ public class SceneLoading : MonoBehaviour {
 	public static GameObject gamelost;
 
 	public void LoadScene(int num){
+		Swiping.mydirection = "Null";
 		TurnCounter.turncount = 0;
 		Debug.Log ("BOOP");
 		LevelManager.levelnum = num;
@@ -20,6 +21,7 @@ public class SceneLoading : MonoBehaviour {
 		SceneManager.LoadScene(0);
 	}
 	public void NextlevelButton(){
+		Swiping.mydirection = "Null";
 		LevelManager.levelnum++;
 		LevelHandler.UnlockLevel (LevelManager.levelnum);
 		LevelHandler.Lookfor (LevelManager.levelnum);
@@ -27,12 +29,14 @@ public class SceneLoading : MonoBehaviour {
 		LevelManager.NextLevel (LevelManager.levelnum);
 	}
 	public void PreviousLevelButton(){
+		Swiping.mydirection = "Null";
 		LevelManager.levelnum--;
 		LevelHandler.Lookfor (LevelManager.levelnum);
 		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);
 	}
 	public void ResetLevelButton(){
+		Swiping.mydirection = "Null";
 		LevelHandler.Lookfor (LevelManager.levelnum);
 		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);

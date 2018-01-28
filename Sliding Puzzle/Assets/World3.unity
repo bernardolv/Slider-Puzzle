@@ -137,7 +137,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 74314364}
   m_LocalRotation: {x: -0, y: -0.0729918, z: -0, w: 0.9973326}
-  m_LocalPosition: {x: -346.8999, y: 282.8999, z: 0}
+  m_LocalPosition: {x: -346.89993, y: 215.7981, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2083316430}
@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 1061475704}
   - component: {fileID: 1061475708}
   - component: {fileID: 1061475709}
+  - component: {fileID: 1061475710}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -381,7 +382,7 @@ RectTransform:
   m_GameObject: {fileID: 1061475703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: -3.5, z: 90}
-  m_LocalScale: {x: 0.016666666, y: 0.016666666, z: 0.016666666}
+  m_LocalScale: {x: 0.021468608, y: 0.021468608, z: 0.021468608}
   m_Children:
   - {fileID: 74314365}
   m_Father: {fileID: 0}
@@ -416,6 +417,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mycanvas: {fileID: 1061475706}
+--- !u!114 &1061475710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061475703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f4a6877aa074881bcaf7580b21189d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1511854066
 GameObject:
   m_ObjectHideFlags: 0

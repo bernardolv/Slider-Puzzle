@@ -1,0 +1,20 @@
+<linker>
+	<assembly fullname="Assembly-CSharp">
+		<type fullname="SceneLoading">
+			<method name="GoToWorld"/>
+			<method name="GoToWorld"/>
+			<method name="GoToWorld"/>
+			<method name="LoadMenu"/>
+			<method name="LoadMenu"/>
+			<method name="LoadMenu"/>
+			<method name="ResetLevelButton"/>
+			<method name="unlockAll"/>
+			<method name="LockAll"/>
+			<method name="NextlevelButton"/>
+			<method name="NextlevelButton"/>
+			<method name="GoToLevelSelect"/>
+			<method name="ResetLevelButton"/>
+			<method name="PreviousLevelButton"/>
+		</type>
+	</assembly>
+</linker>
