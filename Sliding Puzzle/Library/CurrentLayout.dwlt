@@ -42,10 +42,10 @@ MonoBehaviour:
     y: 30
     width: 2560
     height: 1265
-  m_MinSize: {x: 681, y: 342}
-  m_MaxSize: {x: 12006, y: 8042}
+  m_MinSize: {x: 679, y: 342}
+  m_MaxSize: {x: 12004, y: 8042}
   vertical: 0
-  controlID: 112
+  controlID: 71
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -206,10 +206,10 @@ MonoBehaviour:
     y: 0
     width: 2041
     height: 1265
-  m_MinSize: {x: 406, y: 342}
-  m_MaxSize: {x: 8006, y: 8042}
+  m_MinSize: {x: 404, y: 342}
+  m_MaxSize: {x: 8004, y: 8042}
   vertical: 1
-  controlID: 51
+  controlID: 72
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -230,8 +230,8 @@ MonoBehaviour:
     y: 0
     width: 2041
     height: 930
-  m_MinSize: {x: 406, y: 221}
-  m_MaxSize: {x: 8006, y: 4021}
+  m_MinSize: {x: 404, y: 221}
+  m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
   controlID: 52
 --- !u!114 &11
@@ -325,20 +325,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts
+    - Assets/Resources
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Resources
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding
     Puzzle
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 06370000
-    m_LastClickedID: 14086
-    m_ExpandedIDs: 000000003629000000ca9a3bffffff7f
+    m_SelectedIDs: e2360000
+    m_LastClickedID: 14050
+    m_ExpandedIDs: 000000003829000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -366,7 +366,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000036290000
+    m_ExpandedIDs: 0000000038290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: fcb8ffffb4b9ffffe4bbfffffcbbffff14bcffff34bcffff52bcffff64c5ffff1ac6ffff4ac8ffff62c8ffff7ac8ffff9ac8ffffb8c8ffff32dcffff1eddffff4edfffff66dfffff7edfffff9edfffffbcdfffffd2eaffffbeebffffeeedffff06eeffff1eeeffff3eeeffff5ceeffff9efbffff00000000
+    m_ExpandedIDs: acf9fdff18fafdff4afcfdff62fcfdff7afcfdff9afcfdffb8fcfdffb002feff1a03feff4a05feff6205feff7a05feff9a05feffb805feff820afeffe60afeff160dfeff2e0dfeff460dfeff660dfeff840dfeff061bfeffbc1bfeffec1dfeff041efeff1c1efeff3c1efeff5a1efefffc22feff6423feff9425feffac25feffc425feffe425feff0226feff9029fefff829feff282cfeff402cfeff582cfeff782cfeff962cfeff1030feff7830feffa832feffc032feffd832fefff832feff1633feff8838feff3e39feff6e3bfeff863bfeff9e3bfeffbe3bfeffdc3bfeff7451feff2c52feff5e54feff7654feff8e54feffae54feffcc54feff7eb5ffff98eeffff78efffffaef1ffffcaf1ffffe6f1ffff0af2ffff2cf2ffff9efbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -616,10 +616,10 @@ MonoBehaviour:
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
-    m_HBaseRangeMin: -278.75
-    m_HBaseRangeMax: 278.75
-    m_VBaseRangeMin: -223
-    m_VBaseRangeMax: 223
+    m_HBaseRangeMin: -766
+    m_HBaseRangeMax: 766
+    m_VBaseRangeMin: -446
+    m_VBaseRangeMax: 446
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -638,7 +638,7 @@ MonoBehaviour:
       y: 17
       width: 1532
       height: 892
-    m_Scale: {x: 2, y: 2}
+    m_Scale: {x: 1, y: 1}
     m_Translation: {x: 766, y: 446}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -646,12 +646,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -383
-      y: -223
-      width: 766
-      height: 446
+      x: -766
+      y: -446
+      width: 1532
+      height: 892
     m_MinimalGUI: 1
-  m_defaultScale: 2
+  m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
   m_LastWindowPixelSize: {x: 3064, y: 1818}

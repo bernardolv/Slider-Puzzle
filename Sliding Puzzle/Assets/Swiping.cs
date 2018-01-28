@@ -10,6 +10,7 @@ public class Swiping : MonoBehaviour {
 	public static Vector2 secondPressPos;
 	public static Vector2 currentSwipe;
 	public static bool canswipe;
+	public static GameObject The_Dragged;
 
 
 	public enum SwipeDirection{

@@ -225,6 +225,7 @@ public class CharacterMovement : MonoBehaviour {
 		if (currenttile != transform.position && beingdragged == false ) {
 			transform.position = Vector3.MoveTowards (transform.position, currenttile, Time.deltaTime * speed); 
 			cantakeinput = false;
+			Swiping.mydirection = "Null";
 		}
 	}
 	void Count(){

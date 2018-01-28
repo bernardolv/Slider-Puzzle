@@ -52,11 +52,12 @@ public class Dragger : MonoBehaviour {
  void OnMouseUp()
  {
 		Swiping.mydirection = "Null";
-		Swiping.swiping = false;
-		Swiping.canswipe = true;
-		Touch t = Input.GetTouch(0);
+		//Swiping.canswipe = true;
+		//Touch t = Input.GetTouch(0);
 		//save began touch 2d point
-		Swiping.firstPressPos = new Vector2(t.position.x,t.position.y);
+		//Swiping.firstPressPos = new Vector2(transform.position.x,transform.position.y);
+
+
 		if (TurnBehaviour.turn == 0) {
 			
    	 Cursor.visible = true;
@@ -71,6 +72,12 @@ public class Dragger : MonoBehaviour {
 		//float z = -.01f;
 		//transform.position.z = z;
 		}
+		Touch t = Input.GetTouch(0);
+
+		Swiping.firstPressPos = new Vector2(t.position.x,t.position.y);
+
+		Swiping.canswipe = true;
+
  }
 	void FindHoveredTile(){
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(myPosition, .1f); ///Presuming the object you are testing also has a collider 0 otherwise{
