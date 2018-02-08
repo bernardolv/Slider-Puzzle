@@ -55,7 +55,7 @@ public class LevelHandler : MonoBehaviour {
 			LevelStats lv20 = new LevelStats(20,5,true,0); 
 			LevelStats lv21 = new LevelStats(21,5,true,0); 
 			LevelStats lv22 = new LevelStats(22,4,true,0); 
-			LevelStats lv23 = new LevelStats(23,5,true,0); 
+			LevelStats lv23 = new LevelStats(23,6,true,0); 
 			LevelStats lv24 = new LevelStats(24,5,true,0); 
 			LevelStats lv25 = new LevelStats(25,6,true,0); 
 			LevelStats lv26 = new LevelStats(26,7,true,0); 
@@ -85,7 +85,7 @@ public class LevelHandler : MonoBehaviour {
 			LevelStats lv50 = new LevelStats(50,7,true,0); 
 			LevelStats lv51 = new LevelStats(51,5,true,0); 
 			LevelStats lv52 = new LevelStats(52,4,true,0); 
-			LevelStats lv53 = new LevelStats(53,5,true,0); 
+			LevelStats lv53 = new LevelStats(53,7,true,0); 
 			LevelStats lv54 = new LevelStats(54,5,true,0); 
 			LevelStats lv55 = new LevelStats(55,4,true,0);  //save 1
 			LevelStats lv56 = new LevelStats(56,6,true,0); 

@@ -27,6 +27,7 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject LevelLostBoard;
 	RatingPopUp PopupScript;
 	string myswipe;
+	bool outofmap;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -49,7 +50,7 @@ public class CharacterMovement : MonoBehaviour {
 		}
 		LevelLostBoard.SetActive (false);
 		Debug.Log ("TURNEDTOFF");
-
+		outofmap = false;
 
 	}
 	
@@ -208,11 +209,17 @@ public class CharacterMovement : MonoBehaviour {
 	}
 	void FindTileTag(){
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(tiletotest, .1f); ///Presuming the object you are testing also has a collider 0 otherwise{
-		foreach(Collider2D component in colliders){
-			if (component.tag == "Ground") {
-				tileobject = component.gameObject;
-				tilescript = tileobject.GetComponent<TileHandler> ();
-				istiletaken = tilescript.isTaken;
+		if(colliders.Length == 0){
+				istiletaken = true;
+				outofmap = true;
+		}
+		else{
+			foreach (Collider2D component in colliders) {
+				if (component.tag == "Ground") {
+					tileobject = component.gameObject;
+					tilescript = tileobject.GetComponent<TileHandler> ();
+					istiletaken = tilescript.isTaken;
+				} 
 			}
 		}
 	}
@@ -246,7 +253,11 @@ public class CharacterMovement : MonoBehaviour {
 			currenttile = tiletotest;
 		} 
 		else {
-			if (tilescript.myTaker.tag == "Wall") {
+			if(outofmap == true){
+				canmove = false;
+				outofmap = false;
+			}
+			else if (tilescript.myTaker.tag == "Wall") {
 				//the desired tile is the previous one and u stop looking for next tiles.
 				canmove = false;
 				Count ();
