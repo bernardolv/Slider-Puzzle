@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 212248383985406518}
   - component: {fileID: 114362199084196394}
   - component: {fileID: 61733068148044346}
+  - component: {fileID: 114600087344878962}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -145,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currenttile: {x: 0, y: 0, z: 0}
   startingposition: {x: 0, y: 0, z: 0}
+  cantakeinput: 0
   speed: 5
   direction: 
   tileobject: {fileID: 0}
@@ -153,6 +155,23 @@ MonoBehaviour:
   lastFragile: {fileID: 0}
   lastSeed: {fileID: 0}
   levelWonBoard: {fileID: 0}
+  LevelLostBoard: {fileID: 0}
+  mykeysimulator: {fileID: 114600087344878962}
+--- !u!114 &114600087344878962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832154775011318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3cf476ee91b4615b12dbe3da4b88c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  W: 0
+  A: 0
+  S: 0
+  D: 0
 --- !u!114 &114945674196556870
 MonoBehaviour:
   m_ObjectHideFlags: 1

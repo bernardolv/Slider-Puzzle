@@ -6,7 +6,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	public Vector3 currenttile;
 	public Vector3 startingposition;
-	bool cantakeinput;
+	public bool cantakeinput;
 	public int speed;
 	public string direction;
 	bool istiletaken;
@@ -28,6 +28,7 @@ public class CharacterMovement : MonoBehaviour {
 	RatingPopUp PopupScript;
 	string myswipe;
 	bool outofmap;
+	public KeySimulator mykeysimulator;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -157,7 +158,7 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	void QWERTYMove(){
-		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || myswipe == "Up") {
+		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || myswipe == "Up" || mykeysimulator.W ) {
 			tiletotest = currenttile;
 			if (canmove = true) {
 				firstmove = true;
@@ -168,8 +169,9 @@ public class CharacterMovement : MonoBehaviour {
 				FindTileTag ();
 				ActOnTile ();
 			}
+			mykeysimulator.W = false;
 		}
-		if (Input.GetKeyDown (KeyCode.A)|| Input.GetKeyDown(KeyCode.LeftArrow) || myswipe == "Left") {
+		if (Input.GetKeyDown (KeyCode.A)|| Input.GetKeyDown(KeyCode.LeftArrow) || myswipe == "Left" || mykeysimulator.A) {
 			tiletotest = currenttile;
 			if (canmove = true) {
 				firstmove = true;
@@ -181,8 +183,9 @@ public class CharacterMovement : MonoBehaviour {
 				FindTileTag ();
 				ActOnTile ();
 			}
+			mykeysimulator.A = false;
 		}
-		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || myswipe == "Down" ) {
+		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || myswipe == "Down" || mykeysimulator.S ) {
 			tiletotest = currenttile;
 			if (canmove = true) {
 				firstmove = true;
@@ -193,8 +196,9 @@ public class CharacterMovement : MonoBehaviour {
 				FindTileTag ();
 				ActOnTile ();
 			}
+			mykeysimulator.S = false;
 		}
-		if (Input.GetKeyDown (KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow) || myswipe == "Right") {
+		if (Input.GetKeyDown (KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow) || myswipe == "Right" || mykeysimulator.D) {
 			tiletotest = currenttile;
 			if (canmove = true) {
 				firstmove = true;
@@ -205,6 +209,7 @@ public class CharacterMovement : MonoBehaviour {
 				FindTileTag ();
 				ActOnTile ();
 			}
+			mykeysimulator.D = false;
 		}
 	}
 	void FindTileTag(){

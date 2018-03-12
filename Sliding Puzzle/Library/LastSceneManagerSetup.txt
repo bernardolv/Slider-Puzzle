@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/fourbyfourlevels.unity
+- path: Assets/Botscene.unity
   isLoaded: 1
   isActive: 1

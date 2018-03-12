@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 public class FourbyFourLevels : MonoBehaviour {
 	private string filePath;
 	private string result;
+	//public Brain brain;
 
 	IEnumerator checkAndroid(string file)
 	{
@@ -96,6 +97,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		LevelHandler.Lookfor (levelnum);
 		DrawIce ();
 		DrawNextLevel (levelnum);
+
 		}
 
 
@@ -128,7 +130,7 @@ public class FourbyFourLevels : MonoBehaviour {
 	}
 
 	public void DrawNextLevel(int levelnumber){
-
+		//PopulationManager.readytobrain = false;
 		string leveltext = ("Level" + levelnumber.ToString() + ".txt");
 		string levelname = ("Level" + levelnumber.ToString ());
 		checkAndroid (leveltext);
@@ -201,6 +203,7 @@ public class FourbyFourLevels : MonoBehaviour {
 
 			}
 		} 
+		//PopulationManager.readytobrain = true;
 	}
 	public void DestroyAllExceptCamera(){
 		TurnBehaviour.turn = 0;

@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPosition: {x: 0, y: 0, z: 0}
-  myPlayer: {fileID: 0}
+  myPlayer: {fileID: 1888340928284818, guid: ac7d2f0c6c9954513b7c5a7c9d7ae75a, type: 2}
   newSprite: {fileID: 21300358, guid: 59c40bfbe37264ac7a39ebc7166b2cdf, type: 3}
   ogSprite: {fileID: 0}
   playerx: 0
