@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PopulationManager : MonoBehaviour {
 	public static bool readytobrain;
+	public GameObject bot;
+	public static int botnum = 0;
+	public static List<string> dadgenes = new List<string>();
+	//public DNA dna;
 	void Start () {
 	}
 	
@@ -25,5 +30,28 @@ public class PopulationManager : MonoBehaviour {
 			thisbrain.enabled = true;
 			Debug.Log ("TURNINGITON");
 		}
+	}
+	public void NextAct() {
+		foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+			Brain thisbrain = player.GetComponent<Brain> ();
+			thisbrain.Findpossibilities ();
+		}
+	}
+	public void NewMove(){
+		
+	}
+	public static void Clone(Vector3 origin, GameObject mydad, List<string> originalgenes, string newgene){
+		float x = mydad.transform.position.x;
+		float y = mydad.transform.position.y;
+		GameObject newbot = Instantiate	(mydad, new Vector3 (x, y, 0), mydad.transform.rotation);
+		Debug.Log ("NEWBOT");
+		//Brain newbrain = newbot.GetComponent<Brain>();
+		//newbrain.enabled = true;
+		//string newgene = "Left";
+		//List<string> newgenes = originalgenes;
+//		newgenes.Add(newgene);
+		//newbrain.clonegene (newgenes);
+		//newbrain.ActonGene ();
+
 	}
 }

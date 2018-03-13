@@ -12,7 +12,7 @@ public class DNA {
 
 	public DNA(){
 		genes.Clear();
-		RollnewGene ();
+		//RollnewGene ();
 	}
 	void OnMouseDown()
 	{
@@ -94,5 +94,8 @@ public class DNA {
 			mynewdirection = "Down";
 		}
 		genes[1] = (mynewdirection);
+	}
+	public void cloneleft(){
+
 	}
 }
