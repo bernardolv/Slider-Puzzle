@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class PopulationManager : MonoBehaviour {
 	public static bool readytobrain;
 	public GameObject bot;
 	public static int botnum = 0;
 	public static List<string> dadgenes = new List<string>();
+	public
 	//public DNA dna;
 	void Start () {
 	}
@@ -35,6 +37,7 @@ public class PopulationManager : MonoBehaviour {
 		foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
 			Brain thisbrain = player.GetComponent<Brain> ();
 			thisbrain.Findpossibilities ();
+			Destroy (player);
 		}
 	}
 	public void NewMove(){
@@ -45,6 +48,16 @@ public class PopulationManager : MonoBehaviour {
 		float y = mydad.transform.position.y;
 		GameObject newbot = Instantiate	(mydad, new Vector3 (x, y, 0), mydad.transform.rotation);
 		Debug.Log ("NEWBOT");
+		Brain newbrain = newbot.GetComponent<Brain> ();
+		//newbrain.enabled = true;
+		newbrain.genes.Add(newgene);
+
+		//newbrain.ActonGene ();
+		//int genelength = newbrain.genes.Count;
+		//Debug.Log("Last gene is " + newbrain.dna.genes[genelength-1]);
+		//newbrain.ActonGene ();
+
+		//newbrain.ActonGene ();
 		//Brain newbrain = newbot.GetComponent<Brain>();
 		//newbrain.enabled = true;
 		//string newgene = "Left";
@@ -53,5 +66,12 @@ public class PopulationManager : MonoBehaviour {
 		//newbrain.clonegene (newgenes);
 		//newbrain.ActonGene ();
 
+	}
+	public void MovenewClones(){
+		foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+			Brain thisbrain = player.GetComponent<Brain> ();
+			thisbrain.ActonGene ();
+			//thisbrain.checkrepeatedtile();
+		}
 	}
 }

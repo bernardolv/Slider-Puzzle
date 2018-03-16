@@ -68,12 +68,13 @@ public class BotMovement : MonoBehaviour {
 			LevelLostBoard.SetActive (false);
 		}
 //		Debug.Log (TurnBehaviour.turn + "BEHAV");
-		if (transform.position != startingposition && TurnBehaviour.turn == 0) {
+		/*if (transform.position != startingposition && TurnBehaviour.turn == 0) {
 			TurnBehaviour.turn = 1;
+
 		}
 		if (TurnBehaviour.turn == 1 && transform.position == startingposition) {
 			TurnBehaviour.turn = 0; 
-		}
+		}*/
 		if (currenttile == transform.position) {
 			//Debug.Log (tilescript.myTaker.tag);
 			if (lastFragile != null && lastFragile.transform.position == transform.position) {
@@ -199,6 +200,7 @@ public class BotMovement : MonoBehaviour {
 			mykeysimulator.S = false;
 		}
 		if (Input.GetKeyDown (KeyCode.D)|| Input.GetKeyDown(KeyCode.RightArrow) || myswipe == "Right" || mykeysimulator.D == true) {
+			Debug.Log ("Moving right");
 			tiletotest = currenttile;
 			if (canmove = true) {
 				firstmove = true;
@@ -209,6 +211,7 @@ public class BotMovement : MonoBehaviour {
 				FindTileTag ();
 				ActOnTile ();
 			}
+			Debug.Log ("unpressed right");
 			mykeysimulator.D = false;
 		}
 	}

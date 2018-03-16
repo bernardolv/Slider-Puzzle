@@ -8,10 +8,12 @@ public class Brain : MonoBehaviour {
 	public Vector3 newposition;
 	public BotMovement mybotcontroller;
 	public DNA dna;
+	public List <string> genes = new List <string>();
 	public KeySimulator mykeysimulator;
 	public List <Vector3> stoppedtiles = new List <Vector3>();
 	public List<string> possibilities = new List <string> ();
-	public bool pathtoleft;
+	public string latestgene;
+	//public bool pathtoleft;
 	// Use this for initialization
 
 
@@ -25,12 +27,14 @@ public class Brain : MonoBehaviour {
 		}
 		if (PopulationManager.botnum == 0) {
 			dna = new DNA ();
-			dna.genes.Add ("Left");
-			ActonGene ();
+			//dna.genes.Add ("Left");
+			genes = dna.genes;
+			//ActonGene ();
 			PopulationManager.botnum++;
+			Debug.Log (genes.Count);
 		}
 		if (PopulationManager.botnum > 0) {
-			dna = new DNA ();
+			//dna = new DNA ();
 		}
 		//Debug.Log("DNA SIZE " + dna.genes.Count);
 		//dna.addGene();	
@@ -40,7 +44,8 @@ public class Brain : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.I)) {
-			Findpossibilities ();
+			//Findpossibilities ();
+			Debug.Log(genes[genes.Count-1]);
 			//dna.Clone(possibilities);
 			//popoulationmanager.clone(possibilities);
 			//dna.RollnewGene ();
@@ -53,19 +58,24 @@ public class Brain : MonoBehaviour {
 		//Debug.Log("random" + Random.Range(1,5));
 	}
 	public void clonegene(List<string> dadgene){
-		dna.genes = dadgene;
+		genes = dadgene;
 	}
 	public void givedna(DNA dna){
 		dna = new DNA();
 	}
 	public void ActonGene(){
-		int lastplace = dna.genes.Count - 1;
-		string newmove = dna.genes[lastplace];
+		//Debug.Log ("ACting on Gene");
+		int genelength = genes.Count;
+		int lastplace = genes.Count - 1;
+		string newmove = genes[lastplace];
+		Debug.Log ("have to move " + newmove);
 		if (newmove == "Up") {
 			mykeysimulator.W = true;
+			Debug.Log ("Pressed UP");
 		}
 		if (newmove == "Right") {
 			mykeysimulator.D = true;
+			Debug.Log ("pressed RIGHT");
 		}
 		if (newmove == "Down") {
 			mykeysimulator.S = true;
@@ -76,18 +86,17 @@ public class Brain : MonoBehaviour {
 
 	}
 	public void Findpossibilities(){
-		PopulationManager.dadgenes = dna.genes;
+		PopulationManager.dadgenes = genes;
 		Vector3 center = transform.position;
-		Debug.Log ("Will find Path starting at " + center);
+		//Debug.Log ("Will find Path starting at " + center);
 		Vector3 left = center + Vector3.left;
 		Vector3 right = center + Vector3.right;
 		Vector3 up = center + Vector3.up;
 		Vector3 down = center + Vector3.down;
 
 		testwall (left, "Left");
-		testwall (right, "Right");
-		Debug.Log ("Gonna do up next");
 		testwall (up, "Up");
+		testwall (right, "Right");
 		testwall (down, "Down");
 
 	}
@@ -102,18 +111,24 @@ public class Brain : MonoBehaviour {
 				if (component.tag == "Ground") {
 					GameObject Ground = component.gameObject;
 					TileHandler tilescript = Ground.GetComponent<TileHandler> ();
-					if (tilescript.myTaker != null) {
+					if (tilescript.myTaker != null ) {
 						GameObject Taker = tilescript.myTaker;
 						if (Taker.tag == "Wall") {
 							//Debug.Log ("Wall on left");
 							//CreateClone();
+						} else {
+							Vector3 origin = transform.position;
+							GameObject dad = this.gameObject;
+							List <string> dadgene = genes;
+							Debug.Log ("cloning " + direction);
+							PopulationManager.Clone(origin, dad, dadgene, direction);
 						}
 					}
 					else{
 						//Debug.Log ("Move Left");
 						Vector3 origin = transform.position;
 						GameObject dad = this.gameObject;
-						List <string> dadgene = dna.genes;
+						List <string> dadgene = genes;
 						Debug.Log ("cloning " + direction);
 						PopulationManager.Clone(origin, dad, dadgene, direction);
 					}

@@ -261,13 +261,13 @@ public class LevelHandler : MonoBehaviour {
 	}*/
 	public static void Lookfor(int levelnum){
 		maxlevels = leveldic.Count ;
-		Debug.Log ("maxcount" + maxlevels);
+	//	Debug.Log ("maxcount" + maxlevels);
 		if (levelnum <= maxlevels) {
 			efficientturns = leveldic [levelnum].turns;
-			Debug.Log ("The number of turns for level " + levelnum + " is " + efficientturns);
+		//	Debug.Log ("The number of turns for level " + levelnum + " is " + efficientturns);
 		} 
 		else {
-			Debug.Log ("No turn number stored" + levelnum + efficientturns);
+//			Debug.Log ("No turn number stored" + levelnum + efficientturns);
 
 		}
 	}
