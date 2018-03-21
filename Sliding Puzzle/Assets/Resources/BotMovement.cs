@@ -29,6 +29,7 @@ public class BotMovement : MonoBehaviour {
 	string myswipe;
 	bool outofmap;
 	public KeySimulator mykeysimulator;
+	public BotTurns myturns;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -52,7 +53,7 @@ public class BotMovement : MonoBehaviour {
 		LevelLostBoard.SetActive (false);
 		Debug.Log ("TURNEDTOFF");
 		outofmap = false;
-
+		myturns = GetComponentInChildren<BotTurns> ();
 	}
 
 	// Update is called once per frame
@@ -245,7 +246,8 @@ public class BotMovement : MonoBehaviour {
 	}
 	void Count(){
 		if(firstmove == true && canmove == true){
-			TurnCounter.turncount++;
+			//TurnCounter.turncount++;
+			myturns.AddTurn();    
 			Debug.Log (TurnCounter.turncount);
 		}
 		if(firstmove == true){

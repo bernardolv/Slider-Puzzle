@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 224640151673828768}
   - component: {fileID: 222453108059375294}
   - component: {fileID: 114464432060433440}
-  - component: {fileID: 114528505261505250}
+  - component: {fileID: 114847220839531510}
   m_Layer: 0
   m_Name: Text (1)
   m_TagString: Canvas
@@ -190,19 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
---- !u!114 &114528505261505250
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1520581086538852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 566595f10c8374e128d67d5c480902ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myText: {fileID: 114464432060433440}
+  m_Text: 0 turns
 --- !u!114 &114689809642678252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,6 +215,20 @@ MonoBehaviour:
   levelWonBoard: {fileID: 0}
   LevelLostBoard: {fileID: 0}
   mykeysimulator: {fileID: 114390257603150046}
+  myturns: {fileID: 0}
+--- !u!114 &114847220839531510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520581086538852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfd32bb32b5ce4f04ac8c2e9a5ede5ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myText: {fileID: 114464432060433440}
+  turns: 0
 --- !u!114 &114996998528951156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -242,7 +244,11 @@ MonoBehaviour:
   myposition: {x: 0, y: 0, z: 0}
   newposition: {x: 0, y: 0, z: 0}
   mybotcontroller: {fileID: 114689809642678252}
+  genes: []
   mykeysimulator: {fileID: 114390257603150046}
+  stoppedtiles: []
+  possibilities: []
+  latestgene: 
 --- !u!212 &212850520555944570
 SpriteRenderer:
   m_ObjectHideFlags: 1

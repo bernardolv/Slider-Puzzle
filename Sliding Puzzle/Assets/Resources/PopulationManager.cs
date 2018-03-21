@@ -51,6 +51,8 @@ public class PopulationManager : MonoBehaviour {
 		Brain newbrain = newbot.GetComponent<Brain> ();
 		//newbrain.enabled = true;
 		newbrain.genes.Add(newgene);
+		BotMovement botm = newbot.GetComponent<BotMovement> ();
+		botm.myturns = newbot.GetComponentInChildren<BotTurns> ();
 
 		//newbrain.ActonGene ();
 		//int genelength = newbrain.genes.Count;

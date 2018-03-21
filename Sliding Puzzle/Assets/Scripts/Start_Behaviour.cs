@@ -52,8 +52,8 @@ public class Start_Behaviour : MonoBehaviour {
 			}
 		}
 
-		playerx= myPlayer.transform.position.x;
-		playery = myPlayer.transform.position.y;
+		//playerx= myPlayer.transform.position.x;
+		//playery = myPlayer.transform.position.y;
 		mypositionx = myPosition.x;
 		mypositiony = myPosition.y;
 		if (mypositionx == playerx && mypositiony == playery && stillastarttile == false) {
