@@ -26,12 +26,12 @@ public class AIBrain : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyDown (KeyCode.I)) {
-			PrintList(tiles);
+			//PrintList(tiles);
 			Debug.Log(Goalx + "+" + Goaly);
 		} 	
 		if (Input.GetKeyDown (KeyCode.J)) {
 			if(haventturnedon){
-			turnOnPossibilities("Up");
+			turnOnPossibilities("Up");//shows where up would have to go to get to it.
 			turnOnPossibilities("Down");
 			turnOnPossibilities("Left");
 			turnOnPossibilities("Right");
@@ -39,7 +39,6 @@ public class AIBrain : MonoBehaviour {
 		}
 			ConvertStoppedtoGameObjects(PopulationManager.UniqueStoppedTiles);
 			filterandorder();
-
 		} 	
 	}
 	void PrintList(string[,] mylist){
@@ -49,7 +48,7 @@ public class AIBrain : MonoBehaviour {
 			}
 		}
 	}
-	public void turnOnPossibilities(string direction){
+	public void turnOnPossibilities(string direction){//checks all directions
 		Vector3 origin = new Vector3(Goalx,-Goaly,0);
 //		Debug.Log("Position" + origin);
 		if (direction =="Left"){

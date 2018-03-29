@@ -10,13 +10,25 @@ public class PopulationManager : MonoBehaviour {
 	public static int botnum = 0;
 	public static List<string> dadgenes = new List<string>();
 	public static List<Vector3> UniqueStoppedTiles = new List<Vector3>();
+	public static bool areallready;
+	public static List<int> botready;
+	public static bool turnstarted;
 	//public DNA dna;
 	void Start () {
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		/*if(areallready&&turnstarted){
+			AddifUnique();
+			turnstarted =false;
+		}*/
+
 	}
+
+
+
+
 	public void turnOnBrain() {
 		foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
 			Brain thisbrain = player.GetComponent<Brain> ();
@@ -31,8 +43,11 @@ public class PopulationManager : MonoBehaviour {
 			Destroy (player);
 		}
 	}
-	public void NewMove(){
-		
+	public void AddifUnique(){
+		foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+			Brain thisbrain = player.GetComponent<Brain> ();
+			thisbrain.AddifUnique ();
+		}
 	}
 	public static void Clone(Vector3 origin, GameObject mydad, List<string> originalgenes, string newgene){//function that clones with right settings
 		float x = mydad.transform.position.x;
@@ -45,10 +60,34 @@ public class PopulationManager : MonoBehaviour {
 		botm.myturns = newbot.GetComponentInChildren<BotTurns> ();
 	}
 	public void MovenewClones(){
+		Debug.Log("Moving");
 		foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
 			Brain thisbrain = player.GetComponent<Brain> ();
+			Debug.Log("Bout to act");
 			thisbrain.ActonGene ();
 		}
+	}
+	public void AWholeturn(){
+		NextAct();
+		StartCoroutine(Turn(2));
+
+	}
+	public void GatherdatafromAll(){
+		foreach(GameObject ice in GameObject.FindGameObjectsWithTag("Ground")){
+			TileProperties myproperties = ice.GetComponent<TileProperties>();
+			myproperties.GatherData();
+		}
+	}
+	public IEnumerator Turn (int sec){
+
+		yield return new WaitForSeconds(sec);
+		MovenewClones();
+		areallready = false;
+		turnstarted = true;
+		yield return new WaitForSeconds(sec);
+		GatherdatafromAll();
+		AddifUnique();
+
 	}
 	public void DestroyStuckBots(){
 

@@ -14,11 +14,14 @@ public class Brain : MonoBehaviour {
 	public List<string> possibilities = new List <string> ();
 	public string latestgene;
 	public bool contains;
+	public Vector3 myplace;
+	public bool CanTakeCommand;
 	//public bool pathtoleft;
 	// Use this for initialization
 
 
 	void Start () {
+
 		contains = false;
 		//initialposition = transform.position;
 		//stoppedtiles.Add (initialposition);
@@ -36,12 +39,20 @@ public class Brain : MonoBehaviour {
 		if (PopulationManager.botnum > 0) {
 			//dna = new DNA ();
 		}
+		CanTakeCommand = true;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if(transform.position == myplace){//conditions that Tells AI Brain it's ready to get working.
+		CanTakeCommand = true;
+		}
+		myplace =transform.position;
 		if (Input.GetKeyDown (KeyCode.I)) {
+			//while(botsalive){
 			AddifUnique();
+			//}
 		} 	
 	}
 	public void AddorBreak(){
