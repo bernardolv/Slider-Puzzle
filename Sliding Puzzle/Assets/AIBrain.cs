@@ -22,6 +22,9 @@ public class AIBrain : MonoBehaviour {
 		haventturnedon = true;
 	}
 	
+	public void DoAll(){
+
+	}
 	// Update is called once per frame
 	void Update () {
 

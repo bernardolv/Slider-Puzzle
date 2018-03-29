@@ -56,12 +56,22 @@ public class Brain : MonoBehaviour {
 		} 	
 	}
 	public void AddorBreak(){
+		bool isrepeat = false;
 		//Check stoppedtiles for repeats
 		Vector3 mycurpos = transform.position;
 		for(int i = 0; i < stoppedtiles.Count; i++){
 			if (stoppedtiles[i]==mycurpos){
+				isrepeat = true;
+				DestroyProperly();
 				Debug.Log("Destroyme");
 			}
+			else{
+
+			}
+		}
+		if(isrepeat==false){
+			stoppedtiles.Add(mycurpos);
+			Debug.Log("Added to local");
 		}
 		//
 	}
@@ -123,6 +133,9 @@ public class Brain : MonoBehaviour {
 			mykeysimulator.A = true;
 		}
 
+	}
+	public void DestroyProperly(){
+		Destroy(this.gameObject);
 	}
 	public void Findpossibilities(){
 		PopulationManager.dadgenes = genes;

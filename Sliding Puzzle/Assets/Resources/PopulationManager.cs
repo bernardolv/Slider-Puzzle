@@ -78,6 +78,13 @@ public class PopulationManager : MonoBehaviour {
 			myproperties.GatherData();
 		}
 	}
+	public void KillifStuck(){
+		foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+			Brain thisbrain = player.GetComponent<Brain> ();
+			thisbrain.AddorBreak();
+		}
+	}
+
 	public IEnumerator Turn (int sec){
 
 		yield return new WaitForSeconds(sec);
@@ -87,6 +94,7 @@ public class PopulationManager : MonoBehaviour {
 		yield return new WaitForSeconds(sec);
 		GatherdatafromAll();
 		AddifUnique();
+		KillifStuck();
 
 	}
 	public void DestroyStuckBots(){
