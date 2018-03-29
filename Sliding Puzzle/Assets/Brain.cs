@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
@@ -13,11 +13,13 @@ public class Brain : MonoBehaviour {
 	public List <Vector3> stoppedtiles = new List <Vector3>();
 	public List<string> possibilities = new List <string> ();
 	public string latestgene;
+	public bool contains;
 	//public bool pathtoleft;
 	// Use this for initialization
 
 
 	void Start () {
+		contains = false;
 		//initialposition = transform.position;
 		//stoppedtiles.Add (initialposition);
 		if(stoppedtiles.Count == 0){
@@ -27,35 +29,61 @@ public class Brain : MonoBehaviour {
 		}
 		if (PopulationManager.botnum == 0) {
 			dna = new DNA ();
-			//dna.genes.Add ("Left");
 			genes = dna.genes;
-			//ActonGene ();
 			PopulationManager.botnum++;
 			Debug.Log (genes.Count);
 		}
 		if (PopulationManager.botnum > 0) {
 			//dna = new DNA ();
 		}
-		//Debug.Log("DNA SIZE " + dna.genes.Count);
-		//dna.addGene();	
-		//ActonGene ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.I)) {
-			//Findpossibilities ();
-			Debug.Log(genes[genes.Count-1]);
-			//dna.Clone(possibilities);
-			//popoulationmanager.clone(possibilities);
-			//dna.RollnewGene ();
-			//ActonGene ();
+			AddifUnique();
 		} 	
-
-//		dna.genes.Clear();
-	//	Debug.Log ("THE COUNT IS " + dna.genes.Count);
-		//Debug.Log (dna.genes [dna.genes.Count]);
-		//Debug.Log("random" + Random.Range(1,5));
+	}
+	public void AddorBreak(){
+		//Check stoppedtiles for repeats
+		Vector3 mycurpos = transform.position;
+		for(int i = 0; i < stoppedtiles.Count; i++){
+			if (stoppedtiles[i]==mycurpos){
+				Debug.Log("Destroyme");
+			}
+		}
+		//
+	}
+	public void AddifUnique(){
+		Vector3 mynewV = transform.position;
+		if(PopulationManager.UniqueStoppedTiles.Count == 0){
+			Debug.Log("Empty");
+			PopulationManager.UniqueStoppedTiles.Add(mynewV);
+		}
+		else{
+			for(int i = 0; i <PopulationManager.UniqueStoppedTiles.Count; i++ ){
+				Debug.Log(PopulationManager.UniqueStoppedTiles[i]);
+				if(PopulationManager.UniqueStoppedTiles[i]==mynewV){
+					contains = true;
+					Debug.Log("isthere, wontadd");
+				}
+			}
+			if(contains == false){
+				PopulationManager.UniqueStoppedTiles.Add(mynewV);
+				Debug.Log("added since it didn't contain");
+			}
+			//PopulationManager.UniqueStoppedTiles.ADD(mynewV);
+		}
+		contains = false;
+		//for(int i = 0; i < )
+	}
+	public void AddtoLocalStopped(Vector3 newpos){
+		for(int i = 0; i < stoppedtiles.Count; i++){
+			if(newpos == stoppedtiles[i]){
+				Debug.Log("IT exists");
+			}
+			//Find value.
+		}
 	}
 	public void clonegene(List<string> dadgene){
 		genes = dadgene;
@@ -100,7 +128,13 @@ public class Brain : MonoBehaviour {
 		testwall (down, "Down");
 
 	}
-	void testwall(Vector3 position, string direction){
+	/*public void CountTile(){
+		Vector3 mypos = transform.position;
+		if(stoppedtiles.Find(mypos)){
+			Debug.Log("Already there");
+		}
+	}*/
+	void testwall(Vector3 position, string direction){  //This tests one side, clones if free to move there.
 		Debug.Log ("Trying to clone");
 		Collider2D[] colliders = null;
 		colliders = Physics2D.OverlapCircleAll(position, .1f); ///Presuming the object you are testing also has a collider 0 otherwise{

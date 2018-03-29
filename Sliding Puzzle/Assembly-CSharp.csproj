@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AIBrain.cs" />
      <Compile Include="Assets\AssignCamera.cs" />
      <Compile Include="Assets\BotTurns.cs" />
      <Compile Include="Assets\Brain.cs" />
@@ -95,6 +96,8 @@
      <Compile Include="Assets\Scripts\Wood_Behaviour.cs" />
      <Compile Include="Assets\swipedisplay.cs" />
      <Compile Include="Assets\Swiping.cs" />
+     <Compile Include="Assets\TileProperties.cs" />
+     <Compile Include="Assets\TilePropoerties.cs" />
      <Compile Include="Assets\TurnCounter.cs" />
      <None Include="Assets\StreamingAssets\Level35.txt" />
      <None Include="Assets\StreamingAssets\Level6.txt" />

@@ -7,6 +7,7 @@ public class TileHandler : MonoBehaviour {
 	public bool isTaken;
 	public GameObject myTaker;
 	public Vector3 myTakerpos;
+	public TileProperties myproperties;
 	// Use this for initialization
 	void Start () {
 		isTaken = false;
@@ -22,8 +23,9 @@ public class TileHandler : MonoBehaviour {
 			//Debug.Log (myTaker.transform.position ==transform.position);
 			//Debug.Log (transform.position);
 			isTaken = false;
+			//myproperties.taker = null;
+			//myproperties.GatherData();
 			myTaker = null;
-
 		}
 		//if (myTaker == null) {
 			//Debug.Log ("Mesolonely");
