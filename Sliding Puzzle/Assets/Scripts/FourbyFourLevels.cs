@@ -133,6 +133,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		//PopulationManager.readytobrain = false;
 		string leveltext = ("Level" + levelnumber.ToString() + ".txt");
 		string levelname = ("Level" + levelnumber.ToString ());
+		Debug.Log("Bouttodraw" + levelnumber);
 		checkAndroid (leveltext);
 		string filePath = System.IO.Path.Combine (Application.streamingAssetsPath, leveltext);
 		string[][] jagged = readFile (filePath);
@@ -140,6 +141,8 @@ public class FourbyFourLevels : MonoBehaviour {
 		// create planes based on matrix
 		for (int y = 0; y < jagged.Length; y++) {
 			for (int x = 0; x < jagged [0].Length; x++) {
+									Debug.Log(x + " + " + y);
+
 				switch (jagged [y] [x]) {
 				case sstart:
 					Instantiate (floor_start, new Vector3 (x, -y, 0), Quaternion.identity);

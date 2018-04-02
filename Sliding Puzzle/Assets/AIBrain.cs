@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class AIBrain : MonoBehaviour {
 
+	public static List<GameObject> pieces = new List <GameObject>();
+
 	public static string [,] tiles = new string[8,8];
 
 	public static int Goalx;
 	public static int Goaly;
+
 	public bool canstilltestposs;
-	public SpriteRenderer tilesprite;
-	public static GameObject goaltile;
-	public static List <GameObject> stoppedtiles = new List<GameObject>();
-	public static List <GameObject> possibletiles = new List <GameObject>();
 	bool haventturnedon;
 	bool haspath = false;
+	
+	public SpriteRenderer tilesprite;
+
+	public static GameObject goaltile;
+
+	public static List <GameObject> stoppedtiles = new List<GameObject>();
+	public static List <GameObject> possibletiles = new List <GameObject>(); //Shows tiles where you can land before the desired goal.
+
+	public PopulationManager mypopmanager;
 
 
 	// Use this for initialization
@@ -23,15 +31,10 @@ public class AIBrain : MonoBehaviour {
 	}
 	
 	public void DoAll(){
-
+		StartCoroutine(Turn());
 	}
 	// Update is called once per frame
 	void Update () {
-
-		if (Input.GetKeyDown (KeyCode.I)) {
-			//PrintList(tiles);
-			Debug.Log(Goalx + "+" + Goaly);
-		} 	
 		if (Input.GetKeyDown (KeyCode.J)) {
 			if(haventturnedon){
 			turnOnPossibilities("Up");//shows where up would have to go to get to it.
@@ -39,10 +42,15 @@ public class AIBrain : MonoBehaviour {
 			turnOnPossibilities("Left");
 			turnOnPossibilities("Right");
 			haventturnedon = false;
+			Debug.Log(PopulationManager.populationsize);
 		}
 			ConvertStoppedtoGameObjects(PopulationManager.UniqueStoppedTiles);
 			filterandorder();
 		} 	
+			if (Input.GetKeyDown (KeyCode.K)) {
+				PrintList(tiles);
+			}
+
 	}
 	void PrintList(string[,] mylist){
 		for(int x = 0; x< 8; x++){
@@ -51,6 +59,36 @@ public class AIBrain : MonoBehaviour {
 			}
 		}
 	}
+		void PrintPieces(List <GameObject> mylist){
+		for(int i = 0; i< mylist.Count; i++){
+				Debug.Log(mylist[i].tag);
+		}
+	}
+	public IEnumerator Turn(){
+		mypopmanager.turnOnBrain();
+		PrintPieces(pieces);
+		yield return new WaitForSeconds(1);
+		mypopmanager.AWholeturn();
+		yield return new WaitForSeconds(8);
+		while(PopulationManager.populationsize>0){
+			mypopmanager.AWholeturn();
+			yield return new WaitForSeconds(8);
+		}
+		if(haventturnedon){
+			turnOnPossibilities("Up");//shows where up would have to go to get to it.
+			turnOnPossibilities("Down");
+			turnOnPossibilities("Left");
+			turnOnPossibilities("Right");
+			haventturnedon = false;
+			Debug.Log(PopulationManager.populationsize);
+		}
+			ConvertStoppedtoGameObjects(PopulationManager.UniqueStoppedTiles);
+			filterandorder();
+
+
+
+	}
+
 	public void turnOnPossibilities(string direction){//checks all directions
 		Vector3 origin = new Vector3(Goalx,-Goaly,0);
 //		Debug.Log("Position" + origin);
@@ -119,11 +157,18 @@ public class AIBrain : MonoBehaviour {
 			}
 	}
 	public void checkifinline(GameObject tiletotest){
+		Debug.Log("BOUTTOTOTOTO");
+		if(stoppedtiles.Count<1){
+				Debug.Log("empty tiles");
+				tilesprite = tiletotest.GetComponent<SpriteRenderer>();
+				tilesprite.color = Color.white;
+			}
 		for(int i = 0; i<stoppedtiles.Count; i++){
 			if(tiletotest.transform.position.x == stoppedtiles[i].transform.position.x || tiletotest.transform.position.y == stoppedtiles[i].transform.position.y){
 				tilesprite = tiletotest.GetComponent<SpriteRenderer>();
 				tilesprite.color = Color.green;
 				haspath = true;
+				Debug.Log(stoppedtiles[i].transform.position + "+" + tiletotest.transform.position);
 			}
 			else if(haspath == false){
 				Debug.Log("GETOUT");
@@ -160,5 +205,8 @@ public class AIBrain : MonoBehaviour {
 				}
 			}
 		}
+	}
+	public void placepossible(){
+
 	}
 }

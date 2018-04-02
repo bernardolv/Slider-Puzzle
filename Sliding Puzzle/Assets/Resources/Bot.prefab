@@ -216,6 +216,7 @@ MonoBehaviour:
   LevelLostBoard: {fileID: 0}
   mykeysimulator: {fileID: 114390257603150046}
   myturns: {fileID: 0}
+  mybrain: {fileID: 114996998528951156}
 --- !u!114 &114847220839531510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,6 +250,9 @@ MonoBehaviour:
   stoppedtiles: []
   possibilities: []
   latestgene: 
+  contains: 0
+  myplace: {x: 0, y: 0, z: 0}
+  CanTakeCommand: 0
 --- !u!212 &212850520555944570
 SpriteRenderer:
   m_ObjectHideFlags: 1

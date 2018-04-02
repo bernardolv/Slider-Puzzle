@@ -67,6 +67,7 @@
      <Compile Include="Assets\ResolutionBehaviour.cs" />
      <Compile Include="Assets\Resources\BotMovement.cs" />
      <Compile Include="Assets\Resources\DNA.cs" />
+     <Compile Include="Assets\Resources\DummyMovement.cs" />
      <Compile Include="Assets\Resources\KeySimulator.cs" />
      <Compile Include="Assets\Resources\PopulationManager.cs" />
      <Compile Include="Assets\scrip.cs" />

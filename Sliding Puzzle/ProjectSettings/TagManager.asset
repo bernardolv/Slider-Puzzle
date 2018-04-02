@@ -21,6 +21,7 @@ TagManager:
   - Small
   - Seed
   - RatingNumber
+  - Start
   layers:
   - Default
   - TransparentFX

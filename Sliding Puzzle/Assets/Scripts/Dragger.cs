@@ -16,6 +16,8 @@ public class Dragger : MonoBehaviour {
 
 	void Start(){
 		restingpoint = transform.position;
+		AIBrain.pieces.Add(this.gameObject);
+
 	}
 
 	void Update(){

@@ -8,6 +8,7 @@ public class SceneLoading : MonoBehaviour {
 	public int num;
 	public static GameObject gamewon;
 	public static GameObject gamelost;
+	public int testnum;
 
 	public void LoadScene(int num){
 		Swiping.mydirection = "Null";
@@ -40,6 +41,13 @@ public class SceneLoading : MonoBehaviour {
 		LevelHandler.Lookfor (LevelManager.levelnum);
 		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);
+	}
+	public void Testnum(int num){
+		Swiping.mydirection = "Null";
+		LevelManager.levelnum = num;		
+		LevelHandler.Lookfor (num);
+		TurnCounter.turncount = 0;
+		LevelManager.NextLevel (num);
 	}
 	public void GoToWorld(int worldnumber){
 

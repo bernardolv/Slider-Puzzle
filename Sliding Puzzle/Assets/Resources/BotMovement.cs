@@ -30,6 +30,7 @@ public class BotMovement : MonoBehaviour {
 	bool outofmap;
 	public KeySimulator mykeysimulator;
 	public BotTurns myturns;
+	public Brain mybrain;
 	// Use this for initialization
 	void Start () {
 		//current tile works as a target to move to
@@ -90,10 +91,13 @@ public class BotMovement : MonoBehaviour {
 				isspeeding = false;
 			}  
 			else if (nextaction == "Goal_Action") {
-				levelWonBoard.SetActive (true);
-				RatingPopUp.GiveRating ();
-				this.enabled = false;
-				Debug.Log ("Whatsgoingon");
+				Debug.Log("Goal");
+				Debug.Log(mybrain.genes);
+				//Give Data to Population Manager, with DNA, turns.
+				//levelWonBoard.SetActive (true);
+				//RatingPopUp.GiveRating ();
+				//this.enabled = false;
+				//Debug.Log ("Whatsgoingon");
 			}			
 			else if (nextaction == "Hole_Action") {
 				LevelLostBoard.SetActive (true);
@@ -272,8 +276,9 @@ public class BotMovement : MonoBehaviour {
 				canmove = false;
 				Count ();
 			} else if (tilescript.myTaker.tag == "Goal") {
+				Debug.Log("GOGOGOL");
 				//you'll stop in the tile you checked and stop moving.
-				if (TurnCounter.turncount == 0) {
+				if (myturns.turns == 0) {
 					canmove = false;
 				} else {
 					Count ();

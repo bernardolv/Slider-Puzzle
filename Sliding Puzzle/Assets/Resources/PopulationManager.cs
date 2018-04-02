@@ -13,8 +13,10 @@ public class PopulationManager : MonoBehaviour {
 	public static bool areallready;
 	public static List<int> botready;
 	public static bool turnstarted;
+	public static int populationsize;
 	//public DNA dna;
 	void Start () {
+		populationsize = 0;
 	}
 	
 	// Update is called once per frame
@@ -40,7 +42,7 @@ public class PopulationManager : MonoBehaviour {
 		foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
 			Brain thisbrain = player.GetComponent<Brain> ();
 			thisbrain.Findpossibilities ();
-			Destroy (player);
+			thisbrain.DestroyProperly();
 		}
 	}
 	public void AddifUnique(){

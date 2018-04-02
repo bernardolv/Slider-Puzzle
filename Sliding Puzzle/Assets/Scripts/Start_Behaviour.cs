@@ -37,7 +37,7 @@ public class Start_Behaviour : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (stillastarttile) {
+		if (stillastarttile&&myPlayer!=null) {
 			FindTileTag ();
 			difference = transform.position - myPlayer.transform.position;
 			//Debug.Log(difference);
@@ -75,7 +75,15 @@ public class Start_Behaviour : MonoBehaviour {
 			}
 			if (component.tag == "Ground" ) {
 				//Debug.Log ("Bye");
+				tileobject = component.gameObject;
+				tilescript = tileobject.GetComponent<TileHandler> ();
+				tilescript.myTaker = this.gameObject;
 			}
+
+
+
+
+
 		}
 	}
 	void TouchAndDrag(){

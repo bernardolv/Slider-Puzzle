@@ -21,7 +21,8 @@ public class Brain : MonoBehaviour {
 
 
 	void Start () {
-
+		PopulationManager.populationsize++;
+		Debug.Log("+1");
 		contains = false;
 		//initialposition = transform.position;
 		//stoppedtiles.Add (initialposition);
@@ -135,6 +136,8 @@ public class Brain : MonoBehaviour {
 
 	}
 	public void DestroyProperly(){
+		PopulationManager.populationsize--;
+		Debug.Log("-1");
 		Destroy(this.gameObject);
 	}
 	public void Findpossibilities(){

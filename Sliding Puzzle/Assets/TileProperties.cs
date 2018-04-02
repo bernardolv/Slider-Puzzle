@@ -19,12 +19,13 @@ public class TileProperties : MonoBehaviour {
 		/*if (Input.GetKeyDown (KeyCode.I)) {
 		GatherData();
 		} */	
-		if(datagathered && taker != myhandler.myTaker){
+		if(Input.GetKeyDown(KeyCode.L)){
 			GatherData();
 
 		}
 	}
 	public void GatherData(){
+		Debug.Log("Gatering");
 		taker = myhandler.myTaker;
 		Vector3 mypos = transform.position;
 		myposx = (int)mypos.x;
