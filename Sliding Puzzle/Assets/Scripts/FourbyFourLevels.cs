@@ -141,7 +141,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		// create planes based on matrix
 		for (int y = 0; y < jagged.Length; y++) {
 			for (int x = 0; x < jagged [0].Length; x++) {
-									Debug.Log(x + " + " + y);
+									//Debug.Log(x + " + " + y);
 
 				switch (jagged [y] [x]) {
 				case sstart:

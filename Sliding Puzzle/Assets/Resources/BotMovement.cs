@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BotMovement : MonoBehaviour {
 
@@ -91,8 +92,13 @@ public class BotMovement : MonoBehaviour {
 				isspeeding = false;
 			}  
 			else if (nextaction == "Goal_Action") {
-				Debug.Log("Goal");
-				Debug.Log(mybrain.genes);
+				int mynumofsolution = SolveMethod.solutions.Count() + 1;
+				int goalturns = myturns.turns;
+				Solution mysolution = new Solution(mynumofsolution, goalturns, mybrain.genes);
+				Debug.Log("Added solution number " + mynumofsolution + " with Turns: " + goalturns);
+				//Debug.Log("Goal");
+				//Debug.Log(mybrain.genes);
+
 				//Give Data to Population Manager, with DNA, turns.
 				//levelWonBoard.SetActive (true);
 				//RatingPopUp.GiveRating ();

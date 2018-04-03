@@ -95,11 +95,14 @@
      <Compile Include="Assets\Scripts\TurnBehaviour.cs" />
      <Compile Include="Assets\Scripts\Wall_Behaviour.cs" />
      <Compile Include="Assets\Scripts\Wood_Behaviour.cs" />
+     <Compile Include="Assets\Solution.cs" />
+     <Compile Include="Assets\SolveMethod.cs" />
      <Compile Include="Assets\swipedisplay.cs" />
      <Compile Include="Assets\Swiping.cs" />
      <Compile Include="Assets\TileProperties.cs" />
      <Compile Include="Assets\TilePropoerties.cs" />
      <Compile Include="Assets\TurnCounter.cs" />
+     <Compile Include="Assets\Worker.cs" />
      <None Include="Assets\StreamingAssets\Level35.txt" />
      <None Include="Assets\StreamingAssets\Level6.txt" />
      <None Include="Assets\StreamingAssets\Level70.txt" />

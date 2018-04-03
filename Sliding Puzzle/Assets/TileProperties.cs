@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,6 +45,10 @@ public class TileProperties : MonoBehaviour {
 			AIBrain.goaltile = goalobject;
 			AIBrain.Goalx = myposx;
 			AIBrain.Goaly = flipy;
+		}
+		if(mytag == "Start"){
+			SolveMethod.startx = myposx;
+			SolveMethod.starty = flipy;
 		}
 		datagathered = true;
 	}

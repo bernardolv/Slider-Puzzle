@@ -16,6 +16,7 @@ public class Brain : MonoBehaviour {
 	public bool contains;
 	public Vector3 myplace;
 	public bool CanTakeCommand;
+	//public Solvemethod mysolvemethod;
 	//public bool pathtoleft;
 	// Use this for initialization
 
