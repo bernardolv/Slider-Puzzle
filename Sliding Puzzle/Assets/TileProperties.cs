@@ -25,7 +25,7 @@ public class TileProperties : MonoBehaviour {
 		}
 	}
 	public void GatherData(){
-		Debug.Log("Gatering");
+//		Debug.Log("Gatering");
 		taker = myhandler.myTaker;
 		Vector3 mypos = transform.position;
 		myposx = (int)mypos.x;

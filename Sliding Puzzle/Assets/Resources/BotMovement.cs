@@ -94,7 +94,7 @@ public class BotMovement : MonoBehaviour {
 			else if (nextaction == "Goal_Action") {
 				int mynumofsolution = SolveMethod.solutions.Count() + 1;
 				int goalturns = myturns.turns;
-				Solution mysolution = new Solution(mynumofsolution, goalturns, mybrain.genes);
+				Solution mysolution = new Solution(mynumofsolution, goalturns, mybrain.genes, SolveMethod.currenttest);
 				Debug.Log("Added solution number " + mynumofsolution + " with Turns: " + goalturns);
 				//Debug.Log("Goal");
 				//Debug.Log(mybrain.genes);

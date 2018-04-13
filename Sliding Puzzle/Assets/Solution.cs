@@ -7,10 +7,14 @@ public class Solution{
 	public int numsolution;
 	public List<string> mygenes;
 	public int myturns;
-	public Solution(int num, int turns, List<string> newgenes){
+	public int x;
+	public int y;
+	public Solution(int num, int turns, List<string> newgenes, Vector2 theplace){
 		numsolution = num;
-		myturns = myturns;
+		myturns = turns;
 		mygenes = newgenes;
+		x = Mathf.RoundToInt(theplace.x);
+		y = Mathf.RoundToInt(theplace.y);
 	
 	}
 	public Solution(){

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,6 +43,8 @@ public class SceneLoading : MonoBehaviour {
 		LevelManager.NextLevel (LevelManager.levelnum);
 	}
 	public void Testnum(int num){
+		//initializevalues
+		AIBrain.pieces.Clear();
 		Swiping.mydirection = "Null";
 		LevelManager.levelnum = num;		
 		LevelHandler.Lookfor (num);

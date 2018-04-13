@@ -61,6 +61,7 @@
      <Compile Include="Assets\LevelHandler.cs" />
      <Compile Include="Assets\LevelStats.cs" />
      <Compile Include="Assets\ListTest.cs" />
+     <Compile Include="Assets\Piece.cs" />
      <Compile Include="Assets\PlayerTurns.cs" />
      <Compile Include="Assets\RatingBehaviour.cs" />
      <Compile Include="Assets\RatingPopUp.cs" />
@@ -97,6 +98,7 @@
      <Compile Include="Assets\Scripts\Wood_Behaviour.cs" />
      <Compile Include="Assets\Solution.cs" />
      <Compile Include="Assets\SolveMethod.cs" />
+     <Compile Include="Assets\Solver.cs" />
      <Compile Include="Assets\swipedisplay.cs" />
      <Compile Include="Assets\Swiping.cs" />
      <Compile Include="Assets\TileProperties.cs" />
