@@ -197,7 +197,7 @@ public class SolveMethod : MonoBehaviour {
 			}
 		}
 	}
-	public void findPossibletiles(Vector2 origin){
+	/*public void findPossibletiles(Vector2 origin){
 
 		CheckInLineTiles("Left", origin);
 		CheckInLineTiles("Right", origin);
@@ -230,27 +230,27 @@ public class SolveMethod : MonoBehaviour {
 			//Collider2D[] colliders = null;
 			//colliders = Physics2D.OverlapCircleAll(newposition, .1f); ///Presuming the object you are testing also has a collider 0 otherwise{
 			//Debug.Log("Testing " + position);
-			string newtiletag = solvingtiles[newposition.x,newposition.y];
+			string newtiletag = solvingtiles[(int)newposition.x,(int)newposition.y];
 
 
 
-			if (newtiletag == null || newtiletag == "Wall" || newtiletag == "Hole" {
+			if (newtiletag == null || newtiletag == "Wall" || newtiletag == "Hole") {
 				canstilltestposs =false;
 			} else {	
 				if (newtiletag == "Ice") {
 
-					}
-					else{
-						tilesprite = Ground.GetComponent<SpriteRenderer>();
-						tilesprite.color = Color.green;
-						possibletiles.Add(Ground);
-					}
+				}
+				else{
+					tilesprite = Ground.GetComponent<SpriteRenderer>();
+					tilesprite.color = Color.green;
+					possibletiles.Add(Ground);
 				}
 			}
-			myy = myy+y;
-			myx = myx+x;
 		}
+		myy = myy+y;
+		myx = myx+x;
 	}
+}
 	/*public void solveBackwards(){
 		for(int i = 0; i<8;i++){
 			for(int j = 0; j<9; j++){

@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour {
 	public static bool readytodraw;
 	public static int worldnum;
 	public static int myefficientturns;
+	public static IceTileHandler myicehandler;
+
 
 	private static LevelManager instance = null;
 
@@ -26,11 +28,16 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public static void NextLevel(int mynum){
+		Debug.Log("GONNAGETICE");
 		LevelHandler.Lookfor (mynum);
 		TurnCounter.turncount = 0;
 		levelselector.DestroyAllExceptCamera ();
 		levelselector.DrawIce ();
+		//Debug.Log("GONNAGETICE");
+
 		levelselector.DrawNextLevel (mynum);
+//		Debug.Log("GONNAGETICE");
+//		myicehandler.GiveIce();
 	}
 	void Update(){
 	}

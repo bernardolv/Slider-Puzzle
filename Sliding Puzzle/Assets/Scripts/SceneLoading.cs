@@ -41,6 +41,7 @@ public class SceneLoading : MonoBehaviour {
 		LevelHandler.Lookfor (LevelManager.levelnum);
 		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);
+		IceTileHandler.GiveIce();
 	}
 	public void Testnum(int num){
 		//initializevalues

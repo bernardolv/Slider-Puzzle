@@ -59,7 +59,7 @@ public class CharacterMovement : MonoBehaviour {
 	void Update () {
 		myswipe = Swiping.mydirection;
 
-		Debug.Log (levelWonBoard);
+		//Debug.Log (levelWonBoard);
 		if (levelWonBoard == null) {
 			levelWonBoard = SceneLoading.gamewon;
 		}
@@ -67,7 +67,7 @@ public class CharacterMovement : MonoBehaviour {
 			LevelLostBoard = SceneLoading.gamelost;
 			LevelLostBoard.SetActive (false);
 		}
-		Debug.Log (TurnBehaviour.turn + "BEHAV");
+//		Debug.Log (TurnBehaviour.turn + "BEHAV");
 		if (transform.position != startingposition && TurnBehaviour.turn == 0) {
 			TurnBehaviour.turn = 1;
 		}
