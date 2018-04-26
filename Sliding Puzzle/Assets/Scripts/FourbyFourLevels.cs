@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 public class FourbyFourLevels : MonoBehaviour {
 	private string filePath;
 	private string result;
+	IceTileHandler myhandler;
 	//public Brain brain;
 
 	IEnumerator checkAndroid(string file)
@@ -97,6 +98,12 @@ public class FourbyFourLevels : MonoBehaviour {
 		LevelHandler.Lookfor (levelnum);
 		DrawIce ();
 		DrawNextLevel (levelnum);
+		//Debug.Log("MEH");
+		GameObject objectp = GameObject.Find("TheCanvas");
+		IceTileHandler myhandler = objectp.GetComponent<IceTileHandler>();
+		//Debug.Log(myhandler);
+		myhandler.GiveIce();
+
 
 		}
 
@@ -215,7 +222,7 @@ public class FourbyFourLevels : MonoBehaviour {
 		{
 			if (component.tag != "MainCamera" && component.tag != "Canvas") {
 				Destroy (component);
-				Debug.Log ("destroyed" + component);
+				//Debug.Log ("destroyed" + component);
 			}
 
 		}

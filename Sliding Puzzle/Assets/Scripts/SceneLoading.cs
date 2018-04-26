@@ -9,6 +9,7 @@ public class SceneLoading : MonoBehaviour {
 	public static GameObject gamewon;
 	public static GameObject gamelost;
 	public int testnum;
+	public IceTileHandler myhandler;
 
 	public void LoadScene(int num){
 		Swiping.mydirection = "Null";
@@ -28,6 +29,8 @@ public class SceneLoading : MonoBehaviour {
 		LevelHandler.Lookfor (LevelManager.levelnum);
 		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);
+		myhandler.GiveIce();
+
 	}
 	public void PreviousLevelButton(){
 		Swiping.mydirection = "Null";
@@ -35,13 +38,15 @@ public class SceneLoading : MonoBehaviour {
 		LevelHandler.Lookfor (LevelManager.levelnum);
 		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);
+		myhandler.GiveIce();
+
 	}
 	public void ResetLevelButton(){
 		Swiping.mydirection = "Null";
 		LevelHandler.Lookfor (LevelManager.levelnum);
 		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (LevelManager.levelnum);
-		IceTileHandler.GiveIce();
+		myhandler.GiveIce();
 	}
 	public void Testnum(int num){
 		//initializevalues
@@ -51,6 +56,8 @@ public class SceneLoading : MonoBehaviour {
 		LevelHandler.Lookfor (num);
 		TurnCounter.turncount = 0;
 		LevelManager.NextLevel (num);
+		myhandler.GiveIce();
+
 	}
 	public void GoToWorld(int worldnumber){
 
