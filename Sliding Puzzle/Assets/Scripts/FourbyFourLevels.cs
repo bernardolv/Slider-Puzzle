@@ -161,7 +161,9 @@ public class FourbyFourLevels : MonoBehaviour {
 				//	Instantiate (floor_ice, new Vector3 (x, -y, 0), Quaternion.identity);
 					//break;
 				case sfloor_wall:
-					Instantiate (floor_wall, new Vector3 (x, -y, 0), Quaternion.identity);
+					Transform instantiator = floor_wall;
+					instantiator = Instantiate (instantiator, new Vector3 (x, -y, 0), Quaternion.identity);
+					instantiator.GetComponent<Wall_Behaviour>().Start();
 					break;
 				case sfloor_hole:
 					Instantiate (floor_hole, new Vector3 (x, -y, 0), Quaternion.identity);

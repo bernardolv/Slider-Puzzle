@@ -38,15 +38,13 @@ public class IceTileHandler : MonoBehaviour {
 		Debug.Log("givingice");
 		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Ground");
 		foreach (GameObject icetile in tiles){
-			//Debug.Log("BOOP");
 			icetile.GetComponent<SpriteRenderer>().sprite = vanillasprites[Random.Range(0, vanillasprites.Length-1)];
-//			Debug.Log(icetile.GetComponent<SpriteRenderer>().sprite);
-			if(icetile.GetComponent<TileHandler>().isTaken == true){
+			/*if(icetile.GetComponent<TileHandler>().isTaken == true && icetile.GetComponent<TileHandler>().myTaker.tag != "Goal" && icetile.GetComponent<TileHandler>().myTaker.tag != "Start"){
 				Debug.Log("Taken");
 			}
-			else{
+			else{*/
 				Checksidesandplace(icetile.transform.position, icetile);
-			}
+			//}
 		}
 
 	}
@@ -68,18 +66,6 @@ public class IceTileHandler : MonoBehaviour {
 		if(FindTileTag(tocheck+Vector3.down)){
 			bottomwall = true;
 		}
-		/*if(FindGoalTag(tocheck+Vector3.left)){
-			leftwall = true;
-		}
-		if(FindGoalTag(tocheck+Vector3.right)){
-			rightwall = true;
-		}
-		if(FindGoalTag(tocheck+Vector3.up)){
-			upperwall = true;
-		}
-		if(FindGoalTag(tocheck+Vector3.down)){
-			bottomwall = true;
-		}*/
 		if(truecounter == 1){
 			if(upperwall)
 			{
@@ -97,6 +83,35 @@ public class IceTileHandler : MonoBehaviour {
 			{
 				tile.GetComponent<SpriteRenderer>().sprite = rightwalls[Random.Range(0, rightwalls.Length-1)];
 			}
+		}
+		if(truecounter == 2){
+			if(upperwall&&leftwall){
+				tile.GetComponent<SpriteRenderer>().sprite = leftuppercorner;				
+			}
+			if(upperwall&&rightwall){
+				tile.GetComponent<SpriteRenderer>().sprite = rightuppercorner;				
+			}
+			if(bottomwall&&rightwall){
+				tile.GetComponent<SpriteRenderer>().sprite = rightbottomcorner;				
+			}
+			if(bottomwall&&leftwall){
+				tile.GetComponent<SpriteRenderer>().sprite = leftbottomcorner;				
+			}	
+			if(upperwall && bottomwall){
+				tile.GetComponent<SpriteRenderer>().sprite = horizontalpath;				
+			}
+			if(rightwall && leftwall){
+				tile.GetComponent<SpriteRenderer>().sprite = verticalpath;				
+			}								
+		}
+		if(truecounter == 3){
+			if(!upperwall || !bottomwall){
+				tile.GetComponent<SpriteRenderer>().sprite = verticalpath;				
+			}
+			if(!rightwall || !leftwall){
+				tile.GetComponent<SpriteRenderer>().sprite = horizontalpath;				
+			}
+
 		}
 		Debug.Log(tocheck.x);
 		Debug.Log(tocheck.y);

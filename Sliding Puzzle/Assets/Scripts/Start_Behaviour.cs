@@ -21,6 +21,8 @@ public class Start_Behaviour : MonoBehaviour {
 	public float playery;
 	public float mypositionx;
 	public float mypositiony;
+	SpriteRenderer mysr;
+	GameObject mytile;
 	// Use this for initialization
 	void Start () {
 		myPosition = transform.position;
@@ -44,11 +46,17 @@ public class Start_Behaviour : MonoBehaviour {
 			float xdif = difference.x;
 			float ydif = difference.y;
 			if (Mathf.Abs (xdif) + Mathf.Abs (ydif) >= 1f) {
+				mysr = GetComponent<SpriteRenderer>();
+				mysr.enabled = true;
 				Debug.Log ("Too big man");
 				mySprite.sprite = newSprite;
 				gameObject.tag = "Wall";
 				myWallBehaviour.enabled = true;
 				stillastarttile = false;
+				FindTileTag();
+				GameObject objectp = GameObject.Find("TheCanvas");
+				IceTileHandler myhandler = objectp.GetComponent<IceTileHandler>();	
+				myhandler.GiveIce();	
 			}
 		}
 
@@ -78,6 +86,7 @@ public class Start_Behaviour : MonoBehaviour {
 				tileobject = component.gameObject;
 				tilescript = tileobject.GetComponent<TileHandler> ();
 				tilescript.myTaker = this.gameObject;
+				tilescript.isTaken = true;
 			}
 
 
@@ -88,6 +97,7 @@ public class Start_Behaviour : MonoBehaviour {
 	}
 	void TouchAndDrag(){
 	}
+	
 	/*void CheckForPlayerAndLeave(){
 		Collider2D[] colliders = Phy	sics2D.OverlapCircleAll(myPosition, .1f); ///Presuming the object you are testing also has a collider 0 otherwise{
 		foreach(Collider2D component in colliders){

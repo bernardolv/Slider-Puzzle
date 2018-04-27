@@ -97,6 +97,7 @@
      <Compile Include="Assets\Scripts\TurnBehaviour.cs" />
      <Compile Include="Assets\Scripts\Wall_Behaviour.cs" />
      <Compile Include="Assets\Scripts\Wood_Behaviour.cs" />
+     <Compile Include="Assets\Smallify.cs" />
      <Compile Include="Assets\Solution.cs" />
      <Compile Include="Assets\SolveMethod.cs" />
      <Compile Include="Assets\Solver.cs" />

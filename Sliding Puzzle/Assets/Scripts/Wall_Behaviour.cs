@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Wall_Behaviour : MonoBehaviour {
 
-	Vector3 myPosition;
-	GameObject tileobject;
-	TileHandler tilescript;
-	GameObject mytile;
+	public Vector3 myPosition;
+	public GameObject tileobject;
+	public TileHandler tilescript;
+	public GameObject mytile;
 	//bool istiletaken;
 
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		myPosition = transform.position;
-		Invoke ("FindTileTag", .1f);
+		FindTileTag();
+		//Invoke ("FindTileTag", .1f);
 		//tilescript.isTaken = true;
 		//tilescript.myTaker = this.gameObject;
 		
@@ -44,5 +45,9 @@ public class Wall_Behaviour : MonoBehaviour {
 		if (tilescript.myTaker != this.gameObject) {
 			Debug.Log ("WHOUTHINKUIS");
 		}
+	}
+	public void Do(){
+		myPosition = transform.position;
+		FindTileTag();
 	}
 }
