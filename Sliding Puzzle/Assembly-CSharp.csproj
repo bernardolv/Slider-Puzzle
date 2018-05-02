@@ -57,6 +57,7 @@
      <Compile Include="Assets\Brain.cs" />
      <Compile Include="Assets\Buttonbuilder.cs" />
      <Compile Include="Assets\ButtonRating.cs" />
+     <Compile Include="Assets\CreateMethod.cs" />
      <Compile Include="Assets\IceTileHandler.cs" />
      <Compile Include="Assets\LevelButton.cs" />
      <Compile Include="Assets\LevelHandler.cs" />

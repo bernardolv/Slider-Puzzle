@@ -53,7 +53,7 @@ public class SolveMethod : MonoBehaviour {
 
 
 	void Start(){
-			TryEverything();
+			//TryEverything();
 		//Debug.Log("Solve");
 	}
 
@@ -102,25 +102,42 @@ public class SolveMethod : MonoBehaviour {
 		List <Vector2> mystoppedtiles = newstoppedtiles;
 		turns = newturns;
 
+
 		if(thistiles[x+1,y] != "Wall"){//Checking Right
-		Debug.Log("Cloning Right");
-		Worker worker = new Worker(turns, x, y, thistiles, "Right", genes, newstoppedtiles);
-		workers.Add(worker);
+			if(turns == 0 && thistiles[x+1,y] == "Goal"){
+			}
+			else{
+				Debug.Log("Cloning Right");
+				Worker worker = new Worker(turns, x, y, thistiles, "Right", genes, newstoppedtiles);
+				workers.Add(worker);
+			}		
 		}
 		if(thistiles[x-1,y] != "Wall" ){//Checking Left
-			Debug.Log("Cloning Left");
-		Worker worker = new Worker(turns, x, y, thistiles, "Left", genes, newstoppedtiles);
-		workers.Add(worker);
+			if(turns == 0 && thistiles[x-1,y] == "Goal"){
+			}
+			else{
+				Debug.Log("Cloning Left");
+				Worker worker = new Worker(turns, x, y, thistiles, "Left", genes, newstoppedtiles);
+				workers.Add(worker);
+			}
 		}
 		if(thistiles[x,y+1] != "Wall"){//Checking Down
-		Debug.Log("Cloning Down");
-		Worker worker = new Worker(turns, x, y, thistiles, "Down", genes, newstoppedtiles);
-		workers.Add(worker);
+			if(turns == 0 && thistiles[x,y+1] == "Goal"){
+			}
+			else{
+				Debug.Log("Cloning Down");
+				Worker worker = new Worker(turns, x, y, thistiles, "Down", genes, newstoppedtiles);
+				workers.Add(worker);
+			}
 		}
 		if(thistiles[x,y-1] != "Wall"){//Checking Up
-		Debug.Log("Cloning Up");
-		Worker worker = new Worker(turns, x, y, thistiles, "Up", genes, newstoppedtiles);
-		workers.Add(worker);
+			if(turns == 0 && thistiles[x,y-1] == "Goal"){
+			}
+			else{
+								Debug.Log("Cloning Up");
+				Worker worker = new Worker(turns, x, y, thistiles, "Up", genes, newstoppedtiles);
+				workers.Add(worker);
+			}
 		}
 	}
 	public void Anotherturn(){
@@ -179,15 +196,17 @@ public class SolveMethod : MonoBehaviour {
 
 	}
 	public void TryEverything(){
-		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Ground");
+		solutions.Clear(); //resets
+		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Ground"); //finds tags on all
 		foreach(GameObject tileP in tiles){
-			tileP.GetComponent<TileProperties>().GatherData();
+			tileP.GetComponent<TileProperties>().GatherData(); //populates aibrain.tiles
 		}
 		turns = 0;
 		Debug.Log(solutions.Count());
-		ogtiles = AIBrain.tiles;
-		Solve(ogtiles);
-		CyclePieceSolution();
+		ogtiles = AIBrain.tiles; //og map
+		Solve(ogtiles);			//solves for no pieces
+		CyclePieceSolution();	//This is important
+
 		if(solutions.Count == 0){
 			Debug.Log("No solutions");
 		}
