@@ -13,15 +13,15 @@ public class CreateMethod : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		Createfourbyfour();
 	}
 	public void Createfourbyfour(){
-		ResetColor();
+		ResetAll();
 		CreateIce();
 		Add2Outerwalls();
 		PopulateDoorPool();
 		AssignGoalAndStart();
-		PrintMap();
+		//PrintMap();
 		DrawMap();
 
 	}
@@ -70,20 +70,19 @@ public class CreateMethod : MonoBehaviour {
 			}
 		}
 	}
-	public static void CheckSides(int x, int y){
+	public static void CheckSides(int x, int y){ //This checks if a tile is suitable for a Door
 		icenextcounter = 0;
 		GetWallTag(x-1,y);
 		GetWallTag(x+1,y);
 		GetWallTag(x,y+1);
 		GetWallTag(x,y-1);
 		if(icenextcounter>0){
-			Debug.Log("Can Place door at" + x + "+" + y);
 			int myx = x;
 			int myy = y;
 			doorable.Add(new Vector2(myx,myy));
 		}
 	}
-	public static void AssignGoalAndStart(){
+	public static void AssignGoalAndStart(){ //grabs the doopool and assigns start and goal
 		int max = doorable.Count;
 		int num = Random.Range(0,max-1);
 		Vector2 Goal = doorable[num];
@@ -94,7 +93,7 @@ public class CreateMethod : MonoBehaviour {
 		Vector2 Start = doorable[num];
 		generatedmap[Mathf.RoundToInt(Start.x), Mathf.RoundToInt(Start.y)] = "Start";
 	}
-	public static void GetWallTag(int x, int y){
+	public static void GetWallTag(int x, int y){//currently only checks for ice (for doorables)
 		if (x > 7 || x < 0){
 
 		}
@@ -118,7 +117,6 @@ public class CreateMethod : MonoBehaviour {
 	public static void DrawMap(){
 		for(int i = 0; i<8; i++){
 			for(int j = 0; j<8; j++){
-				
 				PaintTag(j,i);
 			}
 		}
@@ -137,6 +135,12 @@ public class CreateMethod : MonoBehaviour {
 				if(tag == "Wall"){
 					component.GetComponent<SpriteRenderer>().color = Color.black;
 				}
+				else if(tag == "Start"){
+					component.GetComponent<SpriteRenderer>().color = Color.red;
+				}
+				else if(tag == "Goal"){
+					component.GetComponent<SpriteRenderer>().color = Color.green;
+				}
 				else{
 
 				}
@@ -149,5 +153,9 @@ public class CreateMethod : MonoBehaviour {
 		foreach(GameObject icetile in icetiles ){
 			icetile.GetComponent<SpriteRenderer>().color = Color.white;
 		}
+	}
+	public static void ResetAll(){
+		ResetColor();
+		doorable.Clear();
 	}
 }
