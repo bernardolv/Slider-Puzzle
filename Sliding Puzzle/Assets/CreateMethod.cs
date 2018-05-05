@@ -3,24 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CreateMethod : MonoBehaviour {
-	public static string [,] generatedmap = new string [8,8];
+	public static string [,] generatedmap = new string [8,8];	
+	public string[,] themap = new string[8, 8];
 	public static int icenextcounter;
 	public static List<Vector2> doorable = new List<Vector2>();
+	public static List<Vector2> cleanice = new List<Vector2> ();
+	public static List<string> piecetiles = new List<string>();
+	public int extrawalls;
+	public int lava;
+	public int pedro;
+	public int onmaptiles;
+	public int piecenum;
+	public SolveMethod Solver;
+	public static bool hassolution;
+	public static bool onestepsolution;
+
+	//For NN inputs
+	public static int Goalx;
+	public static int Goaly;
+	public static int Startx;
+	public static int Starty;
+	public static bool cansolve; //using solvemethod on the generatedmap
+
 	// Use this for initialization
 	void Start () {
 		Createfourbyfour();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Createfourbyfour();
+		//Createfourbyfour();
 	}
 	public void Createfourbyfour(){
+		SolveMethod.solutions.Clear ();
 		ResetAll();
 		CreateIce();
 		Add2Outerwalls();
 		PopulateDoorPool();
 		AssignGoalAndStart();
+		AddOnMapTiles ();
+		SolveMethod.startx = Startx;
+		SolveMethod.starty = Starty;
+		AddPieceTiles ();
+		themap = generatedmap;
+		Solver.TryPieces(themap);//Solve normal
+
+		//Solve with possible piecetiles
 		//PrintMap();
 		DrawMap();
 
@@ -86,11 +115,15 @@ public class CreateMethod : MonoBehaviour {
 		int max = doorable.Count;
 		int num = Random.Range(0,max-1);
 		Vector2 Goal = doorable[num];
+		Goalx = Mathf.RoundToInt(Goal.x);
+		Goaly = Mathf.RoundToInt(Goal.y);
 		generatedmap[Mathf.RoundToInt(Goal.x),Mathf.RoundToInt(Goal.y)] = "Goal";
 		doorable.Remove(Goal);
 		max = doorable.Count;
 		num = Random.Range(1,max-1);
 		Vector2 Start = doorable[num];
+		Startx = Mathf.RoundToInt(Start.x);		//NN
+		Starty = Mathf.RoundToInt(Start.y);		//NN
 		generatedmap[Mathf.RoundToInt(Start.x), Mathf.RoundToInt(Start.y)] = "Start";
 	}
 	public static void GetWallTag(int x, int y){//currently only checks for ice (for doorables)
@@ -136,10 +169,13 @@ public class CreateMethod : MonoBehaviour {
 					component.GetComponent<SpriteRenderer>().color = Color.black;
 				}
 				else if(tag == "Start"){
-					component.GetComponent<SpriteRenderer>().color = Color.red;
+					component.GetComponent<SpriteRenderer>().color = Color.yellow;
 				}
 				else if(tag == "Goal"){
 					component.GetComponent<SpriteRenderer>().color = Color.green;
+				}
+				else if(tag == "Hole"){
+					component.GetComponent<SpriteRenderer>().color = Color.red;
 				}
 				else{
 
@@ -157,5 +193,37 @@ public class CreateMethod : MonoBehaviour {
 	public static void ResetAll(){
 		ResetColor();
 		doorable.Clear();
+	}
+	public void AddOnMapTiles(){
+		PopulateCleanIce ();
+		for (int i = 0; i < extrawalls; i++) {
+			int max = cleanice.Count;
+			int num = Random.Range (0, max - 1);
+			Vector2 newwall = cleanice[num];
+			generatedmap [Mathf.RoundToInt(newwall.x), Mathf.RoundToInt(newwall.y)] = "Wall";
+			cleanice.Remove (newwall);
+		}
+		for (int i = 0; i < lava; i++) {
+			int max = cleanice.Count;
+			int num = Random.Range (0, max - 1);
+			Vector2 newlava = cleanice[num];
+			generatedmap [Mathf.RoundToInt(newlava.x), Mathf.RoundToInt(newlava.y)] = "Hole";
+			cleanice.Remove (newlava);
+		}
+	}
+	public static void PopulateCleanIce(){
+		cleanice.Clear ();
+		for(int i = 0; i<8; i++){
+			for(int j = 0; j<8; j++){
+				if(generatedmap[j,i] == "Ice"){
+					cleanice.Add(new Vector2(j,i));
+				}
+			}
+		}	
+	}
+	public void AddPieceTiles(){
+		for (int i = 0; i < pedro; i++) {
+			piecetiles.Add ("Wall");
+		}
 	}
 }

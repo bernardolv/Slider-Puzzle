@@ -73,7 +73,8 @@ public class SolveMethod : MonoBehaviour {
 		}
 	}
 
-	public void Solve(string[,] tiles){		
+	public void Solve(string[,] tiles){	//single solution
+		//solutions.Clear();	
 		workersalive = new List<Worker>();		
 		initialgenes = new List<string>(); 		
 		lastgen = new List<Worker>();												//initializes genes
@@ -85,7 +86,7 @@ public class SolveMethod : MonoBehaviour {
 		totalstoppedtiles.Add(startingposition);
 		CheckAndCreate(0, startx, starty, currenttiles, initialgenes, totalstoppedtiles);						//Creates first worker (Unless he can move more than one place)
 		if(workers.Count == 0){ 																//If Start tile is Walled up, No solution.
-			Debug.Log("Cant");
+//			Debug.Log("Cant");
 			return;
 		}
 		for(int i= 0; i< workers.Count ;i++){													//Move all clones from CheckandCreate
@@ -95,6 +96,14 @@ public class SolveMethod : MonoBehaviour {
 		while(lastgen.Count>0){
 			AWholeTurn();
 		}
+		/*if(solutions.Count == 0){
+			Debug.Log("No solutions");
+		}
+		else{
+			for(int i =0; i<solutions.Count; i++){
+				Debug.Log(solutions[i].myturns + "Turns" + "with piece at" + solutions[i].x +  "+" + solutions[i].y );
+			}
+		}*/
 	}
 	public void CheckAndCreate(int newturns, int x, int y,string[,] thistiles, List<string> newgenes, List<Vector2> newstoppedtiles){
 		//workers.Clear();
@@ -107,7 +116,7 @@ public class SolveMethod : MonoBehaviour {
 			if(turns == 0 && thistiles[x+1,y] == "Goal"){
 			}
 			else{
-				Debug.Log("Cloning Right");
+	//			Debug.Log("Cloning Right");
 				Worker worker = new Worker(turns, x, y, thistiles, "Right", genes, newstoppedtiles);
 				workers.Add(worker);
 			}		
@@ -116,7 +125,7 @@ public class SolveMethod : MonoBehaviour {
 			if(turns == 0 && thistiles[x-1,y] == "Goal"){
 			}
 			else{
-				Debug.Log("Cloning Left");
+	//			Debug.Log("Cloning Left");
 				Worker worker = new Worker(turns, x, y, thistiles, "Left", genes, newstoppedtiles);
 				workers.Add(worker);
 			}
@@ -125,7 +134,7 @@ public class SolveMethod : MonoBehaviour {
 			if(turns == 0 && thistiles[x,y+1] == "Goal"){
 			}
 			else{
-				Debug.Log("Cloning Down");
+//				Debug.Log("Cloning Down");
 				Worker worker = new Worker(turns, x, y, thistiles, "Down", genes, newstoppedtiles);
 				workers.Add(worker);
 			}
@@ -134,7 +143,7 @@ public class SolveMethod : MonoBehaviour {
 			if(turns == 0 && thistiles[x,y-1] == "Goal"){
 			}
 			else{
-								Debug.Log("Cloning Up");
+				//				Debug.Log("Cloning Up");
 				Worker worker = new Worker(turns, x, y, thistiles, "Up", genes, newstoppedtiles);
 				workers.Add(worker);
 			}
@@ -192,6 +201,26 @@ public class SolveMethod : MonoBehaviour {
 			}
 		}
 	}
+	public void NewCycle(){
+		string piecetag;
+		//Debug.Log(AIBrain.pieces.Count);
+		for(int i = 0; i<CreateMethod.piecetiles.Count;i++){
+			for(int j = 0; j<8; j++){
+				for(int k= 0; k<8; k++){ //loop through all tiles ogtiles
+					if(ogtiles[k,j]=="Ice"){
+						//lastgen.Clear();
+//						Debug.Log("Solve at "+ k + "+" + j);
+						currenttest = new Vector2(k, j);
+						string[,] newtiles = (string[,]) CreateMethod.generatedmap.Clone();
+						newtiles[k,j] = CreateMethod.piecetiles[i];
+//						Debug.Log(startx + "+" + starty);
+						Solve(newtiles);
+
+					}
+				}
+			}
+		}
+	}
 	public void CheckInLineStoppedTiles(){
 
 	}
@@ -216,6 +245,23 @@ public class SolveMethod : MonoBehaviour {
 			}
 		}
 	}
+	public void TryPieces(string[,] thistiles){
+		turns = 0;
+		ogtiles = thistiles; //og map
+		Solve(ogtiles);			//solves for no pieces
+		NewCycle();	//This is important with create method
+
+		if(solutions.Count == 0){
+			Debug.Log("No solutions");
+		}
+		else{
+			for(int i =0; i<solutions.Count; i++){
+				Debug.Log(solutions[i].myturns + "Turns" + "with piece at" + solutions[i].x +  "+" + solutions[i].y );
+				//Debug.Log(solutions.Count);
+			}
+		}
+	}
+
 	/*public void findPossibletiles(Vector2 origin){
 
 		CheckInLineTiles("Left", origin);

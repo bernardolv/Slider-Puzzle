@@ -30,7 +30,7 @@ public class Worker{
 		direction = newdirection;
 		mygenes = new List<string>(newgenes);
 		stoppedtiles = new List<Vector2>(newstopped);
-		Debug.Log("Myposition" + x + "+" + y);
+//		Debug.Log("Myposition" + x + "+" + y);
 	}
 
 	public void Move(){
@@ -51,8 +51,8 @@ public class Worker{
 		}
 		if (mytiles[x,y]== "Start"){
 			mytiles[x,y] = "Wall";
-			Debug.Log("Now a wall");
-			Debug.Log(SolveMethod.ogtiles[x,y]);
+//			Debug.Log("Now a wall");
+//			Debug.Log(SolveMethod.ogtiles[x,y]);
 		}
 
 		Donemoving = false;
@@ -81,9 +81,9 @@ public class Worker{
 
 	}
 	public void ActonTile(string newtag, int tilex, int tiley){
-				if(x==2 && y==2){
-			Debug.Log(mytiles[x,y]);
-			Debug.Log(mytiles[tilex,tiley]);
+		if(x==2 && y==2){
+//			Debug.Log(mytiles[x,y]);
+//			Debug.Log(mytiles[tilex,tiley]);
 		}
 		if(firstmove){
 			turns++;
@@ -103,7 +103,7 @@ public class Worker{
 				mysolution = new Solution(mysolutionnumber, turns, mygenes, SolveMethod.currenttest );
 				SolveMethod.solutions.Add(mysolution);
 				//SolveMethod.numberofsolutions++;
-				Debug.Log("Got goal at "+ x + ","+ y);
+//				Debug.Log("Got goal at "+ x + ","+ y);
 			}
 			else{
 				Donemoving=true;
@@ -124,7 +124,7 @@ public class Worker{
 				Debug.Log("Cant go that way" + x + "+" + y + "+" + direction);
 				Donemoving = true;
 			}
-			Debug.Log("Moved to "+ x + ","+ y);
+//			Debug.Log("Moved to "+ x + ","+ y);
 			Donemoving = true;
 			//Debug.Log("Hitit");
 		}
