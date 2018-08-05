@@ -62,7 +62,7 @@ public class Dragger : MonoBehaviour {
 
 		if (TurnBehaviour.turn == 0) {
 			
-   	 Cursor.visible = true;
+   			Cursor.visible = true;
 		if (tilescript.myTaker == null) {
 			needtooccupy = true;
 			transform.position = tentativetile.transform.position + new Vector3 (0, 0, -.01f);

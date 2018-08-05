@@ -43,13 +43,15 @@ public class CharacterMovement : MonoBehaviour {
 		levelWonBoard = GameObject.Find ("GameWon");
 		if (levelWonBoard != null) {
 			SceneLoading.gamewon = levelWonBoard;
+			levelWonBoard.SetActive(false);
 		}
-		levelWonBoard.SetActive (false);
+//		levelWonBoard.SetActive (false);
 		LevelLostBoard = GameObject.Find ("GameLost");
 		if (LevelLostBoard != null) {
 			SceneLoading.gamelost = LevelLostBoard;
+			LevelLostBoard.SetActive(false);
 		}
-		LevelLostBoard.SetActive (false);
+
 		Debug.Log ("TURNEDTOFF");
 		outofmap = false;
 
@@ -263,6 +265,7 @@ public class CharacterMovement : MonoBehaviour {
 				outofmap = false;
 			}
 			else if (tilescript.myTaker.tag == "Wall") {
+				Debug.Log("Wall");
 				//the desired tile is the previous one and u stop looking for next tiles.
 				canmove = false;
 				Count ();
