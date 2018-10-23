@@ -49,6 +49,11 @@ public class SolveMethod : MonoBehaviour {
 
 	public static Vector2 currenttest;
 
+	public static bool cycling;
+
+	public static int bestsol;
+
+	public static int[] classifier;
 
 
 
@@ -74,7 +79,7 @@ public class SolveMethod : MonoBehaviour {
 	}
 
 	public void Solve(string[,] tiles){	//single solution
-		//solutions.Clear();	
+		solutions.Clear();	
 		workersalive = new List<Worker>();		
 		initialgenes = new List<string>(); 		
 		lastgen = new List<Worker>();												//initializes genes
@@ -189,7 +194,7 @@ public class SolveMethod : MonoBehaviour {
 				for(int k= 0; k<8; k++){ //loop through all tiles ogtiles
 					if(ogtiles[k,j]=="Ice"){
 						//lastgen.Clear();
-						Debug.Log("Solve at "+ k + "+" + j);
+						//Debug.Log("Solve at "+ k + "+" + j);
 						currenttest = new Vector2(k, j);
 						string[,] newtiles = (string[,]) AIBrain.tiles.Clone();
 						newtiles[k,j] = AIBrain.pieces[i].tag;
@@ -202,6 +207,7 @@ public class SolveMethod : MonoBehaviour {
 		}
 	}
 	public void NewCycle(){
+		bool cycling = true;
 		string piecetag;
 		//Debug.Log(AIBrain.pieces.Count);
 		for(int i = 0; i<CreateMethod.piecetiles.Count;i++){
@@ -225,8 +231,8 @@ public class SolveMethod : MonoBehaviour {
 
 	}
 	public void TryEverything(){
-		solutions.Clear(); //resets
-		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Ground"); //finds tags on all
+		//solutions.Clear(); //resets
+		//GameObject[] tiles = GameObject.FindGameObjectsWithTag("Ground"); //finds tags on all
 		foreach(GameObject tileP in tiles){
 			tileP.GetComponent<TileProperties>().GatherData(); //populates aibrain.tiles
 		}
@@ -234,33 +240,55 @@ public class SolveMethod : MonoBehaviour {
 		Debug.Log(solutions.Count());
 		ogtiles = AIBrain.tiles; //og map
 		Solve(ogtiles);			//solves for no pieces
-		CyclePieceSolution();	//This is important
+		//CyclePieceSolution();	//This is important
 
-		if(solutions.Count == 0){
-			Debug.Log("No solutions");
-		}
-		else{
+		if(solutions.Count>0){
 			for(int i =0; i<solutions.Count; i++){
 			Debug.Log(solutions[i].myturns + "Turns" + "with piece at" + solutions[i].x +  "+" + solutions[i].y );
 			}
-		}
-	}
-	public void TryPieces(string[,] thistiles){
-		turns = 0;
-		ogtiles = thistiles; //og map
-		Solve(ogtiles);			//solves for no pieces
-		NewCycle();	//This is important with create method
 
+		}
 		if(solutions.Count == 0){
 			Debug.Log("No solutions");
 		}
-		else{
+	}
+	public void TryPieces(string[,] thistiles){
+		int solsatorigin = 0;
+		turns = 0;
+		ogtiles = thistiles; //og map
+		Solve(ogtiles);			//solves for no pieces
+		if(solutions.Count>0){
 			for(int i =0; i<solutions.Count; i++){
-				Debug.Log(solutions[i].myturns + "Turns" + "with piece at" + solutions[i].x +  "+" + solutions[i].y );
-				//Debug.Log(solutions.Count);
+//				Debug.Log(solutions[i].myturns + "Turns" + "with piece at" + 0 +  "+" + 0 );
+				CountOrStay(solutions[i].myturns);
+			}
+			solsatorigin = solutions.Count -1;
+			ANNBrain.sol =1;
+		}
+		//NewCycle();	//This is important with create method
+
+		if(solutions.Count - solsatorigin - 1 >0){
+			for(int i =solsatorigin; i<solutions.Count; i++){
+			Debug.Log(solutions[i].myturns + "Turns" + "with piece at" + solutions[i].x +  "+" + solutions[i].y );
+			CountOrStay(solutions[i].myturns);
+
 			}
 		}
+		if(solutions.Count == 0){
+//			Debug.Log("No solutions");
+			bestsol = 0;
+			ANNBrain.sol = 0;
+		}
 	}
+	public void CountOrStay(int num){//updates if new solution is lower than the newest
+		if(bestsol == 0){
+			bestsol = num;
+			return;
+		}
+		if (num<bestsol)
+		num = bestsol;
+	}
+
 
 	/*public void findPossibletiles(Vector2 origin){
 

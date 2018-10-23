@@ -1,11 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using System;
 
 public class CreateMethod : MonoBehaviour {
-	public static string [,] generatedmap = new string [8,8];	
-	public string[,] themap = new string[8, 8];
-	public static int icenextcounter;
+	public static string [,] generatedmap = new string [8,8];	//Used to build
+	public string[,] themap = new string[8, 8]; 				//Used to store built map
+	public static int icenextcounter;						
 	public static List<Vector2> doorable = new List<Vector2>();
 	public static List<Vector2> cleanice = new List<Vector2> ();
 	public static List<string> piecetiles = new List<string>();
@@ -17,6 +18,7 @@ public class CreateMethod : MonoBehaviour {
 	public SolveMethod Solver;
 	public static bool hassolution;
 	public static bool onestepsolution;
+	public static int[,] mapvalues = new int[8,8];
 
 	//For NN inputs
 	public static int Goalx;
@@ -25,15 +27,40 @@ public class CreateMethod : MonoBehaviour {
 	public static int Starty;
 	public static bool cansolve; //using solvemethod on the generatedmap
 
+	static private int endianDiff1;
+	static private int endianDiff2;
+	static private int idx;
+	static private byte [] byteBlock;	
+
+	enum ArrayType {Float, Int32, Bool, String, Vector2, Vector3, Quaternion, Color}
+
 	// Use this for initialization
 	void Start () {
-		Createfourbyfour();
+		//Debug.Log(SolveMethod.solutions[0].x);
+		ANNBrain.ann = new ANN(64, 10,2, 32, 1);
+		for(int i=0; i<100000;i++){
+			Createfourbyfour();
+			if(6<SolveMethod.bestsol){
+				DrawMap();
+				break;
+			}
+		}
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//Createfourbyfour();
+		if(Input.GetKeyDown(KeyCode.K)){
+			FeedMap(themap);
+			PrintNumMap(mapvalues);
+		}
+	}
+	public void Createmoreandmore(){
+		for(int i=0; i<1000;i++){
+			Createfourbyfour();
+		}
+
 	}
 	public void Createfourbyfour(){
 		SolveMethod.solutions.Clear ();
@@ -47,11 +74,20 @@ public class CreateMethod : MonoBehaviour {
 		SolveMethod.starty = Starty;
 		AddPieceTiles ();
 		themap = generatedmap;
-		Solver.TryPieces(themap);//Solve normal
+		Solver.TryPieces(themap);//Solve normal, adds annbrain.sol.
 
 		//Solve with possible piecetiles
 		//PrintMap();
-		DrawMap();
+		//DrawMap();
+		FeedMap(themap);
+		//PrintNumMap(mapvalues);
+		//ANNBrain.Run(mapvalues, ANNBrain.sol, false);
+		ANNBrain.RunV2(mapvalues,SolveMethod.bestsol, true );
+//		Debug.Log("Fact is " + ANNBrain.bestsol + "AI says " +   )
+
+		//Debug.Log("BestSolutions is " + SolveMethod.bestsol);
+//		Debug.Log("Best turns " + ANNBrain.sol);
+		//ANNBrain
 
 	}
 	public static void CreateIce(){
@@ -178,7 +214,7 @@ public class CreateMethod : MonoBehaviour {
 					component.GetComponent<SpriteRenderer>().color = Color.red;
 				}
 				else{
-
+					component.GetComponent<SpriteRenderer>().color = Color.white;
 				}
 			}
 		}
@@ -191,7 +227,7 @@ public class CreateMethod : MonoBehaviour {
 		}
 	}
 	public static void ResetAll(){
-		ResetColor();
+		//ResetColor(); //notnow
 		doorable.Clear();
 	}
 	public void AddOnMapTiles(){
@@ -212,6 +248,7 @@ public class CreateMethod : MonoBehaviour {
 		}
 	}
 	public static void PopulateCleanIce(){
+		//Playerprefsx
 		cleanice.Clear ();
 		for(int i = 0; i<8; i++){
 			for(int j = 0; j<8; j++){
@@ -226,4 +263,118 @@ public class CreateMethod : MonoBehaviour {
 			piecetiles.Add ("Wall");
 		}
 	}
+	public static bool SetStringArray (string key, string[] stringArray){
+		var bytes = new byte[stringArray.Length + 1];
+		bytes[0] = System.Convert.ToByte (ArrayType.String);	// Identifier
+		Initialize();
+	 
+		// Store the length of each string that's in stringArray, so we can extract the correct strings in GetStringArray
+		for (var i = 0; i < stringArray.Length; i++)
+		{
+			if (stringArray[i] == null)
+			{
+				Debug.LogError ("Can't save null entries in the string array when setting " + key);
+				return false;
+			}
+			if (stringArray[i].Length > 255)
+			{
+				Debug.LogError ("Strings cannot be longer than 255 characters when setting " + key);
+				return false;
+			}
+			bytes[idx++] = (byte)stringArray[i].Length;
+		}
+	 
+		try
+		{
+			PlayerPrefs.SetString (key, System.Convert.ToBase64String (bytes) + "|" + string.Join("", stringArray));
+		}
+		catch
+		{
+			return false;
+		}
+		return true;
+	}
+	private static void Initialize (){
+		if (System.BitConverter.IsLittleEndian)
+		{
+			endianDiff1 = 0;
+			endianDiff2 = 0;
+		}
+		else
+		{
+			endianDiff1 = 3;
+			endianDiff2 = 1;
+		}
+		if (byteBlock == null)
+		{
+			byteBlock = new byte[4];
+		}
+		idx = 1;
+	}
+	public static string[] GetStringArray (string key)
+	{
+		if (PlayerPrefs.HasKey(key)) {
+			var completeString = PlayerPrefs.GetString(key);
+			var separatorIndex = completeString.IndexOf("|"[0]);
+			if (separatorIndex < 4) {
+				Debug.LogError ("Corrupt preference file for " + key);
+				return new string[0];
+			}
+			var bytes = System.Convert.FromBase64String (completeString.Substring(0, separatorIndex));
+			if ((ArrayType)bytes[0] != ArrayType.String) {
+				Debug.LogError (key + " is not a string array");
+				return new string[0];
+			}
+			Initialize();
+	 
+			var numberOfEntries = bytes.Length-1;
+			var stringArray = new string[numberOfEntries];
+			var stringIndex = separatorIndex + 1;
+			for (var i = 0; i < numberOfEntries; i++)
+			{
+				int stringLength = bytes[idx++];
+				if (stringIndex + stringLength > completeString.Length)
+				{
+					Debug.LogError ("Corrupt preference file for " + key);
+					return new string[0];
+				}
+				stringArray[i] = completeString.Substring(stringIndex, stringLength);
+				stringIndex += stringLength;
+			}
+	 
+			return stringArray;
+		}
+		return new string[0];
+	}
+	public static void FeedMap(string[,] stringer){
+		for(int i = 0; i<8; i++){
+			for(int j = 0; j<8; j++){
+				switch (stringer[j,i]){
+				case "Ice":
+					mapvalues[j,i] = 0;
+					break;
+				case "Wall":
+					mapvalues[j,i] = 1;
+					break;
+				case "Start":
+					mapvalues[j,i] = 2;
+					break;
+				case "Goal":
+					mapvalues[j,i] = 3;
+					break;
+				case "Hole":
+					mapvalues[j,i] = 4;
+					break;
+				}
+			}
+		}
+	}
+	public static void PrintNumMap(int[,] maper){
+		for(int i = 0; i<8; i++){
+			for(int j = 0; j<8; j++){
+				Debug.Log(maper[j,i]);
+			}
+		}
+	}
+	//public void
 }

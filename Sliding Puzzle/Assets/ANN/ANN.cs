@@ -35,17 +35,38 @@ public class ANN{
 			layers.Add(new Layer(numOutputs, numInputs));
 		}
 	}
+/*	List<double> Run(double bx, double by, double bvx, double bvy, double px, double py, double pv, bool train)
+	{
+		List<double> inputs = new List<double>();
+		List<double> outputs = new List<double>();
+		inputs.Add(bx);
+		inputs.Add(by);
+		inputs.Add(bvx);
+		inputs.Add(bvy);
+		inputs.Add(px);
+		inputs.Add(py);
+		outputs.Add(pv);
+		if(train)
+			return (ann.Train(inputs,outputs));
+		else
+			return (ann.CalcOutput(inputs,outputs));
+	}*/
 
 	public List<double> Train(List<double> inputValues, List<double> desiredOutput)
 	{
 		List<double> outputValues = new List<double>();
 		outputValues = CalcOutput(inputValues, desiredOutput);
 		UpdateWeights(outputValues, desiredOutput);
+//		Debug.Log(ANNBrain.sol + "+" + (int)outputValues[0]);
+		Debug.Log(outputValues[0] + "" + outputValues[1] + outputValues[2]+outputValues[3]/*+outputValues[4]+outputValues[5]
+		+outputValues[6]+outputValues[7]+outputValues[8]+outputValues[9]*/ + "And fact is " + SolveMethod.bestsol);
+		//Debug.Log(outputValues.Count);
 		return outputValues;
 	}
 
 	public List<double> CalcOutput(List<double> inputValues, List<double> desiredOutput)
 	{
+
 		List<double> inputs = new List<double>();
 		List<double> outputValues = new List<double>();
 		int currentInput = 0;
@@ -80,7 +101,7 @@ public class ANN{
 					N -= layers[i].neurons[j].bias;
 
 					if(i == numHidden)
-						layers[i].neurons[j].output = ActivationFunctionO(N);
+						layers[i].neurons[j].output = ActivationFunction0(N);
 					else
 						layers[i].neurons[j].output = ActivationFunction(N);
 					
@@ -88,6 +109,8 @@ public class ANN{
 					currentInput = 0;
 				}
 		}
+//		Debug.Log(ANNBrain.sol + "+" + (int)outputValues[0]);
+
 		return outputValues;
 	}
 
@@ -168,12 +191,18 @@ public class ANN{
 
 	double ActivationFunction(double value)
 	{
-		return TanH(value);
+		//return TanH(value);
+		return LeakyRelu(value);
+		//return Relu(value);
+		//return Step(value);
 	}
 
-	double ActivationFunctionO(double value)
+	double ActivationFunction0(double value)
 	{
-		return TanH(value);
+
+	//return TanH(value);
+		//return Sigmoid(value);
+		return Step(value);
 	}
 
 	double TanH(double value)
@@ -186,5 +215,29 @@ public class ANN{
 	{
     	double k = (double) System.Math.Exp(value);
     	return k / (1.0f + k);
+	}
+	double LeakyRelu(double value){
+		if(value<0){
+			return .01*value;
+		}
+		else{
+			return value;
+		}
+	}
+	double Relu(double value){
+		if(value<0){
+			return 0;
+		}
+		else{
+			return value;
+		}
+	}
+	double Step(double value){
+		if(value<0){
+			return 0;
+		}
+		else{
+			return 1;
+		}
 	}
 }

@@ -14,7 +14,7 @@ public class SceneLoading : MonoBehaviour {
 	public void LoadScene(int num){
 		Swiping.mydirection = "Null";
 		TurnCounter.turncount = 0;
-		Debug.Log ("BOOP");
+		Debug.Log ("Loading Level " + num	);
 		LevelManager.levelnum = num;
 		LevelManager.readytodraw = true;
 		SceneManager.LoadScene(4);
@@ -73,6 +73,10 @@ public class SceneLoading : MonoBehaviour {
 
 	public void LockAll(){
 		LevelHandler.LockAllLevels();
+	}
+
+	public void TestButton(){
+		LoadScene(1);
 	}
 
 	public void GoToLevelSelect(){
