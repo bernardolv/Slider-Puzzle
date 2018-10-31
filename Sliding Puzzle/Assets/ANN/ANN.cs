@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class ANN{
 
@@ -57,9 +58,10 @@ public class ANN{
 		List<double> outputValues = new List<double>();
 		outputValues = CalcOutput(inputValues, desiredOutput);
 		UpdateWeights(outputValues, desiredOutput);
+		Debug.Log((float)outputValues[0] + "+" + (float)desiredOutput[0]);
 //		Debug.Log(ANNBrain.sol + "+" + (int)outputValues[0]);
-		Debug.Log(outputValues[0] + "" + outputValues[1] + outputValues[2]+outputValues[3]/*+outputValues[4]+outputValues[5]
-		+outputValues[6]+outputValues[7]+outputValues[8]+outputValues[9]*/ + "And fact is " + SolveMethod.bestsol);
+//		Debug.Log(outputValues[0] + "" + outputValues[1] + outputValues[2]+outputValues[3]/*+outputValues[4]+outputValues[5]
+	//	+outputValues[6]+outputValues[7]+outputValues[8]+outputValues[9]*/ + "And fact is " + SolveMethod.bestsol);
 		//Debug.Log(outputValues.Count);
 		return outputValues;
 	}
@@ -73,6 +75,7 @@ public class ANN{
 
 		if(inputValues.Count != numInputs)
 		{
+			Debug.Log(inputValues.Count);
 			Debug.Log("ERROR: Number of Inputs must be " + numInputs);
 			return outputValues;
 		}
@@ -147,7 +150,12 @@ public class ANN{
 			}
 		}
 	}
-	
+	public void SaveWeights(){
+		string path =Application.dataPath + "/weights.txt";
+		StreamWriter wf = File.CreateText(path);
+		wf.WriteLine(PrintWeights());
+		wf.Close();
+	}
 	void UpdateWeights(List<double> outputs, List<double> desiredOutput)
 	{
 		double error;
@@ -157,6 +165,7 @@ public class ANN{
 			{
 				if(i == numHidden)
 				{
+//					Debug.Log(desiredOutput.Count + "+"  + outputs.Count);
 					error = desiredOutput[j] - outputs[j];
 					layers[i].neurons[j].errorGradient = outputs[j] * (1-outputs[j]) * error;
 				}
@@ -192,29 +201,30 @@ public class ANN{
 	double ActivationFunction(double value)
 	{
 		//return TanH(value);
+		//return LeakyRelu(value);
 		return LeakyRelu(value);
-		//return Relu(value);
 		//return Step(value);
+		//return Sigmoid(value);
 	}
 
 	double ActivationFunction0(double value)
 	{
 
-	//return TanH(value);
-		//return Sigmoid(value);
-		return Step(value);
+		//return TanH(value);
+		return Sigmoid(value);
+		//return Step(value);
 	}
 
 	double TanH(double value)
 	{
 		double k = (double) System.Math.Exp(-2*value);
-    	return 2 / (1.0f + k) - 1;
+    	return 2 / (1.0 + k) - 1;
 	}
 
 	double Sigmoid(double value) 
 	{
     	double k = (double) System.Math.Exp(value);
-    	return k / (1.0f + k);
+    	return k / (1.0 + k);
 	}
 	double LeakyRelu(double value){
 		if(value<0){

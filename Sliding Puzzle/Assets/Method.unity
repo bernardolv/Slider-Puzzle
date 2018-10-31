@@ -1037,12 +1037,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e141c132b6a948d7b43af24bc57c39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extrawalls: 1
-  lava: 3
+  extrawalls: 3
+  lava: 1
   pedro: 1
   onmaptiles: 0
   piecenum: 0
   Solver: {fileID: 413078871}
+  epochs: 100
 --- !u!114 &413078874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1914,7 +1915,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 734384365}
   m_LocalRotation: {x: -0.2183405, y: 0.12123015, z: 0.112487644, w: 0.9617574}
-  m_LocalPosition: {x: -1179.3, y: 692.2, z: 49.3}
+  m_LocalPosition: {x: -1250.8, y: 575.3, z: 107.7}
   m_LocalScale: {x: 0.99971604, y: 0.99971604, z: 0.9997159}
   m_Children:
   - {fileID: 637644082}
@@ -1923,7 +1924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -26.568, y: 1451.876, z: 10.529}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 77.69995, y: -160.79999}
+  m_AnchoredPosition: {x: 87.19995, y: -277.7}
   m_SizeDelta: {x: 77.399994, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734384367
@@ -2454,7 +2455,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 985762224}
   m_LocalRotation: {x: -0.2183405, y: 0.12123015, z: 0.112487644, w: 0.9617574}
-  m_LocalPosition: {x: -1182.4, y: 789.8, z: 0}
+  m_LocalPosition: {x: -1257.9, y: 665.4, z: 62.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 946360569}
@@ -2463,7 +2464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -26.568, y: 1451.876, z: 10.529}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74.599976, y: -63.200012}
+  m_AnchoredPosition: {x: 80.099976, y: -187.6}
   m_SizeDelta: {x: 77.399994, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &985762226

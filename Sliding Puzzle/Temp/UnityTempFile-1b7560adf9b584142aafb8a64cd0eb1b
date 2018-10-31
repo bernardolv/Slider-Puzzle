@@ -156,7 +156,7 @@
 -define:UNITY_IPHONE
 -define:UNITY_IPHONE_API
 -define:SUPPORT_MULTIPLE_DISPLAYS
--define:ENABLE_MONO
+-define:ENABLE_IL2CPP
 -define:NET_2_0_SUBSET
 -define:ENABLE_PROFILER
 -define:DEBUG
@@ -181,6 +181,7 @@
 'Assets/Buttonbuilder.cs'
 'Assets/ButtonRating.cs'
 'Assets/CreateMethod.cs'
+'Assets/DataHandler.cs'
 'Assets/IceTileHandler.cs'
 'Assets/LevelButton.cs'
 'Assets/LevelHandler.cs'

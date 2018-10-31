@@ -264,6 +264,7 @@ public class SolveMethod : MonoBehaviour {
 			}
 			solsatorigin = solutions.Count -1;
 			ANNBrain.sol =1;
+			ANNBrain.los = 0;
 		}
 		//NewCycle();	//This is important with create method
 
@@ -273,11 +274,13 @@ public class SolveMethod : MonoBehaviour {
 			CountOrStay(solutions[i].myturns);
 
 			}
+			Debug.Log("X");
 		}
 		if(solutions.Count == 0){
 //			Debug.Log("No solutions");
 			bestsol = 0;
 			ANNBrain.sol = 0;
+			ANNBrain.los = 1;
 		}
 	}
 	public void CountOrStay(int num){//updates if new solution is lower than the newest
