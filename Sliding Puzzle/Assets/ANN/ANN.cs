@@ -58,7 +58,7 @@ public class ANN{
 		List<double> outputValues = new List<double>();
 		outputValues = CalcOutput(inputValues, desiredOutput);
 		UpdateWeights(outputValues, desiredOutput);
-		Debug.Log((float)outputValues[0] + "+" + (float)desiredOutput[0]);
+//		Debug.Log((float)outputValues[0] + "+" + (float)desiredOutput[0]);
 //		Debug.Log(ANNBrain.sol + "+" + (int)outputValues[0]);
 //		Debug.Log(outputValues[0] + "" + outputValues[1] + outputValues[2]+outputValues[3]/*+outputValues[4]+outputValues[5]
 	//	+outputValues[6]+outputValues[7]+outputValues[8]+outputValues[9]*/ + "And fact is " + SolveMethod.bestsol);

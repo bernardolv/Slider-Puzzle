@@ -171,7 +171,7 @@
      <None Include="Assets\StreamingAssets\Level96.txt" />
      <None Include="Assets\StreamingAssets\Level66.txt" />
      <None Include="Assets\StreamingAssets\Level84.txt" />
-     <None Include="Assets\testData.txt" />
+     <None Include="Assets\testData2.txt" />
      <None Include="Assets\StreamingAssets\Level80.txt" />
      <None Include="Assets\StreamingAssets\Level11.txt" />
      <None Include="Assets\StreamingAssets\Level86.txt" />
@@ -193,6 +193,7 @@
      <None Include="Assets\StreamingAssets\Level49.txt" />
      <None Include="Assets\StreamingAssets\Level95.txt" />
      <None Include="Assets\StreamingAssets\Level76.txt" />
+     <None Include="Assets\goodmapsData.txt" />
      <None Include="Assets\newnewData.txt" />
      <None Include="Assets\StreamingAssets\Level2.txt" />
      <None Include="Assets\StreamingAssets\Level98.txt" />
@@ -201,6 +202,7 @@
      <None Include="Assets\StreamingAssets\Level60.txt" />
      <None Include="Assets\StreamingAssets\Level19.txt" />
      <None Include="Assets\StreamingAssets\Level48.txt" />
+     <None Include="Assets\testData.txt" />
      <None Include="Assets\longData.txt" />
      <None Include="Assets\Resources\TestLevel2.txt" />
      <None Include="Assets\StreamingAssets\Level8.txt" />
@@ -228,6 +230,7 @@
      <None Include="Assets\StreamingAssets\Level56.txt" />
      <None Include="Assets\trainingSet3.txt" />
      <None Include="Assets\StreamingAssets\Level33.txt" />
+     <None Include="Assets\quantData.txt" />
      <None Include="Assets\StreamingAssets\Level75.txt" />
      <None Include="Assets\StreamingAssets\Level69.txt" />
      <None Include="Assets\StreamingAssets\Level31.txt" />
@@ -242,6 +245,7 @@
      <None Include="Assets\StreamingAssets\Level58.txt" />
      <None Include="Assets\StreamingAssets\Level25.txt" />
      <None Include="Assets\StreamingAssets\Level50.txt" />
+     <None Include="Assets\newMapDatabase.txt" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>

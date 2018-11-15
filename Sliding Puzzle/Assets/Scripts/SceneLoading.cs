@@ -75,7 +75,8 @@ public class SceneLoading : MonoBehaviour {
 		LevelHandler.LockAllLevels();
 	}
 
-	public void TestButton(){
+	public void LoadLevel(int num){
+		LevelManager.levelnum = num;
 		LoadScene(1);
 	}
 

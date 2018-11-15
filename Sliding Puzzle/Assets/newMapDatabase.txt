@@ -1,0 +1,725 @@
+Con
+		extrawalls = Random.Range(2,6);
+		lava = Random.Range(1,5);
+		int wood  = Random.Range(2,9);
+		int fragilenum  = Random.Range(0,9);
+
+		4+ Solution
+
+Map
+W W W W W S W W 
+W F I I I I I W 
+W I I I W I # W 
+W I I I # # W W 
+W I I I # X I G 
+W # I # I I I W 
+W W I # I W W W 
+W W W W W W W W 
+L51 D21 
+
+Map
+W W W W S W W W 
+W # # F I I W W 
+W I # X X F W W 
+W I I I W # I W 
+W X I F # I F W 
+W # F I I I I W 
+G I W I W # I W 
+W W W W W W W W 
+P54 R41 
+
+Map
+W W S W W W W W 
+W I F F I I I W 
+W I # I F I I W 
+W F # F I F I W 
+W F W I I W I W 
+W I I I I I W W 
+W # X I I # I G 
+W W W W W W W W 
+R15 L62 
+
+Map
+W W S W W W W W 
+W W I I I I # W 
+W I I F # I I W 
+W W W # I F I W 
+W I I I I I I W 
+G I I X I I X W 
+W I I I I I I W 
+W W W W W W W W 
+P52 P14 
+
+Map
+W W W W W W W W 
+W I I W # I I S 
+W I I I I I X W 
+W X I I I I I W 
+G I I I X I W W 
+W I # I # I I W 
+W I # # W I # W 
+W W W W W W W W 
+P43 L24 
+
+Map
+W W W W W W W W 
+W # # W I I I W 
+W # I F I I F W 
+W W X I # I # W 
+W I X I I I # G 
+S # I X I I I W 
+W I I F # I I W 
+W W W W W W W W 
+P45 D25 
+
+Map
+W W W W W W W W 
+W I X I I W I W 
+G I W I I F I W 
+W I I I I I I W 
+W I # W I X I S 
+W W I I X # I W 
+W I W I I I I W 
+W W W W W W W W 
+P11 D64 
+
+Map
+W W W W W W W W 
+W # W I F # F W 
+S I I I F X X W 
+W # I F # I I W 
+W W W X F I F W 
+W I I I # I F W 
+W I F I W I I W 
+W W W G W W W W 
+D12 P53 
+
+Map
+W G W W W W W W 
+W F X W F I I W 
+W I X F F I # W 
+W I I I I # I W 
+W F I I I I W W 
+W W I I # I I W 
+W I I I I F W W 
+W W W S W W W W 
+U55 P34 
+
+Map
+W W W W W W W W 
+W # I I I X W W 
+G # X F I I I W 
+W I X I I I F W 
+W # # # # F I W 
+W I I W I F W W 
+W # W I W I I W 
+W S W W W W W W 
+P13 U42 
+
+Map
+W W W W S W W W 
+W I I I I X I W 
+W I # # I I I W 
+W X I I I I I W 
+W I W I X I I W 
+W I I I I I I W 
+W # X I I W I W 
+W W W W G W W W 
+P42 R12 
+
+Map
+W W W W W W W W 
+W I I I I # I W 
+W I W # I I I W 
+W # X I I # I W 
+W W I F I I I W 
+W I I I F F I W 
+W I X I I I F W 
+W S W W G W W W 
+L62 P56 
+
+Map
+W W W W W W W W 
+S I I # W # X W 
+W # I F I I I W 
+W I I W I I # G 
+W # I X # I I W 
+W I # F I I I W 
+W I I I W # I W 
+W W W W W W W W 
+R53 R15 
+
+Map
+W W W W W W W W 
+W # I # X I I W 
+S I W I I # W W 
+W I # I I I X W 
+W I I W I # I W 
+W I I X # F # W 
+W I I W I I F W 
+W W W W W W G W 
+D43 R44 
+
+Map
+W W S W W W W W 
+W # # I W I I W 
+W F I # I F I W 
+W # X I F I I W 
+W W # I # X I W 
+W W # F I I I W 
+W W I F I W # G 
+W W W W W W W W 
+P22 P33 
+
+Map
+W W W W W W W W 
+W I X I I W # W 
+W I I W I I F W 
+W I # X I I # W 
+W F I I W W I W 
+W I I I W I I W 
+S I # # # I I W 
+W W W G W W W W 
+P11 P25 
+
+Map
+W W W W W W W W 
+W X # I X F X W 
+G I I # I I F W 
+W X I I F I I S 
+W I W # # I I W 
+W I # W I I # W 
+W I I I W I I W 
+W W W W W W W W 
+P23 L52 
+
+Map
+W W G W W W W W 
+W F I F I # I W 
+W I I I X I I W 
+W # W W I I F W 
+W I I I I I I W 
+W I I I I F I S 
+W # # I I I I W 
+W W W W W W W W 
+P22 D21 
+
+Map
+W W W G W W W W 
+W # I I I # X W 
+W I I W I I I W 
+W W I # I I # W 
+W W I X X I I W 
+S F # I W I I W 
+W I # # I F I W 
+W W W W W W W W 
+P21 L62 
+
+Map
+W W W W G W W W 
+W W I W # # # W 
+W I F X W I I W 
+S # I I # F F W 
+W I F I I I I W 
+W I I # I I I W 
+W # I I I I F W 
+W W W W W W W W 
+P23 P15 
+
+Map
+W W W W W W W W 
+W I X F I I I W 
+W F # # # W I W 
+W I # I I I I S 
+W # I I I I I W 
+W I X I F F I W 
+W W # I W W W W 
+W W G W W W W W 
+L64 P24 
+
+Map
+W W W W W W W W 
+W I I I I # F W 
+W I F I X I W W 
+W I I I I # I W 
+S I I I X I W W 
+W I I I W # I W 
+W X F I I # I W 
+W W W W W G W W 
+U34 P33 
+
+Map
+W W W W W W W W 
+W I I I I F # W 
+W W F # # W F W 
+W I I I I # # W 
+G I F I I I I W 
+W I F # I I I W 
+W X # I # I I W 
+W W S W W W W W 
+U56 P15 
+
+Map
+W W W W W S W W 
+W # W F X I F W 
+W # # I I I I W 
+W I I I I I I W 
+W W I I I X W W 
+W F I I I I W W 
+W I F # I # I W 
+W W W W W G W W 
+R45 P53 
+
+Map
+W W W W W G W W 
+S I I I I F I W 
+W I # I W I I W 
+W I I I X I I W 
+W I I I I I I W 
+W I I # I W I W 
+W I W W # I I W 
+W W W W W W W W 
+L62 P31 
+
+Map
+W W W W S W W W 
+W # I I I I I W 
+W W I I I I F W 
+W I I I I F I W 
+G I # I F I W W 
+W I # # F I # W 
+W F X W I # X W 
+W W W W W W W W 
+P42 P15 
+
+Map
+W W W W W W S W 
+W I F I F I I W 
+W W I W I F I W 
+W W X I I I F W 
+W # I I W I I W 
+W I # I I W I W 
+W # F I F F # W 
+W W G W W W W W 
+P34 U36 
+
+Map
+W S W W W W W W 
+W # I I I I W W 
+W I W F # I I W 
+W I I I # I I W 
+W I I F I # I W 
+W I I F I I I G 
+W X I I F # I W 
+W W W W W W W W 
+P64 U12 
+
+Map
+W W W W W W W W 
+W I W I # I X W 
+W W I I # I I W 
+W I # I X I I S 
+W I I W X F I W 
+W I W I W F I W 
+G I # # X # # W 
+W W W W W W W W 
+D53 L62 
+
+Map
+W W W W W W W W 
+W I X I W I # W 
+G # W I I I I W 
+W I I # I I I W 
+W # I X I I I S 
+W I I I I I # W 
+W I I I I I I W 
+W W W W W W W W 
+P11 U44 
+
+Map
+W W W W W S W W 
+W I I F # I I W 
+W I W I X I # W 
+W I # I I W W W 
+W I I I # I I W 
+W I I # W I I G 
+W # I I I W F W 
+W W W W W W W W 
+P15 D54 
+
+Map
+W W W W W W W W 
+W W # X I I I W 
+W # I I I F I G 
+S F I I W # # W 
+W I X I W I I W 
+W I # I # I I W 
+W W I I # I X W 
+W W W W W W W W 
+D41 P36 
+
+Map
+W W W W W W W W 
+W I I # I I F W 
+W I X I I I W W 
+W I I X F F W W 
+W I I # # F I W 
+W W I I I # F W 
+W I # I I I F W 
+W W W S W W G W 
+U46 L35 
+
+Map
+W W W W G W W W 
+W F I I I W # W 
+W # I I I I I W 
+W I I # W F I W 
+W W F F X F I S 
+W # I # I # I W 
+W # X F W I # W 
+W W W W W W W W 
+L62 U64 
+
+Map
+W W S W W W W W 
+W I I W I I F W 
+W I I F # # W W 
+W I I I I # F W 
+W # F I X I X W 
+W F I I I X F W 
+W F X # I W I W 
+W W W G W W W W 
+P23 L43 
+
+Map
+W W W W W G W W 
+W X I I I I I W 
+W I I I I # I W 
+W W I I I W I W 
+W I I X I W I W 
+W I X I # W I W 
+S # I I W I I W 
+W W W W W W W W 
+U24 P61 
+
+Map
+W W W W W W W W 
+S I I X I I # W 
+W I I I # F # W 
+W # I W I # I W 
+W I I I W F I W 
+W F # F I I I W 
+W I I I W W I G 
+W W W W W W W W 
+P21 P14 
+
+Map
+W G W W W W W W 
+W I I X I I I W 
+W I I I X I I S 
+W W I I I I I W 
+W X I I I I I W 
+W W # I I I I W 
+W I W I I I # W 
+W W W W W W W W 
+P52 U56 
+
+Map
+W W W S W W W W 
+W I I I W I # W 
+W X I I W I I W 
+W X I I I # I W 
+W # I W X I I W 
+W I I I W I I W 
+G I X W I I I W 
+W W W W W W W W 
+L24 P11 
+
+Map
+W W W W W W W W 
+W # F X F I I W 
+W I # F F I I W 
+G I I # W I I W 
+W W F I I I I W 
+W I F I W I I W 
+W I I F I X I W 
+W W W W S W W W 
+R34 P61 
+
+Map
+W W W W W W W W 
+W # I I I I I W 
+W I I I I # # W 
+G # I X W I I W 
+W # W I F I I W 
+W I I # I I I W 
+W W I W I I # W 
+W W W W S W W W 
+R45 P31 
+
+Map
+W W W W W W W W 
+W I I X I W I W 
+W I I # W W I W 
+W I I # I F I W 
+W W I I F I I W 
+W I I I X X I W 
+G # F W I I I W 
+W W W W W W S W 
+P62 P23 
+
+Map
+W W W W W W W W 
+W I I # I I I W 
+W I I I # # W W 
+G I W F I I # S 
+W I # # I I I W 
+W X I I I I I W 
+W I I W I # I W 
+W W W W W W W W 
+R53 L13 
+
+Map
+W W W W W W S W 
+W W I I I # I W 
+W W I X I W I W 
+W I # # # I F W 
+W I # # I I X W 
+W I W I I I I W 
+W I I I I I I W 
+W W W G W W W W 
+D36 P62 
+
+Map
+W W W W W W W W 
+W F X I I I I W 
+W I I F I W I W 
+W I I W I I I W 
+W I I W # I # W 
+W I I I W # I W 
+G I F I I W I W 
+W W W W W W S W 
+P31 P43 
+
+Map
+W W W W W W W W 
+W F I I I # I G 
+W I F I I I I W 
+S I # X F I W W 
+W I I W I # # W 
+W F F F I I I W 
+W # I I F I I W 
+W W W W W W W W 
+U13 P12 
+
+Map
+W W W W W W W W 
+W I I # # I I W 
+W I I I X I I W 
+W W X I X F I W 
+W I I I I # I W 
+G I I W I I I S 
+W I I I X I I W 
+W W W W W W W W 
+D32 P16 
+
+Map
+W W S W W W W W 
+W # I I I I X W 
+W I I I I I I W 
+W I I I I W # W 
+W I # I I X I G 
+W I I I I I I W 
+W X W X I I I W 
+W W W W W W W W 
+P65 D51 
+
+Map
+W W W W W W W W 
+W # I I I I F W 
+S I W I I W I G 
+W I I F I I I W 
+W F I I # I I W 
+W F I W I I I W 
+W I F I W I X W 
+W W W W W W W W 
+P41 R62 
+
+Map
+W W S W W W W W 
+W X I I I W I W 
+W I I I I I F W 
+W # W F I I F G 
+W X F I # I X W 
+W I I W # F W W 
+W I # X # I F W 
+W W W W W W W W 
+P42 P54 
+
+Map
+W W W W W W W W 
+W I I I F # I W 
+W # I I W I # W 
+G I I I I W I W 
+W F X I W I I W 
+W I I I F I I W 
+W I I I I I W W 
+W W S W W W W W 
+P32 P25 
+
+Map
+W W W W W W W W 
+S I X I X I I W 
+W I I I I I I W 
+W I I I I I I W 
+W I I I W I W W 
+W # W I I I # W 
+W X X # I I I W 
+W W W G W W W W 
+P13 D11 
+
+Map
+W W W W W S W W 
+W # I W I I I W 
+W I I X # I W W 
+W I I I I W W W 
+W I I I I X I W 
+W X I I I I I W 
+W I I I F I I W 
+W W W W W G W W 
+L43 P66 
+
+Map
+W W W W W W W W 
+W W I I I W I W 
+W # I I I I W W 
+W I I I I I I W 
+S F I # I F F W 
+W I I I I I X W 
+W W X I I # I W 
+W W W W G W W W 
+P44 P36 
+
+Map
+W W W W W W W W 
+W I # I F F F W 
+G # I I I W X W 
+W I I I W # I S 
+W I I I I X I W 
+W I I F I F F W 
+W I I I I I I W 
+W W W W W W W W 
+R13 L32 
+
+Map
+W W W W W W W W 
+W F # I I I I W 
+W I F X I I # S 
+W I W I # I I W 
+W I I I I W F W 
+W # X I F X F W 
+G I W I # I I W 
+W W W W W W W W 
+P33 R42 
+
+Map
+W W W W W W W W 
+W # I I W # I G 
+W I I I W I X W 
+W F W I I I I W 
+W F W I I # I W 
+W I F I # F W W 
+W # I I I I X W 
+W S W W W W W W 
+P63 P34 
+
+Map
+W W W W G W W W 
+S # I X I X I W 
+W I I X I I I W 
+W # I W I I I W 
+W I I I I I I W 
+W # I I W # I W 
+W I I I W I I W 
+W W W W W W W W 
+L21 P54 
+
+Map
+W W W W W W W W 
+S I I I F I I W 
+W # W I F X W W 
+W I # I I X I W 
+W W X I F # I W 
+W I I I I I I W 
+W I I W I I I G 
+W W W W W W W W 
+P21 P43 
+
+Map
+W W W W W W W W 
+W # I I # I I W 
+W I I W I X I S 
+W I I I # I X W 
+W W I I # # I W 
+W I W # F I I W 
+W # I I W I I G 
+W W W W W W W W 
+P13 U62 
+
+Map
+W W W G W W W W 
+W F # I I # W W 
+W I W W I I I W 
+W # I X I F I W 
+S F I X W I I W 
+W F I W I # I W 
+W I I I # I I W 
+W W W W W W W W 
+D24 U31 
+
+Map
+W W W W W G W W 
+W W I I # I I W 
+W I I # I I # W 
+S I X W W I I W 
+W I # I # I I W 
+W I I I I F I W 
+W W W I I I I W 
+W W W W W W W W 
+P64 D13 
+
+Map
+W W W W W W W W 
+W X W I I X # G 
+W I I F I I I W 
+W I # I W # I W 
+W W I I I F X W 
+W I I # I # W W 
+W I X F I I F W 
+W W W W W S W W 
+U46 L56 
+
+Map
+W W G W W W W W 
+W I I I I I I W 
+W I I I W W I W 
+W # # I I I X W 
+W X # I F I F W 
+W F I I I I W W 
+S I I F I I I W 
+W W W W W W W W 
+P31 P56 
+
+Map
+W W W W W W W W 
+W X I W # I F W 
+G F I X I I I W 
+W W # I I I I W 
+W I # X # I W W 
+W I I W W I I W 
+W F F I I I I W 
+W W W W W W S W 
+P21 P52 
+
+
+
