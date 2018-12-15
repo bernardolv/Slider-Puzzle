@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sliding Puzzle", "Assembly-CSharp.csproj", "{FF23C268-F9AA-A9CF-A1A6-EED15B35F8DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sliding Puzzle", "Assembly-CSharp-firstpass.csproj", "{F6F660D1-EA45-23D7-3EB5-7F4A22E2E62C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sliding Puzzle", "Assembly-CSharp-Editor-firstpass.csproj", "{430C8EE5-10B7-0AF9-88CB-B8D4B1CE79B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{FF23C268-F9AA-A9CF-A1A6-EED15B35F8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF23C268-F9AA-A9CF-A1A6-EED15B35F8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF23C268-F9AA-A9CF-A1A6-EED15B35F8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6F660D1-EA45-23D7-3EB5-7F4A22E2E62C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6F660D1-EA45-23D7-3EB5-7F4A22E2E62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6F660D1-EA45-23D7-3EB5-7F4A22E2E62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6F660D1-EA45-23D7-3EB5-7F4A22E2E62C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430C8EE5-10B7-0AF9-88CB-B8D4B1CE79B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430C8EE5-10B7-0AF9-88CB-B8D4B1CE79B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430C8EE5-10B7-0AF9-88CB-B8D4B1CE79B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430C8EE5-10B7-0AF9-88CB-B8D4B1CE79B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

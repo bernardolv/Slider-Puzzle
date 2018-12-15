@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -116,7 +116,56 @@ public class ANN{
 
 		return outputValues;
 	}
+public List<double> CalcOutput2(List<double> inputValues)
+	{
 
+		List<double> inputs = new List<double>();
+		List<double> outputValues = new List<double>();
+		int currentInput = 0;
+
+		if(inputValues.Count != numInputs)
+		{
+			Debug.Log(inputValues.Count);
+			Debug.Log("ERROR: Number of Inputs must be " + numInputs);
+			return outputValues;
+		}
+
+		inputs = new List<double>(inputValues);
+		for(int i = 0; i < numHidden + 1; i++)
+		{
+				if(i > 0)
+				{
+					inputs = new List<double>(outputValues);
+				}
+				outputValues.Clear();
+
+				for(int j = 0; j < layers[i].numNeurons; j++)
+				{
+					double N = 0;
+					layers[i].neurons[j].inputs.Clear();
+
+					for(int k = 0; k < layers[i].neurons[j].numInputs; k++)
+					{
+					    layers[i].neurons[j].inputs.Add(inputs[currentInput]);
+						N += layers[i].neurons[j].weights[k] * inputs[currentInput];
+						currentInput++;
+					}
+
+					N -= layers[i].neurons[j].bias;
+
+					if(i == numHidden)
+						layers[i].neurons[j].output = ActivationFunction0(N);
+					else
+						layers[i].neurons[j].output = ActivationFunction(N);
+					
+					outputValues.Add(layers[i].neurons[j].output);
+					currentInput = 0;
+				}
+		}
+//		Debug.Log(ANNBrain.sol + "+" + (int)outputValues[0]);
+
+		return outputValues;
+	}
 	public string PrintWeights()
 	{
 		string weightStr = "";
@@ -202,7 +251,7 @@ public class ANN{
 	{
 		//return TanH(value);
 		//return LeakyRelu(value);
-		return LeakyRelu(value);
+		return Relu(value);
 		//return Step(value);
 		//return Sigmoid(value);
 	}
@@ -210,8 +259,8 @@ public class ANN{
 	double ActivationFunction0(double value)
 	{
 
-		//return TanH(value);
-		return Sigmoid(value);
+		return TanH(value);
+		//return Sigmoid(value);
 		//return Step(value);
 	}
 

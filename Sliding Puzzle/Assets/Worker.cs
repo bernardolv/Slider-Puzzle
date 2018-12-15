@@ -113,8 +113,10 @@ public class Worker{
 			}
 		}
 		if(done != true){
-			SolveMethod.workersalive.Add(this);
 			stoppedtiles.Add(laststopped);
+
+			SolveMethod.workersalive.Add(this);
+			//stoppedtiles.Add(laststopped);
 		}
 
 	}
@@ -140,9 +142,9 @@ public class Worker{
 				y = tiley;
 				done = true;
 				mysolutionnumber = SolveMethod.numberofsolutions;
-				mysolution = new Solution(mysolutionnumber, turns, mygenes, SolveMethod.solutionpieceposition, SolveMethod.solutionpiecenames);
+				mysolution = new Solution(mysolutionnumber, turns, mygenes, SolveMethod.solutionpieceposition, SolveMethod.solutionpiecenames, stoppedtiles);
 				SolveMethod.solutions.Add(mysolution);
-				if(SolveMethod.solutionpieceposition.Count>1)
+//				if(SolveMethod.solutionpieceposition.Count>1)
 //				Debug.Log(SolveMethod.solutionpieceposition[1]);
 //				Debug.Log(SolveMethod.solutions.Count + "" + turns + SolveMethod.currenttest + SolveMethod.currenttest2 + test2);
 				previoustag = "Goal";
@@ -190,60 +192,92 @@ public class Worker{
 			//Check for fragile
 		}
 		if(newtag == "Left"){
-			if(previoustag == "Right"){
+			/*if(previoustag == "Right"){
 				x=tilex;
 				y=tiley;
 				done = true;
 				Donemoving = true;
 				previoustag = "Left";
+				Debug.Log("Not there");
 				return;
-			}
+			}*/
 			x=tilex;
 			y=tiley;
 			previoustag = "Left";
 			isshifted = true;
+//			Debug.Log(tilex + "" + tiley);
 		}
 		if(newtag == "Right"){
-			if(previoustag == "Left"){
+			/*if(previoustag == "Left"){
 				x=tilex;
 				y=tiley;
 				done = true;
 				Donemoving = true;
 				previoustag = "Right";
 				return;
-			}
+			}*/
 			x=tilex;
 			y=tiley;
 			previoustag = "Right";
 			isshifted = true;
 		}
 		if(newtag == "Up"){
-			if(previoustag == "Down"){
+			/*if(previoustag == "Down"){
 				x=tilex;
 				y=tiley;
 				done = true;
 				Donemoving = true;
 				previoustag = "Up";
 				return;
-			}
+			}*/
 			x=tilex;
 			y=tiley;
 			previoustag = "Up";
 			isshifted = true;
 		}
 		if(newtag == "Down"){
-			if(previoustag == "Up"){
+			/*if(previoustag == "Up"){
 				x=tilex;
 				y=tiley;
 				done = true;
 				Donemoving = true;
 				previoustag = "Down";
 				return;
-			}
+			}*/
 			x=tilex;
 			y=tiley;
 			previoustag = "Down";
 			isshifted = true;
+		}
+		if(newtag == "WallSeed"){
+			x = tilex;
+			y = tiley;
+			previoustag = "WallSeed";
+			mytiles[x,y] = "Wall";
+		}
+		if(newtag == "LeftSeed"){
+			x = tilex;
+			y = tiley;
+			previoustag = "LeftSeed";
+			mytiles[x,y] = "Left";
+		}
+		if(newtag == "RightSeed"){
+			x = tilex;
+			y = tiley;
+			previoustag = "RightSeed";
+			mytiles[x,y] = "Right";
+		}
+		if(newtag == "UpSeed"){
+			x = tilex;
+			y = tiley;
+			previoustag = "UpSeed";
+			mytiles[x,y] = "Up";
+		}
+		if(newtag == "DownSeed"){
+			x = tilex;
+			y = tiley;
+			previoustag = "DownSeed";
+			mytiles[x,y] = "Down";
 		}
 		firstmove = false;
 	}

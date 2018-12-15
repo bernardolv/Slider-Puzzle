@@ -13,6 +13,7 @@ public class Solution{
 	public int y2;
 	public List<Vector2> solutionpositions = new List<Vector2>();
 	public List<string> piecetags = new List<string>();
+	public List<Vector2> stoppedtiles = new List<Vector2>();
 	public Solution(int num, int turns, List<string> newgenes, Vector2 theplace){
 		numsolution = num;
 		myturns = turns;
@@ -42,5 +43,13 @@ public class Solution{
 		mygenes = newgenes;
 		piecetags = new List<string>(piecenames);
 		solutionpositions = new List<Vector2>(solutionpieces);
+	}
+	public Solution(int num, int turns, List<string> newgenes, List<Vector2> solutionpieces, List<string> piecenames, List<Vector2> stopped){
+		numsolution = num;
+		myturns = turns;
+		mygenes = newgenes;
+		piecetags = new List<string>(piecenames);
+		solutionpositions = new List<Vector2>(solutionpieces);
+		stoppedtiles = new List<Vector2>(stopped);
 	}
 }
