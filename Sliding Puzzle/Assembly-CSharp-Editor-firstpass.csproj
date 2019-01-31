@@ -85,6 +85,7 @@
      <None Include="Assets\StreamingAssets\Level68.txt" />
      <None Include="Assets\StreamingAssets\Level34.txt" />
      <None Include="Assets\StreamingAssets\Level61.txt" />
+     <None Include="Assets\RandomMap.txt" />
      <None Include="Assets\StreamingAssets\Level15.txt" />
      <None Include="Assets\StreamingAssets\Level74.txt" />
      <None Include="Assets\StreamingAssets\Level26.txt" />
@@ -142,6 +143,7 @@
      <None Include="Assets\StreamingAssets\Level2.txt" />
      <None Include="Assets\StreamingAssets\Level98.txt" />
      <None Include="Assets\StreamingAssets\Level36.txt" />
+     <None Include="Assets\Level-1.txt" />
      <None Include="Assets\StreamingAssets\Level51.txt" />
      <None Include="Assets\StreamingAssets\Level60.txt" />
      <None Include="Assets\Plugins\UnityPurchasing\script\link.xml" />
@@ -150,6 +152,7 @@
      <None Include="Assets\testData.txt" />
      <None Include="Assets\longData.txt" />
      <None Include="Assets\Resources\TestLevel2.txt" />
+     <None Include="Assets\StreamingAssets\Level-2.txt" />
      <None Include="Assets\StreamingAssets\Level8.txt" />
      <None Include="Assets\StreamingAssets\Level13.txt" />
      <None Include="Assets\StreamingAssets\Level14.txt" />

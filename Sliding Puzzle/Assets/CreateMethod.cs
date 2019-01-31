@@ -1043,10 +1043,10 @@ public class CreateMethod : MonoBehaviour {
 			for(int j = 0; j<8; j++){
 				switch(themap[j,i]){
 					case "Ice":
-						mapstring = mapstring + "I ";
+						mapstring = mapstring + "0 ";
 						break;
 					case "Wall":
-						mapstring = mapstring + "W ";
+						mapstring = mapstring + "1 ";
 						break;
 					case "Start":
 						mapstring = mapstring + "S ";
@@ -1061,7 +1061,7 @@ public class CreateMethod : MonoBehaviour {
 						mapstring = mapstring + "F ";
 						break;
 					case "Hole":
-						mapstring = mapstring + "X ";
+						mapstring = mapstring + "H ";
 						break;
 				}
 			}
@@ -1086,21 +1086,25 @@ public class CreateMethod : MonoBehaviour {
 					mapstring = mapstring + "D";
 					break;
 				case "WallSeed":
-					mapstring = mapstring + "WS";
+					mapstring = mapstring + "p";
 					break;
 				case "LeftSeed":
-					mapstring = mapstring + "LS";
+					mapstring = mapstring + "l";
 					break;
 				case "UpSeed":
-					mapstring = mapstring + "US";
+					mapstring = mapstring + "u";
 					break;
 				case "DownSeed":
-					mapstring = mapstring + "DS";
+					mapstring = mapstring + "d";
+					break;
+				case "RightSeed":
+					mapstring = mapstring + "r";
 					break;
 			}
 			mapstring = mapstring +""+ SolveMethod.bestsolution.solutionpositions[i].x + "" + SolveMethod.bestsolution.solutionpositions[i].y + " ";
 
 		}
+		mapstring = mapstring + "" + "T" + SolveMethod.bestsolutions[SolveMethod.bestsolutions.Count-1];
 		goodmapsdata.Add(mapstring);
 		goodmapsdata.Add("");
 	}
@@ -1284,7 +1288,7 @@ public class CreateMethod : MonoBehaviour {
 		}
 		//monster1 = "WallSeed";
 		//randomint  = Random.Range(0, 5);
-		int[] validchoices = {0,1,2,3,4,6,7,8,9};
+		int[] validchoices = {0,1,2,3,4,6,7,8,9,10};
 		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		Debug.Log(randomint);
 
@@ -1318,6 +1322,9 @@ public class CreateMethod : MonoBehaviour {
 				break;
 			case 9:
 				monster2 = "DownSeed";
+				break;
+			case 10:
+				monster2 = "WallSeed";
 				break;
 		}
 		piecetiles.Add(monster1);
@@ -1356,6 +1363,9 @@ public class CreateMethod : MonoBehaviour {
 				break;
 			case 9:
 				monster3 = "DownSeed";
+				break;
+			case 10:
+				monster3 = "WallSeed";
 				break;
 		}
 		Debug.Log(piecetiles.Count);
