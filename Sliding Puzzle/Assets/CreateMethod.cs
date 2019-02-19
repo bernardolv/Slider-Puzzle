@@ -1268,7 +1268,9 @@ public class CreateMethod : MonoBehaviour {
 			piecetiles.Add ("Wall");
 		}*/
 		//piecetiles = new List<string>();
-		int randomint  = Random.Range(0, 5);
+		int randomint  = 0;//Random.Range(0, 10);
+		int[] validchoices = {1,2,3,4};//,6,7,8,9,10};
+		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		switch(randomint){
 			case 0:
 				monster1 = "Wall";
@@ -1285,11 +1287,29 @@ public class CreateMethod : MonoBehaviour {
 			case 4:
 				monster1 = "Down";
 				break;
+			case 5:
+				monster1 = "None";
+				break;
+			case 6:
+				monster1 = "LeftSeed";
+				break;
+			case 7:
+				monster1 = "RightSeed";
+				break;
+			case 8:
+				monster1 = "UpSeed";
+				break;
+			case 9:
+				monster1 = "DownSeed";
+				break;
+			case 10:
+				monster1 = "WallSeed";
+				break;
 		}
 		//monster1 = "WallSeed";
 		//randomint  = Random.Range(0, 5);
-		int[] validchoices = {0,1,2,3,4,6,7,8,9,10};
-		randomint = validchoices[Random.Range(0,validchoices.Length)];
+		int[] validchoices2 = {0,1,2,3,4,5,6,7,8,9,10};
+		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
 		Debug.Log(randomint);
 
 		switch(randomint){
@@ -1329,9 +1349,9 @@ public class CreateMethod : MonoBehaviour {
 		}
 		piecetiles.Add(monster1);
 		if(monster2 != "None"){
-			piecetiles.Add(monster2);    //reactivate to add piece2.
+			//piecetiles.Add(monster2);    //reactivate to add piece2.
 		}
-		randomint = validchoices[Random.Range(0,validchoices.Length)];
+		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
 		Debug.Log(randomint);
 		switch(randomint){
 			case 0:
@@ -1370,7 +1390,7 @@ public class CreateMethod : MonoBehaviour {
 		}
 		Debug.Log(piecetiles.Count);
 		if(monster3 != "None"){
-		piecetiles.Add(monster3);    //reactivate to add piece3/
+		//piecetiles.Add(monster3);    //reactivate to add piece3/
 		}
 		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		//Debug.Log(randomint);

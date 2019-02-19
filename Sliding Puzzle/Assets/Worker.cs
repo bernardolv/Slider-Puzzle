@@ -25,7 +25,8 @@ public class Worker{
 	public bool isshifted = false;
 	//public <Vector2> pieces
 
-	public Worker(int newturns, int newx, int newy,string[,] newtiles, string newdirection, List<string> newgenes, List<Vector2> newstopped){
+	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
+		string newdirection, List<string> newgenes, List<Vector2> newstopped){
 		turns = newturns;
 		x= newx;
 		y = newy;
@@ -35,7 +36,8 @@ public class Worker{
 		stoppedtiles = new List<Vector2>(newstopped);
 //		Debug.Log("Myposition" + x + "+" + y);
 	}
-	public Worker(int newturns, int newx, int newy,string[,] newtiles, string newdirection, List<string> newgenes, List<Vector2> newstopped, Vector2 testv){
+	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
+		string newdirection, List<string> newgenes, List<Vector2> newstopped, Vector2 testv){
 		test2 = testv;
 		turns = newturns;
 		x= newx;
@@ -80,20 +82,20 @@ public class Worker{
 			//if(0<=newx<8 && 0<newy<8){
 				string newtag = mytiles[newx,newy];
 				ActonTile(newtag, newx, newy);
-				if(isshifted){
-					if(previoustag == "Left"){
+				if(isshifted){//do this when its ran into a lrud
+					if(previoustag == "Left" || previoustag == "FragileLeft"){
 						shiftx = -1;
 						shifty = 0;
 					}
-					if(previoustag == "Right"){
+					if(previoustag == "Right" || previoustag == "FragileRight"){
 						shiftx = 1;
 						shifty = 0;
 					}
-					if(previoustag == "Down"){
+					if(previoustag == "Down" || previoustag == "FragileDown"){
 						shiftx = 0;
 						shifty =1;
 					}
-					if(previoustag == "Up"){
+					if(previoustag == "Up" || previoustag == "FragileUp"){
 						shiftx = 0;
 						shifty = -1;
 					}
@@ -174,13 +176,47 @@ public class Worker{
 			previoustag = "Fragile";
 			mytiles[x,y] = "Hole";
 			//newtag = "Hole";
+		}	
+		if(newtag == "FragileUp"){
+			x=tilex;
+			y=tiley;
+			previoustag = "FragileUp";
+			mytiles[x,y] = "Hole";
+			//newtag = "Hole";
+			isshifted = true;
 		}		
+		if(newtag == "FragileLeft"){
+			x=tilex;
+			y=tiley;
+			previoustag = "FragileLeft";
+			mytiles[x,y] = "Hole";
+			//newtag = "Hole";
+			isshifted = true;
+
+		}		
+		if(newtag == "FragileRight"){
+			x=tilex;
+			y=tiley;
+			previoustag = "FragileRight";
+			mytiles[x,y] = "Hole";
+			//newtag = "Hole";
+			isshifted = true;
+		}		
+		if(newtag == "FragileDown"){
+			x=tilex;
+			y=tiley;
+			previoustag = "FragileDown";
+			mytiles[x,y] = "Hole";
+			//newtag = "Hole";
+			isshifted = true;
+		}			
 		if(newtag == "Wall"){
 			if(firstmove){
 				Debug.Log("Cant go that way" + x + "+" + y + "+" + direction);
 				Donemoving = true;
 			}
-			if(previoustag == "Fragile"){
+			if(previoustag == "Fragile" || previoustag == "FragileLeft" || previoustag == "FragileRight" || 
+				previoustag == "FragileUp" || previoustag == "FragileDown"){
 //				Debug.Log("Died from fragile");
 				done = true;
 				Donemoving = true;

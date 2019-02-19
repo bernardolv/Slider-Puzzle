@@ -6,7 +6,7 @@ using System.Linq;
 public class SolveMethod : MonoBehaviour {
 	public static string[,] ogtiles = new string[8,8]; // Initial Map to test (Without Piece tiles)
 
-	//public static string[,] newtiles = new string[8,8];
+	public static string[,] newtiles = new string[8,8];
 
 	public static string[,] solvingtiles = new string[8,8];
 
@@ -254,6 +254,10 @@ public class SolveMethod : MonoBehaviour {
 			}
 		}
 	}*/
+	public void placeIcarus(Vector2 coords, string type){
+
+	}
+
 	public void CycleAll(){
 		bestsol = 0;
 		//solutions.Clear();
@@ -265,14 +269,19 @@ public class SolveMethod : MonoBehaviour {
 			case 1:
 				Debug.Log("Solving for one piece");
 				for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
-						solutionpieceposition = new List <Vector2>();
+						solutionpieceposition = new List <Vector2>();//workers populate these.
 						solutionpiecenames = new List<string>();
-						string[,] newtiles = (string[,]) CreateMethod.generatedmap.Clone();
+						newtiles = (string[,]) CreateMethod.generatedmap.Clone();
 						int x = (int)possibletiles[i].x;
 						int y = (int)possibletiles[i].y;
 						currenttest = new Vector2(x,y);
 						solutionpieceposition.Add(new Vector2(x,y)); 
 						solutionpiecenames.Add(CreateMethod.piecetiles[0]);
+						//if(){//check if lrud
+							//newtiles[x,y] = "Wall";
+							//placeIcarus(currenttest, Createmethod.piecetiles[0]);
+
+						//}
 						newtiles[x,y] = CreateMethod.piecetiles[0];
 						Solve(newtiles, new Vector2(0,0));
 					}
@@ -294,7 +303,7 @@ public class SolveMethod : MonoBehaviour {
 					for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 						solutionpiecenames = new List<string>();
 						solutionpieceposition = new List <Vector2>();
-						string[,] newtiles = (string[,]) CreateMethod.generatedmap.Clone();
+						newtiles = (string[,]) CreateMethod.generatedmap.Clone();
 						int x = (int)possibletiles[i].x;
 						int y = (int)possibletiles[i].y;
 						currenttest = new Vector2(x,y);	
@@ -320,7 +329,7 @@ public class SolveMethod : MonoBehaviour {
 				for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 					solutionpiecenames = new List<string>();
 					solutionpieceposition = new List <Vector2>();
-					string[,] newtiles = (string[,]) ogtiles.Clone();
+					newtiles = (string[,]) ogtiles.Clone();
 					int x = (int)possibletiles[i].x;
 					int y = (int)possibletiles[i].y;
 					currenttest.Set(x,y);
@@ -401,7 +410,7 @@ public class SolveMethod : MonoBehaviour {
 					for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 						solutionpiecenames = new List<string>();
 						solutionpieceposition = new List <Vector2>();
-						string[,] newtiles = (string[,]) CreateMethod.generatedmap.Clone();
+						newtiles = (string[,]) CreateMethod.generatedmap.Clone();
 						int x = (int)possibletiles[i].x;
 						int y = (int)possibletiles[i].y;
 						currenttest = new Vector2(x,y);	
@@ -428,7 +437,7 @@ public class SolveMethod : MonoBehaviour {
 					for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 						solutionpiecenames = new List<string>();
 						solutionpieceposition = new List <Vector2>();
-						string[,] newtiles = (string[,]) ogtiles.Clone();
+						newtiles = (string[,]) ogtiles.Clone();
 						int x = (int)possibletiles[i].x;
 						int y = (int)possibletiles[i].y;
 						currenttest.Set(x,y);
@@ -503,7 +512,7 @@ public class SolveMethod : MonoBehaviour {
 				for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 					solutionpiecenames = new List<string>();
 					solutionpieceposition = new List <Vector2>();
-					string[,] newtiles = (string[,]) ogtiles.Clone();
+					newtiles = (string[,]) ogtiles.Clone();
 					int x = (int)possibletiles[i].x;
 					int y = (int)possibletiles[i].y;
 					currenttest.Set(x,y);
@@ -646,7 +655,7 @@ public class SolveMethod : MonoBehaviour {
 					for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 						solutionpiecenames = new List<string>();
 						solutionpieceposition = new List <Vector2>();
-						string[,] newtiles = (string[,]) CreateMethod.generatedmap.Clone();
+						newtiles = (string[,]) CreateMethod.generatedmap.Clone();
 						int x = (int)possibletiles[i].x;
 						int y = (int)possibletiles[i].y;
 						currenttest = new Vector2(x,y);	
@@ -673,7 +682,7 @@ public class SolveMethod : MonoBehaviour {
 					for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 						solutionpiecenames = new List<string>();
 						solutionpieceposition = new List <Vector2>();
-						string[,] newtiles = (string[,]) ogtiles.Clone();
+						newtiles = (string[,]) ogtiles.Clone();
 						int x = (int)possibletiles[i].x;
 						int y = (int)possibletiles[i].y;
 						currenttest.Set(x,y);
@@ -752,7 +761,7 @@ public class SolveMethod : MonoBehaviour {
 					for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 						solutionpiecenames = new List<string>();
 						solutionpieceposition = new List <Vector2>();
-						string[,] newtiles = (string[,]) ogtiles.Clone();
+						newtiles = (string[,]) ogtiles.Clone();
 						int x = (int)possibletiles[i].x;
 						int y = (int)possibletiles[i].y;
 						currenttest.Set(x,y);
@@ -918,7 +927,7 @@ public class SolveMethod : MonoBehaviour {
 				for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 					solutionpiecenames = new List<string>();
 					solutionpieceposition = new List <Vector2>();
-					string[,] newtiles = (string[,]) ogtiles.Clone();
+					newtiles = (string[,]) ogtiles.Clone();
 					int x = (int)possibletiles[i].x;
 					int y = (int)possibletiles[i].y;
 					currenttest.Set(x,y);
