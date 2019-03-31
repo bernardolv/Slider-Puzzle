@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Linq;
-//using System;
 
 public class Replay{
 	public List<double> states;
@@ -18,9 +17,12 @@ public class Replay{
 }
 
 public class CreateMethod : MonoBehaviour {
-	public static string [,] generatedmap = new string [8,8];	//Used to build
-	public string[,] themap = new string[8, 8]; 				//Used to store built map
-	public string[,] testmap = new string[8,8];
+	public static Vector2 goalpos;
+	public static string [,] generatedmap;	//Used to build
+	public string[,] themap; 				//Used to store built map
+	public string[,] testmap;
+	public static string[,] bitmap;
+	public static double[,] mapvalues;
 	public static int icenextcounter;						
 	public static List<Vector2> doorable = new List<Vector2>();
 	public static List<Vector2> cleanice = new List<Vector2> ();
@@ -34,7 +36,6 @@ public class CreateMethod : MonoBehaviour {
 	public SolveMethod Solver;
 	public static bool hassolution;
 	public static bool onestepsolution;
-	public static double[,] mapvalues = new double[8,8];
 	public int numberofwantedmaps;
 	public List<double>inputs = new List<double>();
 	public List <double> qs = new List<double>();
@@ -46,6 +47,7 @@ public class CreateMethod : MonoBehaviour {
 	public int stringcounter;
 	public int icedimensions;
 	public int totaldimensions;
+	public static int mapdimension;
 	public static int wallsleft;
 	public static int wallsright;
 	public static int wallsup;
@@ -86,14 +88,14 @@ public class CreateMethod : MonoBehaviour {
 	string currentWeights;
 	public static bool loadFromFile = false;
 	public static double lowestSSE; 
-	public static string[,] bitmap = new string[8,8];
 	enum ArrayType {Float, Int32, Bool, String, Vector2, Vector3, Quaternion, Color}
 	public static string mapstring;
 	public string monster1;
 	public string monster2;
 	public string monster3;
 	public string monster4;
-	public int startingturns;
+	public static int startingturns;
+	public int desiredturns;
 	public int action;
 
 	float reward = 0.0f;
@@ -111,6 +113,13 @@ public class CreateMethod : MonoBehaviour {
 	//public static string monstertile2;
 	// Use this for initialization
 	void Start () {
+		startingturns = desiredturns;
+		int initint = 10;
+		bitmap = new string[initint,initint];
+		generatedmap = new string [initint,initint];	//Used to build
+		themap = new string[initint, initint]; 				//Used to store built map
+		testmap = new string[initint,initint];
+		mapvalues = new double[initint,initint];
 		string path = Application.dataPath + "/mapsData.txt";
 		mdf = File.CreateText(path);
 		string goodpath = Application.dataPath + "/goodmapsData.txt";
@@ -175,8 +184,8 @@ public class CreateMethod : MonoBehaviour {
 	}
 	public void PopulateCurrentIce(){
 		currentIce.Clear();
-		for(int i = 0 ; i<8; i++){
-			for(int j=0 ; j<8; j++){
+		for(int i = 0 ; i<totaldimensions; i++){
+			for(int j=0 ; j<totaldimensions; j++){
 				if(themap[j,i]=="Ice"){
 					currentIce.Add(new Vector2(j,i));
 					//Debug.Log("Add");
@@ -187,8 +196,8 @@ public class CreateMethod : MonoBehaviour {
 
 	public void PopulateIcePool(){
 		possibleIce.Clear();
-		for(int i = 0 ; i<8; i++){
-			for(int j=0 ; j<8; j++){
+		for(int i = 0 ; i<totaldimensions; i++){
+			for(int j=0 ; j<totaldimensions; j++){
 				if(themap[j,i]=="Ice"){
 					possibleIce.Add(new Vector2(j,i));
 					//Debug.Log("Add");
@@ -332,48 +341,73 @@ public class CreateMethod : MonoBehaviour {
 		}
 		return counter;
 	}
-
+	public void TestWallHug(){
+		/*Debug.Log(themap[(int)SolveMethod.bestsolution.solutionpositions[0].x-1, (int)SolveMethod.bestsolution.solutionpositions[0].y]);
+		Debug.Log(themap[(int)SolveMethod.bestsolution.solutionpositions[0].x+1, (int)SolveMethod.bestsolution.solutionpositions[0].y]);
+		Debug.Log(themap[(int)SolveMethod.bestsolution.solutionpositions[0].x, (int)SolveMethod.bestsolution.solutionpositions[0].y-1]);
+		Debug.Log(themap[(int)SolveMethod.bestsolution.solutionpositions[0].x, (int)SolveMethod.bestsolution.solutionpositions[0].y+1]);
+	*/
+	}
 	public IEnumerator GenerateUntilConditions(){
 //		monstertile1 = monster1;
 //		monstertile2 = monster2;
+		startingturns = desiredturns;
 		for(int i=0; i<numberofwantedmaps;i++){
 			bool conditionsmet = false;
 
 			while(!conditionsmet){
+				SolveMethod.bestturns =0;
 				Createfourbyfour();
 				Debug.Log(SolveMethod.bestsolutions.Count);
 				if(SolveMethod.bestsolutions.Count == 3){
-					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2]>startingturns-1){
-						Debug.Log("Conditions were met ");
+					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2]>startingturns-1){// && SolveMethod.bestsolution.lrud >0){
+//						Debug.Log("Conditions were met ");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
-							Debug.Log("Conditions were met without hug ");
-							conditionsmet = true;
-							Debug.Log("Map numero " + (i+1));
-							yield return null;
+							if(AppropriateLrud()){
+//								Debug.Log("Conditions were met without hug ");
+								conditionsmet = true;
+								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[2]);
+								//Print2DArray(SolveMethod.newertiles);
+								yield return null;								
+							}
+
 
 						}
 					}
 				}
 				if(SolveMethod.bestsolutions.Count == 2){
-					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] > startingturns-1){
-						Debug.Log("Conditions were met");
-						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
-							Debug.Log("Conditions were met without hug ");
-							conditionsmet = true;
-							Debug.Log("Map numero " + (i+1));
-							yield return null;
+					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] > startingturns-1){ //&& SolveMethod.bestsolution.lrud >0){
+						//Debug.Log("Conditions were met");
+						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION\
+							if(!CheckBoring() && AppropriateLrud()){
+								//Debug.Log("Conditions were met without hug ");
+								conditionsmet = true;
+								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[1]);
+								//Debug.Log("Map numero " + (i+1) + "lrud:" + SolveMethod.bestsolution.lrud);
+								//Print2DArray(SolveMethod.newtiles);
+
+								//for(int j =0; j<8;j++){
+									//Debug.Log(SolveMethod.newertiles[j);
+								//}
+								//Debug.Log(Vector2.Distance(SolveMethod.solutions[0].solutionpositions[0], CreateMethod.goalpos));
+								yield return null;								
+							}
+
 
 						}
 					}
 				}
 				if(SolveMethod.bestsolutions.Count == 4){
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2] == 0 && SolveMethod.bestsolutions[3] > startingturns-1){
-						Debug.Log("Conditions were met for 3 pieces");
+						//Debug.Log("Conditions were met for 3 pieces");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
-							Debug.Log("Conditions were met without hug ");
-							conditionsmet = true;
-							Debug.Log("Map numero " + (i+1));
-							yield return null;
+							//Debug.Log("Conditions were met without hug ");
+							if(AppropriateLrud()){
+								conditionsmet = true;
+								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[3]);
+								yield return null;								
+							}
+
 
 						}
 					}
@@ -382,9 +416,9 @@ public class CreateMethod : MonoBehaviour {
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2] == 0 && SolveMethod.bestsolutions[3] == 0 && SolveMethod.bestsolutions[4] > 0){
 						Debug.Log("Conditions were met");
 						//if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
-							Debug.Log("Conditions were met without hug ");
+							//Debug.Log("Conditions were met without hug ");
 							conditionsmet = true;
-							Debug.Log("Map numero " + (i+1));
+							Debug.Log("Map numero " + (i+1)+ " Turns " + SolveMethod.bestsolutions[4]);
 							yield return null;
 
 						//}
@@ -400,8 +434,107 @@ public class CreateMethod : MonoBehaviour {
 
 		return gottago;
 	}
-	public void CheckWallHug(){
 
+	public bool CheckBoring(){
+		for (int i=0; i < SolveMethod.bestsolution.solutionpositions.Count; i++){
+			if(SolveMethod.bestsolution.piecetags[i] == "Wall" || SolveMethod.bestsolution.piecetags[i] == "WallSeed"){
+				if(Vector2.Distance(SolveMethod.bestsolution.solutionpositions[i], CreateMethod.goalpos) > 1.5){
+
+				}
+				else{
+					return true;
+				}
+			}
+			if(SolveMethod.bestsolution.piecetags[i] == "Left" || SolveMethod.bestsolution.piecetags[i] == "Right" || 
+				SolveMethod.bestsolution.piecetags[i] == "Up" || SolveMethod.bestsolution.piecetags[i] == "Down" ||
+				SolveMethod.bestsolution.piecetags[i] == "LeftSeed" || SolveMethod.bestsolution.piecetags[i] == "RightSeed" || 
+				SolveMethod.bestsolution.piecetags[i] == "UpSeed" || SolveMethod.bestsolution.piecetags[i] == "DownSeed"){
+				
+				//Debug.Log(Vector2.Distance(SolveMethod.bestsolution.solutionpositions[i], CreateMethod.goalpos));
+				if(Vector2.Distance(SolveMethod.bestsolution.solutionpositions[i], CreateMethod.goalpos) != 2){
+
+				}
+				else{
+					return true;
+				}
+			}
+
+		}
+		return false;
+	}
+
+    public static void Print2DArray(string[,] matrix)
+    {
+    	string[] map = new string[matrix.GetLength(0)];
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+        	string current = "";
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+            	current = current + matrix[j,i];
+            }
+            map[i] = current;
+//            Debug.Log(map[i]);
+
+        }
+    }
+
+	public bool AppropriateLrud(){
+		int lrudpieces = 0;
+		for (int i=0; i < SolveMethod.bestsolution.solutionpositions.Count; i++){
+ 			//Debug.Log("piece number " + i + " is " + SolveMethod.bestsolution.piecetags[i]);
+			if(SolveMethod.bestsolution.piecetags[i] == "Left" || SolveMethod.bestsolution.piecetags[i] == "Right" || 
+				SolveMethod.bestsolution.piecetags[i] == "Up" || SolveMethod.bestsolution.piecetags[i] == "Down" ||
+				SolveMethod.bestsolution.piecetags[i] == "LeftSeed" || SolveMethod.bestsolution.piecetags[i] == "RightSeed" || 
+				SolveMethod.bestsolution.piecetags[i] == "UpSeed" || SolveMethod.bestsolution.piecetags[i] == "DownSeed"){	
+				lrudpieces++;
+			}		
+		}
+		Debug.Log(lrudpieces + " lrud" + SolveMethod.bestsolution.lrud);
+		if(lrudpieces <= SolveMethod.bestsolution.lrud) {
+			return true;			
+		}
+		else{
+			return false;
+		}
+
+	}
+	public bool CheckWallHug(){
+
+		for (int i=0; i < SolveMethod.bestsolution.solutionpositions.Count; i++){
+ 			//Debug.Log("piece number " + i + " is " + SolveMethod.bestsolution.piecetags[i]);
+			if(SolveMethod.bestsolution.piecetags[i] == "Left" ||
+				SolveMethod.bestsolution.piecetags[i] == "LeftSeed" ){	
+				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x-1, (int)SolveMethod.bestsolution.solutionpositions[i].y] == "Wall"){
+					
+					return true;
+				}
+				return false;
+			}
+			if(SolveMethod.bestsolution.piecetags[i] == "Right" ||
+				SolveMethod.bestsolution.piecetags[i] == "RightSeed" ){	
+				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x+1, (int)SolveMethod.bestsolution.solutionpositions[i].y] == "Wall"){
+					return true;
+				}	
+				return false;			
+			}		
+			if(SolveMethod.bestsolution.piecetags[i] == "Up" ||
+				SolveMethod.bestsolution.piecetags[i] == "UpSeed" ){	
+				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x, (int)SolveMethod.bestsolution.solutionpositions[i].y-1] == "Wall"){
+					return true;
+				}	
+				return false;
+			}		
+			if(SolveMethod.bestsolution.piecetags[i] == "Down" ||
+				SolveMethod.bestsolution.piecetags[i] == "DownSeed" ){	
+				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x, (int)SolveMethod.bestsolution.solutionpositions[i].y+1] == "Wall"){
+					return true;
+				}	
+				return false;
+			}	
+			return false;	
+		}
+		return false;
 	}
 	public void BinaryMap(string[,] wantedmap){ 
 		curstring = "";
@@ -528,10 +661,10 @@ public class CreateMethod : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Createfourbyfour();
-		if(Input.GetKeyDown(KeyCode.K)){
+		/*if(Input.GetKeyDown(KeyCode.K)){
 			FeedMap(themap);
 			PrintNumMap(mapvalues);
-		}
+		}*/
 	}
 
 	/*void AddMaps(){
@@ -685,6 +818,24 @@ public class CreateMethod : MonoBehaviour {
 	}
 	public void AssignMaxSpawners(int thedimension){
 		switch(thedimension){
+			case 9:
+				wallmax = Random.Range(8,10);
+				lavamax = Random.Range(6,10);
+				woodmax = Random.Range(10,14);
+				fragilemax = Random.Range(10,14);
+				break;
+			case 8:
+				wallmax = Random.Range(7,10);
+				lavamax = Random.Range(6,9);
+				woodmax = Random.Range(9,13);
+				fragilemax = Random.Range(9,13);
+				break;
+			case 7:
+				wallmax = Random.Range(7,10);
+				lavamax = Random.Range(6,8);
+				woodmax = Random.Range(8,12);
+				fragilemax = Random.Range(8,12);
+				break;
 			case 6:
 				wallmax = Random.Range(5,8);
 				lavamax = Random.Range(4,6);
@@ -861,6 +1012,7 @@ public class CreateMethod : MonoBehaviour {
 		testmap = generatedmap;		
 	}
 	public void Createfourbyfour(){
+		mapdimension = totaldimensions;
 		AssignWallCounter();
 		AssignMaxSpawners(icedimensions);
 		ResetAll();
@@ -888,6 +1040,7 @@ public class CreateMethod : MonoBehaviour {
 		//if((!waslasttrue && ANNBrain.sol ==1)||(waslasttrue && ANNBrain.sol ==0)){
 
 		CreateDataLineV2();
+
 //		Debug.Log(BinaryMap(themap));
 
 //		Debug.Log(BinaryMap(themap));		
@@ -931,10 +1084,10 @@ public class CreateMethod : MonoBehaviour {
 		}
 
 	}
-	public static void CreateDataLine(){
+	public void CreateDataLine(){
 		string md = "";
-		for(int y = 0; y<8; y++){
-			for(int x = 0; x<8; x++){
+		for(int y = 0; y<totaldimensions; y++){
+			for(int x = 0; x<totaldimensions; x++){
 				md = md + mapvalues[x,y].ToString() + ",";
 			}
 		}
@@ -947,7 +1100,7 @@ public class CreateMethod : MonoBehaviour {
 		mapsdata.Add(md);
 
 	}
-	public static void CreateDataLineV2(){
+	public void CreateDataLineV2(){
 		/*md = md + ",";
 		for(int y = 0; y<SolveMethod.classifier.Length;y++){
 			md = md + SolveMethod.classifier[y].ToString() + ",";
@@ -978,12 +1131,12 @@ public class CreateMethod : MonoBehaviour {
 			}
 			switch(var){
 				case 0:
-					for(int j = 0; j<8; j++){
+					for(int j = 0; j<totaldimensions; j++){
 						generatedmap[j,i] = "Wall";
 					}
 					break;
 				case 1:
-					for(int j = 0; j<8; j++){
+					for(int j = 0; j<totaldimensions; j++){
 						if(j<wallsleft || j>(totaldimensions-1-wallsright)){
 							generatedmap[j,i] = "Wall";
 						}
@@ -996,9 +1149,9 @@ public class CreateMethod : MonoBehaviour {
 			}
 		}
 	}
-	public static void PopulateDoorPool(){
-		for(int i = 0; i<8; i++){
-			for(int j = 0; j<8; j++){
+	public void PopulateDoorPool(){
+		for(int i = 0; i<totaldimensions; i++){
+			for(int j = 0; j<totaldimensions; j++){
 				if(generatedmap[j,i] == "Wall"){
 					CheckSides(j,i);
 				}
@@ -1018,7 +1171,7 @@ public class CreateMethod : MonoBehaviour {
 //			Debug.Log("doorable" + myx + " " + myy); 
 		}
 	}
-	public static void AssignGoalAndStart(){ //grabs the doopool and assigns start and goal
+	public static void AssignGoalAndStart(){ //grabs the doopool and 1 start and goal
 		int max = doorable.Count;
 		int num = Random.Range(0,max);
 //		Debug.Log(num);
@@ -1037,10 +1190,10 @@ public class CreateMethod : MonoBehaviour {
 		generatedmap[Mathf.RoundToInt(Start.x), Mathf.RoundToInt(Start.y)] = "Start";
 	}
 	public void ConvertMapToText(){
-		goodmapsdata.Add("Map");
-		for(int i = 0; i<8; i++){
+		goodmapsdata.Add("Map" + totaldimensions.ToString()) ;
+		for(int i = 0; i<totaldimensions; i++){
 			mapstring = "";
-			for(int j = 0; j<8; j++){
+			for(int j = 0; j<totaldimensions; j++){
 				switch(themap[j,i]){
 					case "Ice":
 						mapstring = mapstring + "0 ";
@@ -1061,6 +1214,7 @@ public class CreateMethod : MonoBehaviour {
 						mapstring = mapstring + "F ";
 						break;
 					case "Hole":
+
 						mapstring = mapstring + "H ";
 						break;
 				}
@@ -1122,22 +1276,23 @@ public class CreateMethod : MonoBehaviour {
 
 		}
 	}
-	public static void PrintMap(){
-		for(int i = 0; i<8; i++){
-			for(int j = 0; j<8; j++){
+	public void PrintMap(){
+		for(int i = 0; i<totaldimensions; i++){
+			for(int j = 0; j<totaldimensions; j++){
 				Debug.Log(generatedmap[j,i]);
 			}
 		}
 	}
-	public static void DrawMap(){
-		for(int i = 0; i<8; i++){
-			for(int j = 0; j<8; j++){
+	public void DrawMap(){
+		for(int i = 0; i<totaldimensions; i++){
+			for(int j = 0; j<totaldimensions; j++){
 				PaintTag(j,i);
 			}
 		}
 	}
 	public static void PaintTag(int x, int y){
 		string tag = generatedmap[x,y];
+//		Debug.Log(tag);
 		int myx = x;
 		int myy = -y;
 		Vector3 tiletotest = new Vector3(myx, myy, 0);
@@ -1224,11 +1379,11 @@ public class CreateMethod : MonoBehaviour {
 		}
 //		Debug.Log(cleanice.Count + "Icetiles");
 	}
-	public static void PopulateCleanIce(){
+	public void PopulateCleanIce(){
 		//Playerprefsx
 		cleanice.Clear ();
-		for(int i = 0; i<8; i++){
-			for(int j = 0; j<8; j++){
+		for(int i = 0; i<totaldimensions; i++){
+			for(int j = 0; j<totaldimensions; j++){
 				if(generatedmap[j,i] == "Ice"){
 					cleanice.Add(new Vector2(j,i));
 				}
@@ -1269,7 +1424,7 @@ public class CreateMethod : MonoBehaviour {
 		}*/
 		//piecetiles = new List<string>();
 		int randomint  = 0;//Random.Range(0, 10);
-		int[] validchoices = {1,2,3,4};//,6,7,8,9,10};
+		int[] validchoices = {0,1,2,3,4,6,7,8,9,10};
 		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		switch(randomint){
 			case 0:
@@ -1308,7 +1463,7 @@ public class CreateMethod : MonoBehaviour {
 		}
 		//monster1 = "WallSeed";
 		//randomint  = Random.Range(0, 5);
-		int[] validchoices2 = {0,1,2,3,4,5,6,7,8,9,10};
+		int[] validchoices2 = {6,7,8,9};//,5,6,7,8,9,10};
 		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
 		Debug.Log(randomint);
 
@@ -1346,10 +1501,13 @@ public class CreateMethod : MonoBehaviour {
 			case 10:
 				monster2 = "WallSeed";
 				break;
+
 		}
 		piecetiles.Add(monster1);
 		if(monster2 != "None"){
-			//piecetiles.Add(monster2);    //reactivate to add piece2.
+			piecetiles.Add(monster2);    //reactivate to add piece2.
+			//piecetiles.Add("Wall");    //reactivate to add piece2.
+
 		}
 		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
 		Debug.Log(randomint);
@@ -1517,9 +1675,9 @@ public class CreateMethod : MonoBehaviour {
 		}
 		return new string[0];
 	}
-	public static void FeedMap(string[,] stringer){
-		for(int i = 0; i<8; i++){
-			for(int j = 0; j<8; j++){
+	public void FeedMap(string[,] stringer){
+		for(int i = 0; i<totaldimensions; i++){
+			for(int j = 0; j<totaldimensions; j++){
 				switch (stringer[j,i]){
 				case "Ice":
 					mapvalues[j,i] = 0;
@@ -1540,9 +1698,9 @@ public class CreateMethod : MonoBehaviour {
 			}
 		}
 	}
-	public static void FeedMapV2(string[,] stringer){
-		for(int i = 0; i<8; i++){
-			for(int j = 0; j<8; j++){
+	public void FeedMapV2(string[,] stringer){
+		for(int i = 0; i<totaldimensions; i++){
+			for(int j = 0; j<totaldimensions; j++){
 				switch (stringer[j,i]){
 				case "Ice":
 					mapvalues[j,i] = 0;
@@ -1566,9 +1724,9 @@ public class CreateMethod : MonoBehaviour {
 	public static void BinaryCategorize(){
 
 	}
-	public static void PrintNumMap(double[,] maper){
-		for(int i = 0; i<8; i++){
-			for(int j = 0; j<8; j++){
+	public void PrintNumMap(double[,] maper){
+		for(int i = 0; i<totaldimensions; i++){
+			for(int j = 0; j<totaldimensions; j++){
 				Debug.Log(maper[j,i]);
 			}
 		}

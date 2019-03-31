@@ -27,3 +27,15 @@
 /Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Unity.Cecil.Pdb.dll
 /Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Unity.Cecil.Mdb.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/ChannelPurchase.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/UnityStore.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Editor.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Purchasing.Common.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Stores.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Apple.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/FacebookStore.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Security.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Tizen.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/winrt.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/bernardolimonvillarreal/Documents/GitHub/Slider-Puzzle/Sliding Puzzle/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb

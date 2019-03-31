@@ -660,8 +660,8 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 1018
-    y: 94
+    x: 2
+    y: 19
     width: 1021
     height: 905
   m_MaximizeOnPlay: 0
