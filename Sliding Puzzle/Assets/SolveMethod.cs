@@ -10,6 +10,8 @@ public class SolveMethod : MonoBehaviour {
 
 	public static string[,] newertiles = new string[10,10];
 
+	public static string[,] newerertiles = new string[10,10];
+
 	public static string[,] solvingtiles = new string[10,10];
 
 	public static List<Solution> solutions = new List<Solution>(); //
@@ -55,6 +57,8 @@ public class SolveMethod : MonoBehaviour {
 	public static Vector2 currenttest = new Vector2(0,0);
 
 	public static Vector2 currenttest2 = new Vector2(0,0);
+
+	public static Vector2 currenttest3 = new Vector2(0,0);
 
 	public static bool cycling;
 
@@ -333,6 +337,40 @@ public class SolveMethod : MonoBehaviour {
 				}
 			}			
 		}
+		if(degree == 1){
+			if(type == "Right"){
+				if(newerertiles[(int)coords.x+1,(int)coords.y] == "Ice" || newerertiles[(int)coords.x+1,(int)coords.y] == "Wood"){
+					newerertiles[(int)coords.x+1,(int)coords.y] = "Right";
+				}
+				if(newerertiles[(int)coords.x+1,(int)coords.y] == "Fragile" ){
+					newerertiles[(int)coords.x+1,(int)coords.y] = "FragileRight";
+				}
+			}
+			if(type == "Left"){
+				if(newerertiles[(int)coords.x-1,(int)coords.y] == "Ice" || newerertiles[(int)coords.x-1,(int)coords.y] == "Wood"){
+					newerertiles[(int)coords.x-1,(int)coords.y] = "Left";
+				}
+				if(newerertiles[(int)coords.x-1,(int)coords.y] == "Fragile" ){
+					newerertiles[(int)coords.x-1,(int)coords.y] = "FragileLeft";
+				}
+			}
+			if(type == "Up"){
+				if(newerertiles[(int)coords.x,(int)coords.y-1] == "Ice" || newerertiles[(int)coords.x,(int)coords.y-1] == "Wood"){
+					newerertiles[(int)coords.x,(int)coords.y-1] = "Up";
+				}
+				if(newerertiles[(int)coords.x,(int)coords.y-1] == "Fragile" ){
+					newerertiles[(int)coords.x,(int)coords.y-1] = "FragileUp";
+				}
+			}
+			if(type == "Down"){
+				if(newerertiles[(int)coords.x,(int)coords.y+1] == "Ice" || newerertiles[(int)coords.x,(int)coords.y+1] == "Wood" ){
+					newerertiles[(int)coords.x,(int)coords.y+1] = "Down";
+				}
+				if(newerertiles[(int)coords.x,(int)coords.y+1] == "Fragile" ){
+					newerertiles[(int)coords.x,(int)coords.y+1] = "FragileDown";
+				}
+			}			
+		}
 		
 	}
 	public void InitiateNewSolution(){
@@ -362,7 +400,7 @@ public class SolveMethod : MonoBehaviour {
 
 			}
 			else{
-			
+//				Debug.Log("degree 0 has " + CreateMethod.piecetiles[piecenumber]);
 				newtiles[x,y] = CreateMethod.piecetiles[piecenumber];
 
 			}				
@@ -381,11 +419,29 @@ public class SolveMethod : MonoBehaviour {
 			else{
 			
 				newertiles[x,y] = CreateMethod.piecetiles[piecenumber];
+				//Debug.Log("degree 1 has " + CreateMethod.piecetiles[piecenumber]);
 
 			}	
 
 		}
+		if(degree == 2){	
 
+			if(CreateMethod.piecetiles[piecenumber] == "Left" || CreateMethod.piecetiles[piecenumber] == "Right" 
+			|| CreateMethod.piecetiles[piecenumber] == "Up" || CreateMethod.piecetiles[piecenumber] == "Down"){//check if lrud
+				
+				newerertiles[x,y] = "Wall";
+
+				placeIcarus(2,currenttest3, CreateMethod.piecetiles[piecenumber]);
+				// remove the lefted one from possibletiles (in next ones)
+
+			}
+			else{
+			
+				newerertiles[x,y] = CreateMethod.piecetiles[piecenumber];
+//				Debug.Log("degree 2 has " + CreateMethod.piecetiles[piecenumber]);
+
+			}				
+		}
 
 	}	
 	public bool HasLoop(int x, int y, int piece1, int piece2, int iceplace){
@@ -426,6 +482,7 @@ public class SolveMethod : MonoBehaviour {
 	public void CycleAll(){
 		crapsolution = false;
 		bestsol = 0;
+		bestturns = 0;
 		//solutions.Clear();
 //		Debug.Log(CreateMethod.piecetiles.Count + "Pieces, probably pedros");
 		switch(CreateMethod.piecetiles.Count){
@@ -449,7 +506,7 @@ public class SolveMethod : MonoBehaviour {
 					}
 
 				for(int i =0; i<solutions.Count; i++){//This is what happens if theres a solution at origin.
-					Debug.Log(solutions[i].solutionpositions[0] +"" + solutions[i].myturns + solutions[i].solutionpositions.Count);
+//					Debug.Log(solutions[i].solutionpositions[0] +"" + solutions[i].myturns + solutions[i].solutionpositions.Count);
 					int bestturns = bestsol;
 					CountOrStay(solutions[i].myturns, solutions[i]);
 					if((bestsol < bestturns) || (bestturns == 0 && bestsol != 0) || 
@@ -495,7 +552,7 @@ public class SolveMethod : MonoBehaviour {
 					int x = (int)possibletiles[i].x;
 					int y = (int)possibletiles[i].y;
 					InitiateNewSolution();
-					UpdateMapWithPiece(x,y,0);
+					UpdateMapWithPiece(x,y,0); //adds currenttest
 					PlacePiece(0,x,y,0);
 					//CreateMethod.Print2DArray(newtiles);
 
@@ -556,7 +613,7 @@ public class SolveMethod : MonoBehaviour {
 						int y = (int)possibletiles[i].y;
 						InitiateNewSolution();
 						UpdateMapWithPiece(x,y,a);
-						PlacePiece(0,x,y,0);
+						PlacePiece(0,x,y,a);
 						Solve(newtiles);
 						if(crapsolution == true){
 							return;
@@ -583,39 +640,16 @@ public class SolveMethod : MonoBehaviour {
 						InitiateNewSolution();
 
 						UpdateMapWithPiece(x,y,z);
-						PlacePiece(0,x,y,0);
+						PlacePiece(0,x,y,z);
 						solutionpiecenames.Add(CreateMethod.piecetiles[1]);
 						//List<Vector2> firstLayer = new List<Vector2>(newtile)
 						for(int a=1; a<CreateMethod.piecetiles.Count; a++){
 							if(a!=z){
 								for(int j = 0; j<possibletiles.Count; j++){
 									if(j!=i){
-										// if((CreateMethod.piecetiles[z] == "Up" || CreateMethod.piecetiles[z] == "UpSeed")&& 
-										// 	(CreateMethod.piecetiles[a] == "Down" || CreateMethod.piecetiles[a] == "DownSeed")){
-										// 	if(x==(int)possibletiles[j].x && (y > (int)possibletiles[j].y)){
-										// 		stop =true;
-										// 	}
-										// }
-										// if((CreateMethod.piecetiles[z] == "Down" || CreateMethod.piecetiles[z] == "DownSeed") && 
-										// 	(CreateMethod.piecetiles[a] == "Up" || CreateMethod.piecetiles[a] == "UpSeed")){
-										// 	if(x==(int)possibletiles[j].x && (y <(int)possibletiles[j].y)){
-										// 		stop =true;
-										// 	}
-										// }
-										// if((CreateMethod.piecetiles[z] == "Left" || CreateMethod.piecetiles[z] == "LeftSeed") && 
-										// 	(CreateMethod.piecetiles[a] == "Right" || CreateMethod.piecetiles[a] == "RightSeed")){
-										// 	if(y==(int)possibletiles[j].y && (x > (int)possibletiles[j].x)){
-										// 		stop =true;
-										// 	}
-										// }
-										// if((CreateMethod.piecetiles[z] == "Right" || CreateMethod.piecetiles[z] == "RightSeed")&& 
-										// 	(CreateMethod.piecetiles[a] == "Left" || CreateMethod.piecetiles[a] == "LeftSeed")){
-										// 	if(y==(int)possibletiles[j].y && (x <(int)possibletiles[j].x)){
-										// 		stop =true;
-										// 	}
-										// }
 										if(!HasLoop(x,y,z,a,j)){
-											string[,] newertiles = (string[,]) newtiles.Clone();
+//											Debug.Log("NO LOOP");
+											newertiles = (string[,]) newtiles.Clone();
 											int x2 = (int)possibletiles[j].x;
 											int y2 = (int)possibletiles[j].y;
 											if(solutionpieceposition.Count<2){
@@ -624,9 +658,12 @@ public class SolveMethod : MonoBehaviour {
 											currenttest2.Set(x2,y2);
 											solutionpieceposition[1] = new Vector2(x2,y2);
 			//								Debug.Log(solutionpieceposition[1]);
-											newertiles[x2,y2] = CreateMethod.piecetiles[a];
+											PlacePiece(1,x2,y2,a);
+
+											//newertiles[x2,y2] = CreateMethod.piecetiles[a];
 											//Debug.Log("Solving for " +x+y+x2+y2);
 											Vector2 test2 = new Vector2(x2,y2);
+//											Debug.Log(newertiles[1,1]);
 											Solve(newertiles);
 										}
 									}
@@ -635,7 +672,7 @@ public class SolveMethod : MonoBehaviour {
 						}
 					}
 				}
-				Debug.Log(solutions.Count + "is the solution bank"); 
+//				Debug.Log(solutions.Count + "is the solution bank"); 
 				for(int i =0; i<solutions.Count; i++){//This is what happens if theres a solution at origin.
 
 					CountOrStay(solutions[i].myturns, solutions[i]);
@@ -643,12 +680,14 @@ public class SolveMethod : MonoBehaviour {
 				}
 				bestsolutions.Add(bestsol);
 				if(bestsolutions[2]!=0){
-					Debug.Log("SLDSLDSLS");
+//					Debug.Log("SLDSLDSLS");
 					bestsolutions.Add(0);
 					return;
 				}
 				bestsol = 0;
 				solutions = new List<Solution>();
+//				Debug.Log(possibletiles.Count);
+			//	Debug.Log(CreateMethod.piecetiles.Count);
 				// Debug.Log(CreateMethod.piecetiles[0]+ CreateMethod.piecetiles[1] + CreateMethod.piecetiles[2] +possibletiles.Count + "ice");
 				for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 
@@ -662,7 +701,7 @@ public class SolveMethod : MonoBehaviour {
 					for(int j = 0; j<possibletiles.Count; j++){
 						if(j!=i){
 							if(!HasLoop(x,y,0,1,j)){
-								string[,] newertiles = (string[,]) newtiles.Clone();
+								newertiles = (string[,]) newtiles.Clone();
 								int x2 = (int)possibletiles[j].x;
 								int y2 = (int)possibletiles[j].y;
 								if(solutionpieceposition.Count<2){
@@ -671,66 +710,26 @@ public class SolveMethod : MonoBehaviour {
 								currenttest2.Set(x2,y2);
 								solutionpieceposition[1] = new Vector2(x2,y2);
 //								Debug.Log(solutionpieceposition[1]);
-								newertiles[x2,y2] = CreateMethod.piecetiles[1];
+								PlacePiece(1,x2,y2,1);
 								//Debug.Log("Solving for " +x+y+x2+y2);
 								Vector2 test2 = new Vector2(x2,y2);
 								solutionpiecenames.Add(CreateMethod.piecetiles[2]);
 //								Debug.Log("Readytotest third" + x+y+x2+y2);
 								for(int k=0; k<possibletiles.Count;k++){
 									if(j!=k && k!=i){
-
-										// if((CreateMethod.piecetiles[0] == "Up" || CreateMethod.piecetiles[0] == "UpSeed")&& (CreateMethod.piecetiles[2] == "Down" || CreateMethod.piecetiles[2] == "DownSeed")){
-										// 	if(x==(int)possibletiles[k].x && (y > (int)possibletiles[k].y)){
-										// 		stop2 =true;
-										// 	}
-										// }
-										// if((CreateMethod.piecetiles[0] == "Down" || CreateMethod.piecetiles[0] == "DownSeed") && (CreateMethod.piecetiles[2] == "Up" || CreateMethod.piecetiles[2] == "UpSeed")){
-										// 	if(x==(int)possibletiles[k].x && (y <(int)possibletiles[k].y)){
-										// 		stop2 =true;
-										// 	}
-										// }
-										// if((CreateMethod.piecetiles[0] == "Left" || CreateMethod.piecetiles[0] == "LeftSeed") && (CreateMethod.piecetiles[2] == "Right" || CreateMethod.piecetiles[2] == "RightSeed")){
-										// 	if(y==(int)possibletiles[k].y && (x > (int)possibletiles[k].x)){
-										// 		stop2 =true;
-										// 	}
-										// }
-										// if((CreateMethod.piecetiles[0] == "Right" || CreateMethod.piecetiles[0] == "RightSeed")&& (CreateMethod.piecetiles[2] == "Left" || CreateMethod.piecetiles[2] == "LeftSeed")){
-										// 	if(y==(int)possibletiles[k].y && (x <(int)possibletiles[k].x)){
-										// 		stop2 =true;
-										// 	}
-										// }	
-										// if((CreateMethod.piecetiles[1] == "Up" || CreateMethod.piecetiles[1] == "UpSeed")&& (CreateMethod.piecetiles[2] == "Down" || CreateMethod.piecetiles[2] == "DownSeed")){
-										// 	if(x2==(int)possibletiles[k].x && (y2 > (int)possibletiles[k].y)){
-										// 		stop2 =true;
-										// 	}
-										// }
-										// if((CreateMethod.piecetiles[1] == "Down" || CreateMethod.piecetiles[1] == "DownSeed") && (CreateMethod.piecetiles[2] == "Up" || CreateMethod.piecetiles[2] == "UpSeed")){
-										// 	if(x2==(int)possibletiles[k].x && (y2 <(int)possibletiles[k].y)){
-										// 		stop2 =true;
-										// 	}
-										// }
-										// if((CreateMethod.piecetiles[1] == "Left" || CreateMethod.piecetiles[1] == "LeftSeed") && (CreateMethod.piecetiles[2] == "Right" || CreateMethod.piecetiles[2] == "RightSeed")){
-										// 	if(y2==(int)possibletiles[k].y && (x2 > (int)possibletiles[k].x)){
-										// 		stop2 =true;
-										// 	}
-										// }
-										// if((CreateMethod.piecetiles[1] == "Right" || CreateMethod.piecetiles[1] == "RightSeed")&& (CreateMethod.piecetiles[2] == "Left" || CreateMethod.piecetiles[2] == "LeftSeed")){
-										// 	if(y2==(int)possibletiles[k].y && (x2 <(int)possibletiles[k].x)){
-										// 		stop2 =true;
-										// 	}
-										// }	
 										if(!HasLoop(x,y,0,2,k) && !HasLoop(x2,y2,1,2,k)){
-											string[,] newerertiles = (string[,]) newertiles.Clone();
+//											Debug.Log("No loop");
+											newerertiles = (string[,]) newertiles.Clone();
 											int x3 = (int)possibletiles[k].x;
 											int y3 = (int)possibletiles[k].y;
 //											Debug.Log(x3 + "" +y3);
 											if(solutionpieceposition.Count<3){
 												solutionpieceposition.Add(new Vector2(x3,y3));
 											}
-											//currenttest2.Set(x2,y2);
+											currenttest3.Set(x3,y3);
 											solutionpieceposition[2] = new Vector2(x3,y3);
 			//								Debug.Log(solutionpieceposition[1]);
-											newerertiles[x3,y3] = CreateMethod.piecetiles[2];
+											PlacePiece(2,x3,y3,2);
 											//Debug.Log("Solving for " +x+y+x2+y2);
 											Solve(newerertiles);
 										}							
@@ -740,10 +739,10 @@ public class SolveMethod : MonoBehaviour {
 						}
 					}
 				}
-				Debug.Log(solutions.Count);
+//				Debug.Log(solutions.Count);
 				for(int i =0; i<solutions.Count; i++){//This is what happens if theres a solution at origin.
 					//Debug.Log(solutions[i].myturns + "Turns with one piece" );
-					Debug.Log(solutions[i].solutionpositions[0] + "" + solutions[i].solutionpositions[1] + solutions[i].myturns);
+//					Debug.Log(solutions[i].solutionpositions[0] + "" + solutions[i].solutionpositions[1] + solutions[i].myturns);
 					int bestturns = bestsol;
 					CountOrStay(solutions[i].myturns, solutions[i]);
 					if((bestsol < bestturns) || (bestturns == 0 && bestsol != 0) || (bestsol == solutions[i].myturns)){
@@ -1343,7 +1342,7 @@ public class SolveMethod : MonoBehaviour {
 		//bestsol = 0;
 		solutions.Clear();
 		CycleAll();
-		PrintBestSols();
+		//PrintBestSols();
 		//Debug.Log
 		/*if(solutions.Count>0){//For anything with pieces.
 			for(int i =0; i<solutions.Count; i++){
@@ -1363,11 +1362,24 @@ public class SolveMethod : MonoBehaviour {
 		}*/
 	}
 	public void PrintBestSols(){
+		bool good = false;
+		for(int i = 0; i <bestsolutions.Count; i++){
+			if(bestsolutions[i] == 0){
+
+			}
+			if (bestsolutions[i] != 0 && i == bestsolutions.Count-1){
+				good = true;
+				Debug.Log("good is true");
+			}
+		}
 		string solutionnums = "";
 			for(int i = 0; i<bestsolutions.Count; i++){
 				solutionnums = solutionnums + "" + bestsolutions[i].ToString();
 		}
+		if(good == true){
 		Debug.Log(solutionnums + repeatedbestsol + besthaswallhug.Count);
+
+		}
 	}
 	public void CountOrStay(int num, Solution currentsolution){//updates if new solution is lower than the newest
 		if(bestsol == 0){
@@ -1393,58 +1405,58 @@ public class SolveMethod : MonoBehaviour {
 		for (int i = 0; i<CreateMethod.piecetiles.Count; i++){//Check each piece placed for LRUD
 			if(CreateMethod.piecetiles[i] == "Left"){
 				Vector2 piecetocheck = solutiontocheck.solutionpositions[i];
-				Debug.Log(piecetocheck);
+			//	Debug.Log(piecetocheck);
 				if((int)piecetocheck.x > 1){
 					if((ogtiles[(int)(piecetocheck.x - 2), (int)piecetocheck.y] == "Wall") || 
 						(ogtiles[(int)(piecetocheck.x - 2), (int)piecetocheck.y] == "Start")){
-						Debug.Log("Wallhugged Left");
+//						Debug.Log("Wallhugged Left");
 						besthaswallhug.Add(true);
 					}
 					else{
-					Debug.Log("Didnt hug Left");
+//					Debug.Log("Didnt hug Left");
 					}
 				}
 			}
 			if(CreateMethod.piecetiles[i] == "Right"){
 				Vector2 piecetocheck = solutiontocheck.solutionpositions[i];
-				Debug.Log(piecetocheck);
+			//	Debug.Log(piecetocheck);
 				if((int)piecetocheck.x < 6){
 					if((ogtiles[(int)(piecetocheck.x + 2), (int)piecetocheck.y] == "Wall") || 
 						(ogtiles[(int)(piecetocheck.x + 2), (int)piecetocheck.y] == "Start")){
-						Debug.Log("Wallhugged Right");
+//						Debug.Log("Wallhugged Right");
 						besthaswallhug.Add(true);
 					}
 					else{
-						Debug.Log("Didnt hug Right");
+//						Debug.Log("Didnt hug Right");
 					}
 				}
 			}
 			if(CreateMethod.piecetiles[i] == "Up"){
 				Vector2 piecetocheck = solutiontocheck.solutionpositions[i];
-				Debug.Log(piecetocheck);
+//				Debug.Log(piecetocheck);
 				if((int)piecetocheck.y > 1){
 					if((ogtiles[(int)(piecetocheck.x), (int)piecetocheck.y - 2] == "Wall") || 
 						(ogtiles[(int)(piecetocheck.x), (int)piecetocheck.y - 2] == "Start")){
-						Debug.Log("Wallhugged Up");
+						// Debug.Log("Wallhugged Up");
 						besthaswallhug.Add(true);
 					}
 					else{
-						Debug.Log("Didnt hug Up");
+						// Debug.Log("Didnt hug Up");
 					}
 				}
 
 			}
 			if(CreateMethod.piecetiles[i] == "Down"){
 				Vector2 piecetocheck = solutiontocheck.solutionpositions[i];
-				Debug.Log(piecetocheck);
+				//Debug.Log(piecetocheck);
 				if((int)piecetocheck.y < 6){
 					if((ogtiles[(int)(piecetocheck.x), (int)piecetocheck.y + 2] == "Wall") || 
 						(ogtiles[(int)(piecetocheck.x), (int)piecetocheck.y + 2] == "Start")){
-						Debug.Log("Wallhugged Down");
+						// Debug.Log("Wallhugged Down");
 						besthaswallhug.Add(true);
 					}
 					else{
-						Debug.Log("Didnt hug Down");
+						// Debug.Log("Didnt hug Down");
 					}
 				}
 			}

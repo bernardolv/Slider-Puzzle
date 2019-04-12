@@ -141,7 +141,7 @@ public class CreateMethod : MonoBehaviour {
 		////ANNBrain.InitializeClassifiers(1);
 		//StartCoroutine(LoadTrainingSet());
 		//StartCoroutine(TestTrainingSet());
-		GenerateAndDraw(1);
+		//GenerateAndDraw(1);sssss
 		//CreateSeed();
 		//CreateAdvSeed();
 		//StartCoroutine(GenerateUntilConditions());
@@ -358,7 +358,7 @@ public class CreateMethod : MonoBehaviour {
 			while(!conditionsmet){
 				SolveMethod.bestturns =0;
 				Createfourbyfour();
-				Debug.Log(SolveMethod.bestsolutions.Count);
+//				Debug.Log(SolveMethod.bestsolutions.Count);
 				if(SolveMethod.bestsolutions.Count == 3){
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2]>startingturns-1){// && SolveMethod.bestsolution.lrud >0){
 //						Debug.Log("Conditions were met ");
@@ -402,11 +402,11 @@ public class CreateMethod : MonoBehaviour {
 						//Debug.Log("Conditions were met for 3 pieces");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
 							//Debug.Log("Conditions were met without hug ");
-							if(AppropriateLrud()){
+							//if(AppropriateLrud()){
 								conditionsmet = true;
-								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[3]);
+								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[3] + "approproiate" + AppropriateLrud());
 								yield return null;								
-							}
+							//}
 
 
 						}
@@ -490,7 +490,7 @@ public class CreateMethod : MonoBehaviour {
 				lrudpieces++;
 			}		
 		}
-		Debug.Log(lrudpieces + " lrud" + SolveMethod.bestsolution.lrud);
+//		Debug.Log(lrudpieces + " lrud" + SolveMethod.bestsolution.lrud);
 		if(lrudpieces <= SolveMethod.bestsolution.lrud) {
 			return true;			
 		}
@@ -953,34 +953,44 @@ public class CreateMethod : MonoBehaviour {
 
 	}
 	public void CreateTest(){
-		icedimensions = 4;
+		ResetAll();
+
+		piecetiles = new List<string>();
+		icedimensions = 6;
+		mapdimension = 8;
+		//ResetAll();
 		AssignWallCounter();
 		CreateIce();
 		Add2Outerwalls();
 		testmap = generatedmap;
-		testmap[3,1] = "Start";
-		testmap[2,4] = "Hole";
-		testmap[2,5] = "Hole";
-		testmap[4,5] = "Fragile";
-		testmap[5,5] = "Fragile";
-		testmap[6,5] = "Goal";
-		testmap[5,4] = "Wood";
-		testmap[3,3] = "Wall";
-		testmap[2,3] = "Wall";
-		testmap[2,2] = "Wall";
-		testmap[3,6] = "Hole";
-		SolveMethod.startx = 3;
-		SolveMethod.starty = 1;
+		testmap[3,1] = "Wall";
+		testmap[6,2] = "Hole";
+		testmap[6,3] = "Fragile";
+		testmap[0,4] = "Goal";
+		testmap[2,4] = "Wood";
+		testmap[5,4] = "Hole";
+		testmap[2,5] = "Fragile";
+		testmap[3,5] = "Wood";
+		testmap[4,5] = "Wood";
+		testmap[1,6] = "Fragile";
+		testmap[2,6] = "Fragile";
+		testmap[6,6] = "Hole";
+		testmap[5,7] = "Start";
+		SolveMethod.startx = 5;
+		SolveMethod.starty = 7;
 		piecetiles.Add("Wall");
-		piecetiles.Add("Down");
-		piecetiles.Add("Right");
-		piecetiles.Add("Left");
+		piecetiles.Add("Wall");
+		piecetiles.Add("Wall");
 		DrawMap();
+		generatedmap = (string[,]) testmap.Clone();;
+
 		Solver.TryPieces(testmap);
+		//PrintMap();
 		DrawMap();
 	}
 	public void CreateTest2(){
 		icedimensions = 4;
+		ResetAll();
 		AssignWallCounter();
 		CreateIce();
 		Add2Outerwalls();
@@ -1001,6 +1011,7 @@ public class CreateMethod : MonoBehaviour {
 		piecetiles.Add("Down");
 		piecetiles.Add("Up");
 		DrawMap();
+		generatedmap = testmap;
 		Solver.TryPieces(testmap);
 		DrawMap();
 	}
@@ -1424,7 +1435,7 @@ public class CreateMethod : MonoBehaviour {
 		}*/
 		//piecetiles = new List<string>();
 		int randomint  = 0;//Random.Range(0, 10);
-		int[] validchoices = {0,1,2,3,4,6,7,8,9,10};
+		int[] validchoices = {0};
 		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		switch(randomint){
 			case 0:
@@ -1463,9 +1474,9 @@ public class CreateMethod : MonoBehaviour {
 		}
 		//monster1 = "WallSeed";
 		//randomint  = Random.Range(0, 5);
-		int[] validchoices2 = {6,7,8,9};//,5,6,7,8,9,10};
+		int[] validchoices2 = {0,1,2,3,4};//,5,6,7,8,9,10};
 		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
-		Debug.Log(randomint);
+//		Debug.Log(randomint);
 
 		switch(randomint){
 			case 0:
@@ -1509,8 +1520,10 @@ public class CreateMethod : MonoBehaviour {
 			//piecetiles.Add("Wall");    //reactivate to add piece2.
 
 		}
-		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
-		Debug.Log(randomint);
+		int[] validchoices3 = {0,1,2,3,4};//,5,6,7,8,9,10};
+
+		randomint = validchoices3[Random.Range(0,validchoices3.Length)];
+//		Debug.Log(randomint);
 		switch(randomint){
 			case 0:
 				monster3 = "Wall";
@@ -1546,9 +1559,9 @@ public class CreateMethod : MonoBehaviour {
 				monster3 = "WallSeed";
 				break;
 		}
-		Debug.Log(piecetiles.Count);
+//		Debug.Log(piecetiles.Count);
 		if(monster3 != "None"){
-		//piecetiles.Add(monster3);    //reactivate to add piece3/
+		piecetiles.Add(monster3);    //reactivate to add piece3/
 		}
 		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		//Debug.Log(randomint);

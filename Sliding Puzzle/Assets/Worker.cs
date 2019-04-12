@@ -140,7 +140,8 @@ public class Worker{
 		//Debug.Log(turns + "Turns");
 		if(newtag == "Goal"){
 			if(turns > 0){
-				Debug.Log("MY lrud" + lrud);
+//				Debug.Log("MY lrud" + lrud + "turns" + turns);
+//				Debug.Log("best turns is" + SolveMethod.bestturns);
 				x = tilex;
 				y = tiley;
 				done = true;

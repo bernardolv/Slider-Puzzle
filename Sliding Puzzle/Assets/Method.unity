@@ -1609,7 +1609,7 @@ MonoBehaviour:
   woodmax: 0
   wallmax: 0
   stringcounter: 0
-  icedimensions: 4
+  icedimensions: 6
   totaldimensions: 8
   possibleIce: []
   currentIce: []
@@ -1617,7 +1617,7 @@ MonoBehaviour:
   monster2: Down
   monster3: Wall
   monster4: Wall
-  desiredturns: 3
+  desiredturns: 1
   action: 0
 --- !u!114 &413078874
 MonoBehaviour:
@@ -1684,7 +1684,7 @@ RectTransform:
   m_GameObject: {fileID: 413078870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: -3.5, z: 90}
-  m_LocalScale: {x: 0.022123894, y: 0.022123894, z: 0.022123894}
+  m_LocalScale: {x: 0.01585145, y: 0.01585145, z: 0.01585145}
   m_Children:
   - {fileID: 985762225}
   - {fileID: 734384366}
@@ -1948,7 +1948,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 480674151}
   m_LocalRotation: {x: -0.2183405, y: 0.12123015, z: 0.112487644, w: 0.9617574}
-  m_LocalPosition: {x: -307.2, y: -230.00003, z: 249.6}
+  m_LocalPosition: {x: -463.7, y: -104.80002, z: 249.6}
   m_LocalScale: {x: 0.9995921, y: 0.9995922, z: 0.99959207}
   m_Children:
   - {fileID: 590174933}
@@ -2851,7 +2851,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 734384365}
   m_LocalRotation: {x: -0.2183405, y: 0.12123015, z: 0.112487644, w: 0.9617574}
-  m_LocalPosition: {x: -308.30005, y: 38.69998, z: 107.7}
+  m_LocalPosition: {x: -464.80005, y: 163.9, z: 107.7}
   m_LocalScale: {x: 0.99971604, y: 0.99971604, z: 0.9997159}
   m_Children:
   - {fileID: 637644082}
@@ -3549,7 +3549,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 948451531}
   m_LocalRotation: {x: -0.2183405, y: 0.12123015, z: 0.112487644, w: 0.9617574}
-  m_LocalPosition: {x: -308.30017, y: -110.099976, z: 186.9}
+  m_LocalPosition: {x: -464.80017, y: 15.100006, z: 186.9}
   m_LocalScale: {x: 0.9995921, y: 0.9995922, z: 0.99959207}
   m_Children:
   - {fileID: 573403130}
@@ -3601,7 +3601,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 413078872}
-        m_MethodName: CreateSeed
+        m_MethodName: CreateTest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3819,7 +3819,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 985762224}
   m_LocalRotation: {x: -0.2183405, y: 0.12123015, z: 0.112487644, w: 0.9617574}
-  m_LocalPosition: {x: -315.40002, y: 128.79999, z: 62.3}
+  m_LocalPosition: {x: -471.90002, y: 254, z: 62.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 946360569}
