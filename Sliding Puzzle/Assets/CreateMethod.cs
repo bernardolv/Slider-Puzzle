@@ -363,7 +363,7 @@ public class CreateMethod : MonoBehaviour {
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2]>startingturns-1){// && SolveMethod.bestsolution.lrud >0){
 //						Debug.Log("Conditions were met ");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
-							if(AppropriateLrud()){
+							if(!CheckBoring() && AppropriateLrud()){
 //								Debug.Log("Conditions were met without hug ");
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[2]);
@@ -379,7 +379,7 @@ public class CreateMethod : MonoBehaviour {
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] > startingturns-1){ //&& SolveMethod.bestsolution.lrud >0){
 						//Debug.Log("Conditions were met");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION\
-							if(!CheckBoring() && AppropriateLrud()){
+							if(!CheckBoring() ){
 								//Debug.Log("Conditions were met without hug ");
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[1]);
@@ -393,7 +393,6 @@ public class CreateMethod : MonoBehaviour {
 								yield return null;								
 							}
 
-
 						}
 					}
 				}
@@ -402,11 +401,11 @@ public class CreateMethod : MonoBehaviour {
 						//Debug.Log("Conditions were met for 3 pieces");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
 							//Debug.Log("Conditions were met without hug ");
-							//if(AppropriateLrud()){
+							if(!CheckBoring() && AppropriateLrud()){
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[3] + "approproiate" + AppropriateLrud());
 								yield return null;								
-							//}
+							}
 
 
 						}
@@ -837,22 +836,30 @@ public class CreateMethod : MonoBehaviour {
 				fragilemax = Random.Range(8,12);
 				break;
 			case 6:
-				wallmax = Random.Range(5,8);
-				lavamax = Random.Range(4,6);
-				woodmax = Random.Range(7,10);
-				fragilemax = Random.Range(7,10);
+				wallmax = Random.Range(2,8);
+				lavamax = Random.Range(1,6);
+				woodmax = Random.Range(3,9);
+				fragilemax = Random.Range(2,6);
 				break;
 			case 5:
-				wallmax = Random.Range(2,5);
-				lavamax = Random.Range(2,4);
-				woodmax = Random.Range(3,6);
-				fragilemax = Random.Range(3,7);
+				/*wallmax = Random.Range(2,3);
+				lavamax = Random.Range(2,3);
+				woodmax = Random.Range(0,6);*/
+				wallmax = Random.Range(0,5);
+				lavamax = Random.Range(0,4);
+				woodmax = Random.Range(0,6);
+				fragilemax = Random.Range(0,7);
 				break;
 			case 4:
-				wallmax = Random.Range(0,5);
-				lavamax = Random.Range(1,5);
-				woodmax = Random.Range(1,5);
-				fragilemax = Random.Range(1,6);			
+				// wallmax = Random.Range(0,4);
+				// lavamax = Random.Range(0,5);
+				// woodmax = Random.Range(1,5);
+				// fragilemax = Random.Range(0,1);	
+
+				wallmax = Random.Range(1,4);
+				lavamax = Random.Range(0,3);
+				woodmax = Random.Range(0,2);
+				fragilemax = Random.Range(0,5);			
 				break;
 		}
 
@@ -1024,6 +1031,9 @@ public class CreateMethod : MonoBehaviour {
 	}
 	public void Createfourbyfour(){
 		mapdimension = totaldimensions;
+		icedimensions = Random.Range(5,7);
+		desiredturns = icedimensions;
+		startingturns = desiredturns;
 		AssignWallCounter();
 		AssignMaxSpawners(icedimensions);
 		ResetAll();
@@ -1031,7 +1041,8 @@ public class CreateMethod : MonoBehaviour {
 		Add2Outerwalls();
 		PopulateDoorPool();
 		AssignGoalAndStart();
-		AddOnMapTiles ();
+		//AddOnMapTiles ();
+		AddSpecificTiles();
 		SolveMethod.startx = Startx;
 		SolveMethod.starty = Starty;
 		AddPieceTiles ();
@@ -1390,6 +1401,46 @@ public class CreateMethod : MonoBehaviour {
 		}
 //		Debug.Log(cleanice.Count + "Icetiles");
 	}
+	public void AddSpecificTiles(){
+		PopulateCleanIce ();
+		extrawalls = wallmax;
+		for (int i = 0; i < extrawalls; i++) {
+			ExcludeAdjacent();
+			int max = cleanice.Count;
+			int num = Random.Range (0, max);
+			Vector2 newwall = cleanice[num];
+			generatedmap [Mathf.RoundToInt(newwall.x), Mathf.RoundToInt(newwall.y)] = "Wall";
+			cleanice.Remove (newwall);
+			ReturnAdjacent();
+		}
+		lava = lavamax;
+		for (int i = 0; i < lava; i++) {
+			ExcludeAdjacent();
+			int max = cleanice.Count;
+			int num = Random.Range (0, max);
+			Vector2 newlava = cleanice[num];
+			generatedmap [Mathf.RoundToInt(newlava.x), Mathf.RoundToInt(newlava.y)] = "Hole";
+			cleanice.Remove (newlava);
+			ReturnAdjacent();
+		}
+		int wood  =woodmax;
+		for (int i = 0; i < wood; i++) {
+			int max = cleanice.Count;
+			int num = Random.Range (0, max);
+			Vector2 newwood = cleanice[num];
+			generatedmap [Mathf.RoundToInt(newwood.x), Mathf.RoundToInt(newwood.y)] = "Wood";
+			cleanice.Remove (newwood);
+		}
+		int fragilenum  = fragilemax;
+		for (int i = 0; i < fragilenum; i++) {
+			int max = cleanice.Count;
+			int num = Random.Range (0, max);
+			Vector2 newfragile = cleanice[num];
+			generatedmap [Mathf.RoundToInt(newfragile.x), Mathf.RoundToInt(newfragile.y)] = "Fragile";
+			cleanice.Remove (newfragile);
+		}
+//		Debug.Log(cleanice.Count + "Icetiles");
+	}
 	public void PopulateCleanIce(){
 		//Playerprefsx
 		cleanice.Clear ();
@@ -1435,7 +1486,7 @@ public class CreateMethod : MonoBehaviour {
 		}*/
 		//piecetiles = new List<string>();
 		int randomint  = 0;//Random.Range(0, 10);
-		int[] validchoices = {0};
+		int[] validchoices = {10};
 		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		switch(randomint){
 			case 0:
@@ -1474,7 +1525,7 @@ public class CreateMethod : MonoBehaviour {
 		}
 		//monster1 = "WallSeed";
 		//randomint  = Random.Range(0, 5);
-		int[] validchoices2 = {0,1,2,3,4};//,5,6,7,8,9,10};
+		int[] validchoices2 = {0,1,2,3,4,5,10};//,5,6,7,8,9,10};
 		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
 //		Debug.Log(randomint);
 
@@ -1520,7 +1571,7 @@ public class CreateMethod : MonoBehaviour {
 			//piecetiles.Add("Wall");    //reactivate to add piece2.
 
 		}
-		int[] validchoices3 = {0,1,2,3,4};//,5,6,7,8,9,10};
+		int[] validchoices3 = {5};//0,1,2,3,4,5,5,5,5};//,5,6,7,8,9,10};
 
 		randomint = validchoices3[Random.Range(0,validchoices3.Length)];
 //		Debug.Log(randomint);

@@ -337,7 +337,7 @@ public class SolveMethod : MonoBehaviour {
 				}
 			}			
 		}
-		if(degree == 1){
+		if(degree == 2){
 			if(type == "Right"){
 				if(newerertiles[(int)coords.x+1,(int)coords.y] == "Ice" || newerertiles[(int)coords.x+1,(int)coords.y] == "Wood"){
 					newerertiles[(int)coords.x+1,(int)coords.y] = "Right";

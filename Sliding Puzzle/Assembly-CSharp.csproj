@@ -193,6 +193,7 @@
      <None Include="Assets\StreamingAssets\Level78.txt" />
      <None Include="Assets\StreamingAssets\Level20.txt" />
      <None Include="Assets\mapsData.txt" />
+     <None Include="Assets\BrokenTest.txt" />
      <None Include="Assets\StreamingAssets\Level49.txt" />
      <None Include="Assets\StreamingAssets\Level95.txt" />
      <None Include="Assets\MapDatabase2pieces.txt" />
