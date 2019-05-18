@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public class Map{
+	public string[,] tiles;
+
+	public Map(string[,] incomingtiles){
+		tiles = (string[,]) incomingtiles.Clone();
+	}
+}
+
 public class SolveMethod : MonoBehaviour {
 	public static string[,] ogtiles = new string[10,10]; // Initial Map to test (Without Piece tiles)
 
@@ -21,6 +29,12 @@ public class SolveMethod : MonoBehaviour {
 	public static int numberofsolutions;
 
 	public static int lrud; //checks for using a lrud as lrud and not wall.
+
+	public static List<Vector2> lrudpos;
+
+	public static List<Map> stoppedmaps = new List<Map>();
+
+	public static List<Map> currentstoppedmaps = new List<Map>();
 
 	public static int startx;
 
@@ -121,7 +135,8 @@ public class SolveMethod : MonoBehaviour {
 		//usedlruds = 0;
 		currenttiles = tiles;
 		totalstoppedtiles.Add(startingposition);
-		CheckAndCreate(0, startx, starty, currenttiles, initialgenes, totalstoppedtiles, 0);	//Creates first worker (Unless he can move more than one place)
+		stoppedmaps.Add(new Map(currenttiles));
+		CheckAndCreate(0, startx, starty, currenttiles, initialgenes, totalstoppedtiles, 0, new List<Vector2>(), stoppedmaps);	//Creates first worker (Unless he can move more than one place)
 		if(workers.Count == 0){ //If Start tile is Walled up, No solution.
 //			Debug.Log("Cant");
 			return;
@@ -142,20 +157,21 @@ public class SolveMethod : MonoBehaviour {
 			}
 		}*/
 	}
-	public void CheckAndCreate(int newturns, int x, int y,string[,] thistiles, List<string> newgenes, List<Vector2> newstoppedtiles, int newlrud){
+	public void CheckAndCreate(int newturns, int x, int y,string[,] thistiles, List<string> newgenes, List<Vector2> newstoppedtiles, int newlrud, List<Vector2> newlrudpos, List<Map> newstoppedmaps){
 		//workers.Clear();
 		List <string> genes = newgenes;
 		List <Vector2> mystoppedtiles = newstoppedtiles;
 		turns = newturns;
 		lrud = newlrud;
-
+		lrudpos = newlrudpos;
+		List<Map> mystoppedmaps = newstoppedmaps;
 		if(x<CreateMethod.mapdimension-1){
 			if(thistiles[x+1,y] != "Wall"){//Checking Right
 				if(turns == 0 && thistiles[x+1,y] == "Goal"){
 				}
 				else{
 		//			Debug.Log("Cloning Right");
-					Worker worker = new Worker(turns, x, y, thistiles, "Right", genes, newstoppedtiles,lrud);
+					Worker worker = new Worker(turns, x, y, thistiles, "Right", genes, newstoppedtiles,lrud, lrudpos);
 					workers.Add(worker);
 				}		
 			}
@@ -166,7 +182,7 @@ public class SolveMethod : MonoBehaviour {
 				}
 				else{
 		//			Debug.Log("Cloning Left");
-					Worker worker = new Worker(turns, x, y, thistiles, "Left", genes, newstoppedtiles,  lrud);
+					Worker worker = new Worker(turns, x, y, thistiles, "Left", genes, newstoppedtiles,  lrud, lrudpos);
 					workers.Add(worker);
 				}
 			}
@@ -177,7 +193,7 @@ public class SolveMethod : MonoBehaviour {
 				}
 				else{
 	//				Debug.Log("Cloning Down");
-					Worker worker = new Worker(turns, x, y, thistiles, "Down", genes, newstoppedtiles, lrud);
+					Worker worker = new Worker(turns, x, y, thistiles, "Down", genes, newstoppedtiles, lrud, lrudpos);
 					workers.Add(worker);
 				}
 			}
@@ -188,7 +204,7 @@ public class SolveMethod : MonoBehaviour {
 				}
 				else{
 					//				Debug.Log("Cloning Up");
-					Worker worker = new Worker(turns, x, y, thistiles, "Up", genes, newstoppedtiles,  lrud);
+					Worker worker = new Worker(turns, x, y, thistiles, "Up", genes, newstoppedtiles,  lrud, lrudpos);
 					workers.Add(worker);
 				}
 			}	
@@ -200,10 +216,12 @@ public class SolveMethod : MonoBehaviour {
 				curgenes = lastgen[i].mygenes;
 				turns = lastgen[i].turns;	
 				lrud = lastgen[i].lrud;	
+				lrudpos = new List<Vector2>(lastgen[i].lrudpos);
 				currentstoppedtiles = new List<Vector2>(lastgen[i].stoppedtiles);	
+				//currentstoppedmaps = new List<Map>(lastgen[i].stoppedmaps);
 																		//Copy the genes of the worker for the new bots
 				//Debug.Log(lastgen[i].mytiles[2,2]);
-				CheckAndCreate(turns, lastgen[i].x, lastgen[i].y, lastgen[i].mytiles, curgenes, currentstoppedtiles, lrud);	
+				CheckAndCreate(turns, lastgen[i].x, lastgen[i].y, lastgen[i].mytiles, curgenes, currentstoppedtiles, lrud, lrudpos, stoppedmaps);	
 				//Debug.Log(workers.Count);
 																								//Create new workers with genes + new gene depending on where they can go
 				//lastgen = new List<Worker>(workers);											//New Generation Becomes the past.
@@ -491,13 +509,14 @@ public class SolveMethod : MonoBehaviour {
 				break;
 
 			case 1:
-				Debug.Log("Solving for one piece");
+				//Debug.Log("Solving for one piece");
 				for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles, tries single piece in every possible ice tile
 						int x = (int)possibletiles[i].x;
 						int y = (int)possibletiles[i].y;
 						InitiateNewSolution();
 						UpdateMapWithPiece(x,y,0);
 						PlacePiece(0,x,y,0);
+						//solvingtiles = (string[,]) newtiles.Clone();
 						Solve(newtiles);
 						if(crapsolution == true){
 							return;
@@ -527,6 +546,7 @@ public class SolveMethod : MonoBehaviour {
 						InitiateNewSolution();
 						UpdateMapWithPiece(x,y,a);
 						PlacePiece(0,x,y,a);
+						//solvingtiles = (string[,]) newtiles.Clone();
 						Solve(newtiles);
 						if(crapsolution == true){
 							return;
@@ -547,7 +567,7 @@ public class SolveMethod : MonoBehaviour {
 				// Debug.Log(bestsolutions[1] + "Shouldn't not be 0");
 				bestsol = 0;
 				solutions = new List<Solution>();
-				Debug.Log("Solving for two pieces and " +possibletiles.Count + "ice");
+				//Debug.Log("Solving for two pieces and " +possibletiles.Count + "ice");
 				for(int i= 0; i<possibletiles.Count ; i++){ //loop through all tiles ogtiles
 					int x = (int)possibletiles[i].x;
 					int y = (int)possibletiles[i].y;
@@ -575,7 +595,9 @@ public class SolveMethod : MonoBehaviour {
 
 								solutionpieceposition[1] = new Vector2(x2,y2);
 								PlacePiece(1,x2,y2,1);
+								//solvingtiles = (string[,]) newertiles.Clone();
 								Solve(newertiles);
+
 								if(crapsolution == true){
 									return;
 								}
@@ -583,10 +605,10 @@ public class SolveMethod : MonoBehaviour {
 						}
 					}
 				}
-				Debug.Log(solutions.Count + "is the solution bank"); 
+				//Debug.Log(solutions.Count + "is the solution bank"); 
 				for(int i =0; i<solutions.Count; i++){//This is what happens if theres a solution at origin.
 					//Debug.Log(solutions[i].myturns + "Turns with one piece" );
-					Debug.Log(solutions[i].solutionpositions[0] + "" + solutions[i].solutionpositions[1] + solutions[i].myturns + solutions[i].solutionpositions.Count);
+					//Debug.Log(solutions[i].solutionpositions[0] + "" + solutions[i].solutionpositions[1] + solutions[i].myturns + solutions[i].solutionpositions.Count);
 					int bestturns = bestsol;
 					CountOrStay(solutions[i].myturns, solutions[i]);
 					if((bestsol < bestturns) || (bestturns == 0 && bestsol != 0) || (bestsol == solutions[i].myturns)){
@@ -614,6 +636,7 @@ public class SolveMethod : MonoBehaviour {
 						InitiateNewSolution();
 						UpdateMapWithPiece(x,y,a);
 						PlacePiece(0,x,y,a);
+						//solvingtiles = (string[,]) newtiles.Clone();
 						Solve(newtiles);
 						if(crapsolution == true){
 							return;
@@ -664,6 +687,7 @@ public class SolveMethod : MonoBehaviour {
 											//Debug.Log("Solving for " +x+y+x2+y2);
 											Vector2 test2 = new Vector2(x2,y2);
 //											Debug.Log(newertiles[1,1]);
+											//solvingtiles = (string[,]) newertiles.Clone();
 											Solve(newertiles);
 										}
 									}
@@ -731,6 +755,7 @@ public class SolveMethod : MonoBehaviour {
 			//								Debug.Log(solutionpieceposition[1]);
 											PlacePiece(2,x3,y3,2);
 											//Debug.Log("Solving for " +x+y+x2+y2);
+											//solvingtiles = (string[,]) newerertiles.Clone();
 											Solve(newerertiles);
 										}							
 									}
@@ -1323,6 +1348,7 @@ public class SolveMethod : MonoBehaviour {
 		int solsatorigin = 0;
 		turns = 0;
 		ogtiles = thistiles; //og Map
+		solvingtiles = (string[,]) ogtiles.Clone();
 		Solve(ogtiles);			//solves for no pieces
 		if(solutions.Count>0){
 			for(int i =0; i<solutions.Count; i++){//This is what happens if theres a solution at origin.

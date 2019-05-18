@@ -113,6 +113,8 @@ public class CreateMethod : MonoBehaviour {
 	//public static string monstertile2;
 	// Use this for initialization
 	void Start () {
+		//Test();
+
 		startingturns = desiredturns;
 		int initint = 10;
 		bitmap = new string[initint,initint];
@@ -138,6 +140,7 @@ public class CreateMethod : MonoBehaviour {
 			StartCoroutine(LoadTrainingSet());			
 		}*/
 		waslasttrue = false;
+		//CreateTest();
 		////ANNBrain.InitializeClassifiers(1);
 		//StartCoroutine(LoadTrainingSet());
 		//StartCoroutine(TestTrainingSet());
@@ -148,6 +151,13 @@ public class CreateMethod : MonoBehaviour {
 		//AddMaps();
 		//CreateTest();
 	}
+	public void Test(){
+		int[,] test = new int[3,4];
+		
+		Debug.Log(test.GetLength(0));
+		Debug.Log(test.GetLength(1));
+	}
+
 	public void CreateSeed(){
 		isicetaken =false;
 		//4
@@ -363,7 +373,7 @@ public class CreateMethod : MonoBehaviour {
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2]>startingturns-1){// && SolveMethod.bestsolution.lrud >0){
 //						Debug.Log("Conditions were met ");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
-							if(!CheckBoring() && AppropriateLrud()){
+							if(AppropriateLrud() && !CheckWallHug()){
 //								Debug.Log("Conditions were met without hug ");
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[2]);
@@ -379,7 +389,7 @@ public class CreateMethod : MonoBehaviour {
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] > startingturns-1){ //&& SolveMethod.bestsolution.lrud >0){
 						//Debug.Log("Conditions were met");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION\
-							if(!CheckBoring() ){
+							if(AppropriateLrud() && !CheckBoring() && !CheckWallHug() ){
 								//Debug.Log("Conditions were met without hug ");
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[1]);
@@ -502,31 +512,32 @@ public class CreateMethod : MonoBehaviour {
 
 		for (int i=0; i < SolveMethod.bestsolution.solutionpositions.Count; i++){
  			//Debug.Log("piece number " + i + " is " + SolveMethod.bestsolution.piecetags[i]);
-			if(SolveMethod.bestsolution.piecetags[i] == "Left" ||
-				SolveMethod.bestsolution.piecetags[i] == "LeftSeed" ){	
-				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x-1, (int)SolveMethod.bestsolution.solutionpositions[i].y] == "Wall"){
+
+			if((SolveMethod.bestsolution.piecetags[i] == "Left" ||
+				SolveMethod.bestsolution.piecetags[i] == "LeftSeed" ) && SolveMethod.bestsolution.solutionpositions[i].x-2>-1){	
+				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x-2, (int)SolveMethod.bestsolution.solutionpositions[i].y] == "Wall"){
 					
 					return true;
 				}
 				return false;
 			}
-			if(SolveMethod.bestsolution.piecetags[i] == "Right" ||
-				SolveMethod.bestsolution.piecetags[i] == "RightSeed" ){	
-				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x+1, (int)SolveMethod.bestsolution.solutionpositions[i].y] == "Wall"){
+			if((SolveMethod.bestsolution.piecetags[i] == "Right" ||
+				SolveMethod.bestsolution.piecetags[i] == "RightSeed") && SolveMethod.bestsolution.solutionpositions[i].x+2< totaldimensions){	
+				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x+2, (int)SolveMethod.bestsolution.solutionpositions[i].y] == "Wall"){
 					return true;
 				}	
 				return false;			
 			}		
-			if(SolveMethod.bestsolution.piecetags[i] == "Up" ||
-				SolveMethod.bestsolution.piecetags[i] == "UpSeed" ){	
-				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x, (int)SolveMethod.bestsolution.solutionpositions[i].y-1] == "Wall"){
+			if((SolveMethod.bestsolution.piecetags[i] == "Up" ||
+				SolveMethod.bestsolution.piecetags[i] == "UpSeed" )&& SolveMethod.bestsolution.solutionpositions[i].y-2>-1){	
+				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x, (int)SolveMethod.bestsolution.solutionpositions[i].y-2] == "Wall"){
 					return true;
 				}	
 				return false;
 			}		
-			if(SolveMethod.bestsolution.piecetags[i] == "Down" ||
-				SolveMethod.bestsolution.piecetags[i] == "DownSeed" ){	
-				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x, (int)SolveMethod.bestsolution.solutionpositions[i].y+1] == "Wall"){
+			if((SolveMethod.bestsolution.piecetags[i] == "Down" ||
+				SolveMethod.bestsolution.piecetags[i] == "DownSeed") && SolveMethod.bestsolution.solutionpositions[i].x+2<totaldimensions ){	
+				if(themap[(int)SolveMethod.bestsolution.solutionpositions[i].x, (int)SolveMethod.bestsolution.solutionpositions[i].y+2] == "Wall"){
 					return true;
 				}	
 				return false;
@@ -824,22 +835,22 @@ public class CreateMethod : MonoBehaviour {
 				fragilemax = Random.Range(10,14);
 				break;
 			case 8:
-				wallmax = Random.Range(7,10);
-				lavamax = Random.Range(6,9);
-				woodmax = Random.Range(9,13);
-				fragilemax = Random.Range(9,13);
+				wallmax = Random.Range(3,10);
+				lavamax = Random.Range(0,9);
+				woodmax = Random.Range(0,13);
+				fragilemax = Random.Range(0,13);
 				break;
 			case 7:
-				wallmax = Random.Range(7,10);
-				lavamax = Random.Range(6,8);
-				woodmax = Random.Range(8,12);
-				fragilemax = Random.Range(8,12);
+				wallmax = Random.Range(2,10);
+				lavamax = Random.Range(0,8);
+				woodmax = Random.Range(0,12);
+				fragilemax = Random.Range(0,12);
 				break;
 			case 6:
-				wallmax = Random.Range(2,8);
-				lavamax = Random.Range(1,6);
-				woodmax = Random.Range(3,9);
-				fragilemax = Random.Range(2,6);
+				wallmax = Random.Range(1,8);
+				lavamax = Random.Range(0,6);
+				woodmax = Random.Range(0,9);
+				fragilemax = Random.Range(0,6);
 				break;
 			case 5:
 				/*wallmax = Random.Range(2,3);
@@ -1031,8 +1042,8 @@ public class CreateMethod : MonoBehaviour {
 	}
 	public void Createfourbyfour(){
 		mapdimension = totaldimensions;
-		icedimensions = Random.Range(5,7);
-		desiredturns = icedimensions;
+		//icedimensions = Random.Range(6,7);
+		//desiredturns = icedimensions;
 		startingturns = desiredturns;
 		AssignWallCounter();
 		AssignMaxSpawners(icedimensions);
@@ -1486,7 +1497,7 @@ public class CreateMethod : MonoBehaviour {
 		}*/
 		//piecetiles = new List<string>();
 		int randomint  = 0;//Random.Range(0, 10);
-		int[] validchoices = {10};
+		int[] validchoices = {0};
 		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		switch(randomint){
 			case 0:
@@ -1525,7 +1536,7 @@ public class CreateMethod : MonoBehaviour {
 		}
 		//monster1 = "WallSeed";
 		//randomint  = Random.Range(0, 5);
-		int[] validchoices2 = {0,1,2,3,4,5,10};//,5,6,7,8,9,10};
+		int[] validchoices2 = {5};//,5,6,7,8,9,10};
 		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
 //		Debug.Log(randomint);
 

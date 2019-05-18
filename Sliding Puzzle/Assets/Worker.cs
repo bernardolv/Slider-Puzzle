@@ -24,6 +24,8 @@ public class Worker{
 	//public Vector2 test2 = new Vector2(0,0);
 	public bool isshifted = false;
 	public int lrud;
+	public List<Vector2> lrudpos;
+	public List<Map> stoppedmaps;
 	//public <Vector2> pieces
 
 	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
@@ -47,6 +49,33 @@ public class Worker{
 		mygenes = new List<string>(newgenes);
 		stoppedtiles = new List<Vector2>(newstopped);
 		lrud = newlrud;
+//		Debug.Log("Myposition" + x + "+" + y);
+	}
+	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
+		string newdirection, List<string> newgenes, List<Vector2> newstopped, int newlrud, List<Vector2> newlrudpos){
+		turns = newturns;
+		x= newx;
+		y = newy;
+		mytiles = (string[,]) newtiles.Clone();
+		direction = newdirection;
+		mygenes = new List<string>(newgenes);
+		stoppedtiles = new List<Vector2>(newstopped);
+		lrud = newlrud;
+		lrudpos = newlrudpos;
+//		Debug.Log("Myposition" + x + "+" + y);
+	}
+	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
+		string newdirection, List<string> newgenes, List<Vector2> newstopped, int newlrud, List<Vector2> newlrudpos, List<Map> newstoppedmaps){
+		turns = newturns;
+		x= newx;
+		y = newy;
+		mytiles = (string[,]) newtiles.Clone();
+		direction = newdirection;
+		mygenes = new List<string>(newgenes);
+		stoppedtiles = new List<Vector2>(newstopped);
+		lrud = newlrud;
+		lrudpos = newlrudpos;
+		stoppedmaps = newstoppedmaps;
 //		Debug.Log("Myposition" + x + "+" + y);
 	}
 
@@ -106,22 +135,66 @@ public class Worker{
 				//}
 			}
 		laststopped = new Vector2(x,y);
-		for(int i=0; i<stoppedtiles.Count; i++){
-			if(stoppedtiles[i].x == x && stoppedtiles[i].y == y){ //if repeated stoppedtile
-			done = true;
-			}
-			else{
+		/*if(stoppedtiles.Count>3){
+			stoppedtiles.RemoveAt(0);
+			Debug.Log(stoppedtiles.Count);
+		}*/
+		done = CheckRepetitionEasy();
+		// for(int i=0; i<stoppedtiles.Count; i++){
+		// 	if(stoppedtiles[i].x == x && stoppedtiles[i].y == y){ //if repeated stoppedtile
+		// 	done = true;
+		// 	}
+		// 	else{
 
-			}
-		}
+		// 	}
+		// }
 		if(done != true){
 			stoppedtiles.Add(laststopped);
-
+			//stoppedmaps.Add(new Map(mytiles));
 			SolveMethod.workersalive.Add(this);
 			//stoppedtiles.Add(laststopped);
 		}
 
 	}
+	public bool CheckRepetition(){
+		for(int i=0; i<stoppedtiles.Count; i++){
+			if(stoppedtiles[i].x == x && stoppedtiles[i].y == y){ //if repeated stoppedtile
+				if(mapHasChanged(i)){
+					return false;
+				}
+				else{
+					return true;
+				}
+			}
+		}		
+		return false;
+	}
+	public bool CheckRepetitionEasy(){
+		for(int i=0; i<stoppedtiles.Count; i++){
+			if(stoppedtiles[i].x == x && stoppedtiles[i].y == y){ //if repeated stoppedtile
+				//if map == starting map
+
+				return true;
+			}	
+		}	
+		return false;
+	}
+	public bool mapHasChanged(int position){
+		//Debug.Log(mytiles[1,1] + "1" + SolveMethod.solvingtiles[1,1]);
+		for(int i = 0; i < mytiles.GetLength(0); i++){
+			for(int j =0; j < mytiles.GetLength(1); j++){
+				if(mytiles[i,j] != stoppedmaps[position].tiles[i,j]){
+					if(stoppedmaps[position].tiles[i,j] != "Start" && stoppedmaps[position].tiles[i,j] != "Fragile"){
+						//Debug.Log("Foundit");
+						return true;
+					}
+					//Debug.Log("Not equal at" + i + j + "first is" + mytiles[i,j] + "then its " + SolveMethod.solvingtiles[i,j]);
+				}
+			}
+		}
+		return false;
+	}
+
 	public void ActonTile(string newtag, int tilex, int tiley){
 		if(x==2 && y==2){
 //			Debug.Log(mytiles[x,y]);
@@ -192,8 +265,9 @@ public class Worker{
 		if(newtag == "FragileUp"){
 			x=tilex;
 			y=tiley;
-			if(previoustag != "UpSeed"){
+			if(previoustag != "UpSeed" && !repeatlrud(new Vector2(x,y))){
 				lrud++;
+				lrudpos.Add(new Vector2(x,y));
 			}
 			previoustag = "FragileUp";
 			mytiles[x,y] = "Hole";
@@ -204,8 +278,9 @@ public class Worker{
 		if(newtag == "FragileLeft"){
 			x=tilex;
 			y=tiley;
-			if(previoustag != "LeftSeed"){
+			if(previoustag != "LeftSeed" && !repeatlrud(new Vector2(x,y))){
 				lrud++;
+				lrudpos.Add(new Vector2(x,y));
 			}
 			previoustag = "FragileLeft";
 
@@ -217,8 +292,9 @@ public class Worker{
 		if(newtag == "FragileRight"){
 			x=tilex;
 			y=tiley;
-			if(previoustag != "RightSeed"){
+			if(previoustag != "RightSeed" && !repeatlrud(new Vector2(x,y))){
 				lrud++;
+				lrudpos.Add(new Vector2(x,y));
 			}
 			previoustag = "FragileRight";
 			mytiles[x,y] = "Hole";
@@ -229,8 +305,9 @@ public class Worker{
 		if(newtag == "FragileDown"){
 			x=tilex;
 			y=tiley;
-			if(previoustag != "DownSeed"){
+			if(previoustag != "DownSeed" && !repeatlrud(new Vector2(x,y))){
 				lrud++;
+				lrudpos.Add(new Vector2(x,y));
 			}
 			previoustag = "FragileDown";
 			mytiles[x,y] = "Hole";
@@ -267,8 +344,9 @@ public class Worker{
 			}*/
 			x=tilex;
 			y=tiley;
-			if(previoustag != "LeftSeed"){
+			if(previoustag != "LeftSeed" && !repeatlrud(new Vector2(x,y))){
 				lrud++;
+				lrudpos.Add(new Vector2(x,y));
 			}
 			previoustag = "Left";
 			isshifted = true;
@@ -285,8 +363,9 @@ public class Worker{
 			}*/
 			x=tilex;
 			y=tiley;
-			if(previoustag != "RightSeed"){
+			if(previoustag != "RightSeed" && !repeatlrud(new Vector2(x,y))){
 				lrud++;
+				lrudpos.Add(new Vector2(x,y));
 			}
 			previoustag = "Right";
 			isshifted = true;
@@ -303,8 +382,9 @@ public class Worker{
 			}*/
 			x=tilex;
 			y=tiley;
-			if(previoustag != "UpSeed"){
+			if(previoustag != "UpSeed" && !repeatlrud(new Vector2(x,y))){
 				lrud++;
+				lrudpos.Add(new Vector2(x,y));
 			}
 			previoustag = "Up";
 			isshifted = true;
@@ -321,8 +401,9 @@ public class Worker{
 			}*/
 			x=tilex;
 			y=tiley;
-			if(previoustag != "DownSeed"){
+			if(previoustag != "DownSeed" && !repeatlrud(new Vector2(x,y))){
 				lrud++;
+				lrudpos.Add(new Vector2(x,y));
 			}
 			previoustag = "Down";
 			isshifted = true;
@@ -405,5 +486,13 @@ public class Worker{
 				Debug.Log("Checking tile" + i + "+" + j);
 			}
 		}
+	}
+	public bool repeatlrud(Vector2 Pos){
+		for(int i=0; i < lrudpos.Count; i++){
+			if(lrudpos[i] == Pos){
+				return true;
+			}
+		}
+		return false;
 	}
 }

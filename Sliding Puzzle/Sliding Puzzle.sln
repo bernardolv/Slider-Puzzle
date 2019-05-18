@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sliding Puzzle", "Assembly-CSharp.csproj", "{FF23C268-F9AA-A9CF-A1A6-EED15B35F8DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{FF23C268-F9AA-A9CF-A1A6-EED15B35F8DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sliding Puzzle", "Assembly-CSharp-firstpass.csproj", "{F6F660D1-EA45-23D7-3EB5-7F4A22E2E62C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{F6F660D1-EA45-23D7-3EB5-7F4A22E2E62C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sliding Puzzle", "Assembly-CSharp-Editor-firstpass.csproj", "{430C8EE5-10B7-0AF9-88CB-B8D4B1CE79B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{430C8EE5-10B7-0AF9-88CB-B8D4B1CE79B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
