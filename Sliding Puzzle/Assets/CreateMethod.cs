@@ -309,12 +309,6 @@ public class CreateMethod : MonoBehaviour {
 		DrawMap();
 
 	}
-	void FixedUpdate(){
-		//IntelligentAction();
-
-
-	}
-
 	public void placeNextTile(int num){
 //		Debug.Log(possibleIce.Count);
 //		Debug.Log(num);
@@ -373,10 +367,12 @@ public class CreateMethod : MonoBehaviour {
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2]>startingturns-1){// && SolveMethod.bestsolution.lrud >0){
 //						Debug.Log("Conditions were met ");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
-							if(AppropriateLrud() && !CheckWallHug()){
+							if(AppropriateLrud() && !CheckWallHug() && !CheckBoring()){
 //								Debug.Log("Conditions were met without hug ");
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[2]);
+								DrawMap();
+								Resources.UnloadUnusedAssets();
 								//Print2DArray(SolveMethod.newertiles);
 								yield return null;								
 							}
@@ -400,6 +396,8 @@ public class CreateMethod : MonoBehaviour {
 									//Debug.Log(SolveMethod.newertiles[j);
 								//}
 								//Debug.Log(Vector2.Distance(SolveMethod.solutions[0].solutionpositions[0], CreateMethod.goalpos));
+								DrawMap();
+								Resources.UnloadUnusedAssets();
 								yield return null;								
 							}
 
@@ -411,9 +409,11 @@ public class CreateMethod : MonoBehaviour {
 						//Debug.Log("Conditions were met for 3 pieces");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
 							//Debug.Log("Conditions were met without hug ");
-							if(!CheckBoring() && AppropriateLrud()){
+							if(!CheckWallHug() && AppropriateLrud()){
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[3] + "approproiate" + AppropriateLrud());
+								DrawMap();
+								Resources.UnloadUnusedAssets();
 								yield return null;								
 							}
 
@@ -669,13 +669,13 @@ public class CreateMethod : MonoBehaviour {
 		}
 	}
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 		//Createfourbyfour();
 		/*if(Input.GetKeyDown(KeyCode.K)){
 			FeedMap(themap);
 			PrintNumMap(mapvalues);
-		}*/
-	}
+		}
+	}*/
 
 	/*void AddMaps(){
 		foreach(string md in mapsdata){
@@ -835,16 +835,16 @@ public class CreateMethod : MonoBehaviour {
 				fragilemax = Random.Range(10,14);
 				break;
 			case 8:
-				wallmax = Random.Range(3,10);
-				lavamax = Random.Range(0,9);
-				woodmax = Random.Range(0,13);
-				fragilemax = Random.Range(0,13);
+				wallmax = Random.Range(1,10);
+				lavamax = Random.Range(0,8);
+				woodmax = Random.Range(1,11);
+				fragilemax = Random.Range(1,10);
 				break;
 			case 7:
-				wallmax = Random.Range(2,10);
-				lavamax = Random.Range(0,8);
-				woodmax = Random.Range(0,12);
-				fragilemax = Random.Range(0,12);
+				wallmax = Random.Range(1,9);
+				lavamax = Random.Range(0,7);
+				woodmax = Random.Range(1,9);
+				fragilemax = Random.Range(0,9);
 				break;
 			case 6:
 				wallmax = Random.Range(1,8);
@@ -939,10 +939,10 @@ public class CreateMethod : MonoBehaviour {
 		GUIStyle style = new GUIStyle();
 		style.fontSize = 40;
 		//GUI.Label(new Rect(25,25,250,30), "SSE: " +lastSSE, style);
-		GUI.Label(new Rect(25,75,250,30), "Alpha: "+ ANNBrain.ann.alpha,style);
+		/*GUI.Label(new Rect(25,75,250,30), "Alpha: "+ ANNBrain.ann.alpha,style);
 		GUI.Label(new Rect(25,125,250,30), "Trained: " +trainingProgress,style);
 		GUI.Label(new Rect(25,175,250,30), "Lowest SSE: " +lowestSSE,style);
-		GUI.Label(new Rect(25,25,250,30), "exploreRate " +exploreRate,style);
+		GUI.Label(new Rect(25,25,250,30), "exploreRate " +exploreRate,style);*/
 		GUI.Label(new Rect(25,300,250,30), " Piece are " + monster1 + " and " + monster2);
 	}
 	double CalculateError(List <double> Results, List<double> CalculatedResults){
@@ -1042,7 +1042,7 @@ public class CreateMethod : MonoBehaviour {
 	}
 	public void Createfourbyfour(){
 		mapdimension = totaldimensions;
-		//icedimensions = Random.Range(6,7);
+		icedimensions = Random.Range(7,9);
 		//desiredturns = icedimensions;
 		startingturns = desiredturns;
 		AssignWallCounter();
@@ -1058,12 +1058,12 @@ public class CreateMethod : MonoBehaviour {
 		SolveMethod.starty = Starty;
 		AddPieceTiles ();
 		themap = generatedmap;
-		DrawMap();
+		//DrawMap();
 		Solver.TryPieces(themap);//Solve normal, adds annbrain.sol.
 
 		//Solve with possible piecetiles
 		//PrintMap();
-		DrawMap();
+		//DrawMap();
 		FeedMap(themap);
 		//PrintNumMap(mapvalues);
 		//ANNBrain.Run(mapvalues, ANNBrain.sol, false);
@@ -1536,7 +1536,7 @@ public class CreateMethod : MonoBehaviour {
 		}
 		//monster1 = "WallSeed";
 		//randomint  = Random.Range(0, 5);
-		int[] validchoices2 = {5};//,5,6,7,8,9,10};
+		int[] validchoices2 = {0,1,2,3,4,6,7,8,9,10};//,5,6,7,8,9,10};
 		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
 //		Debug.Log(randomint);
 

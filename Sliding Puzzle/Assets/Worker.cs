@@ -26,6 +26,8 @@ public class Worker{
 	public int lrud;
 	public List<Vector2> lrudpos;
 	public List<Map> stoppedmaps;
+	public int piecesturned;
+	public List<int> turnedperturn;
 	//public <Vector2> pieces
 
 	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
@@ -76,6 +78,37 @@ public class Worker{
 		lrud = newlrud;
 		lrudpos = newlrudpos;
 		stoppedmaps = newstoppedmaps;
+//		Debug.Log("Myposition" + x + "+" + y);
+	}
+	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
+		string newdirection, List<string> newgenes, List<Vector2> newstopped, int newlrud, List<Vector2> newlrudpos, int newpiecesturned){
+		turns = newturns;
+		x= newx;
+		y = newy;
+		mytiles = (string[,]) newtiles.Clone();
+		direction = newdirection;
+		mygenes = new List<string>(newgenes);
+		stoppedtiles = new List<Vector2>(newstopped);
+		lrud = newlrud;
+		lrudpos = newlrudpos;
+		//stoppedmaps = newstoppedmaps;
+		piecesturned = newpiecesturned;
+//		Debug.Log("Myposition" + x + "+" + y);
+	}
+	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
+		string newdirection, List<string> newgenes, List<Vector2> newstopped, int newlrud, List<Vector2> newlrudpos, List<int> newturnedperturn){
+		turns = newturns;
+		x= newx;
+		y = newy;
+		mytiles = (string[,]) newtiles.Clone();
+		direction = newdirection;
+		mygenes = new List<string>(newgenes);
+		stoppedtiles = new List<Vector2>(newstopped);
+		lrud = newlrud;
+		lrudpos = newlrudpos;
+		//stoppedmaps = newstoppedmaps;
+		turnedperturn = newturnedperturn;
+		piecesturned = turnedperturn[turnedperturn.Count-1];
 //		Debug.Log("Myposition" + x + "+" + y);
 	}
 
@@ -139,18 +172,26 @@ public class Worker{
 			stoppedtiles.RemoveAt(0);
 			Debug.Log(stoppedtiles.Count);
 		}*/
-		done = CheckRepetitionEasy();
-		// for(int i=0; i<stoppedtiles.Count; i++){
-		// 	if(stoppedtiles[i].x == x && stoppedtiles[i].y == y){ //if repeated stoppedtile
-		// 	done = true;
-		// 	}
-		// 	else{
+		//turnedperturn.Add(piecesturned);
+		//if(done!= true){
+			//done = CheckRepetitionEasy();
+		//}
+		if(done == true){
+			return;
+		}
+		for(int i=0; i<stoppedtiles.Count; i++){
+			if(stoppedtiles[i].x == x && stoppedtiles[i].y == y){ //if repeated stoppedtile
+				done = true;
+				break;
+			}
+			else{
 
-		// 	}
-		// }
+			}
+		}
 		if(done != true){
 			stoppedtiles.Add(laststopped);
 			//stoppedmaps.Add(new Map(mytiles));
+			//turnedperturn.Add(piecesturned);
 			SolveMethod.workersalive.Add(this);
 			//stoppedtiles.Add(laststopped);
 		}
@@ -159,10 +200,8 @@ public class Worker{
 	public bool CheckRepetition(){
 		for(int i=0; i<stoppedtiles.Count; i++){
 			if(stoppedtiles[i].x == x && stoppedtiles[i].y == y){ //if repeated stoppedtile
-				if(mapHasChanged(i)){
-					return false;
-				}
-				else{
+				if(piecesturned == turnedperturn[i]){
+					//Debug.Log(piecesturned + " p " + turnedperturn[i]);
 					return true;
 				}
 			}
@@ -414,6 +453,7 @@ public class Worker{
 			y = tiley;
 			previoustag = "WallSeed";
 			mytiles[x,y] = "Wall";
+			piecesturned++;
 		}
 		if(newtag == "LeftSeed"){
 			x = tilex;
@@ -429,6 +469,7 @@ public class Worker{
 			if(mytiles[x-1,y] == "Wood"){
 				mytiles[x-1,y] = "Left";
 			}
+			piecesturned++;
 		}
 		if(newtag == "RightSeed"){
 			x = tilex;
@@ -444,6 +485,7 @@ public class Worker{
 			if(mytiles[x+1,y] == "Wood"){
 				mytiles[x+1,y] = "Right";
 			}
+			piecesturned++;
 		}
 		if(newtag == "UpSeed"){
 			x = tilex;
@@ -459,6 +501,7 @@ public class Worker{
 			if(mytiles[x,y-1] == "Wood"){
 				mytiles[x,y-1] = "Up";
 			}
+			piecesturned++;
 		}
 		if(newtag == "DownSeed"){
 			x = tilex;
@@ -474,6 +517,7 @@ public class Worker{
 			if(mytiles[x,y+1] == "Wood"){
 				mytiles[x,y+1] = "Down";
 			}
+			piecesturned++;
 		}
 		firstmove = false;
 	}

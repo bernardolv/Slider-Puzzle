@@ -15,20 +15,14 @@ public class TileHandler : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	//		myTakerpos = myTaker.transform.position;
-		//when mytaker is not inmytile
+	/*void Update () {
 		if (myTaker != null && (myTaker.transform.position.x != transform.position.x || myTaker.transform.position.y != transform.position.y)){
 			Debug.Log("Leaving" + transform.position);
-			//Debug.Log (myTaker.transform.position ==transform.position);
-			//Debug.Log (transform.position);
+
 			isTaken = false;
-			//myproperties.taker = null;
-			//myproperties.GatherData();
+
 			myTaker = null;
 		}
-		//if (myTaker == null) {
-			//Debug.Log ("Mesolonely");
-		//}
-	}	
+
+	}*/	
 }

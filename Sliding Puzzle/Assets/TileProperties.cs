@@ -16,13 +16,10 @@ public class TileProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*if (Input.GetKeyDown (KeyCode.I)) {
-		GatherData();
-		} */	
-		if(Input.GetKeyDown(KeyCode.L)){
+		/*if(Input.GetKeyDown(KeyCode.L)){
 			GatherData();
 
-		}
+		}*/
 	}
 	public void GatherData(){
 //		Debug.Log("Gatering");

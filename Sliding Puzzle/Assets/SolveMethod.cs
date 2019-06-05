@@ -32,29 +32,35 @@ public class SolveMethod : MonoBehaviour {
 
 	public static List<Vector2> lrudpos;
 
-	public static List<Map> stoppedmaps = new List<Map>();
+	//public static List<Map> stoppedmaps = new List<Map>();
 
-	public static List<Map> currentstoppedmaps = new List<Map>();
+	//public static List<Map> currentstoppedmaps = new List<Map>();
+
+	//public static List<int> turnedperturn = new List<int>();
+
+	//public static List<int> initialturnedperturn = new List<int>();
+
+	//public static List<int> currentturnedperturn = new List<int>();
 
 	public static int startx;
 
 	public static int starty;
 
-	public static List <Worker> workers;
+	public static List <Worker> workers = new List<Worker>();
 
-	public static List <string> initialgenes;
+	public static List <string> initialgenes = new List<string>();
 
-	public static List <Worker> lastgen;
+	public static List <Worker> lastgen = new List<Worker>();
 
-	public static List<string> curgenes;
+	public static List<string> curgenes = new List<string>();
 
-	public static List<Vector2> totalstoppedtiles;
+	public static List<Vector2> totalstoppedtiles = new List<Vector2>();
 
 	public static List<Vector2> currentstoppedtiles;
 
 	public static Vector2 startingposition;
 
-	public static List<Worker> workersalive;
+	public static List<Worker> workersalive = new List<Worker>();
 
 	public static int turns;
 
@@ -107,7 +113,7 @@ public class SolveMethod : MonoBehaviour {
 		//Debug.Log("Solve");
 	} 
 
-	void Update(){
+	/*void Update(){
 		/*if(Input.GetKeyDown(KeyCode.O)){
 			//Anotherturn();
 		}
@@ -120,23 +126,25 @@ public class SolveMethod : MonoBehaviour {
 		}
 		if(Input.GetKeyDown(KeyCode.T)){
 			//AWholeTurn();
-		}*/
-	}
+		}
+	}*/
 
 	public void Solve(string[,] tiles){	//single solution
 		//B();	
-		workersalive = new List<Worker>();		
-		initialgenes = new List<string>(); 		
-		lastgen = new List<Worker>();//initializes genes
-		workers = new List<Worker>(); 		
-		curgenes = new List<string>();
-		totalstoppedtiles = new List<Vector2>();//initializes list of workers or "bots"
+		workersalive.Clear();	
+		initialgenes.Clear();
+		lastgen.Clear();
+		workers.Clear();	
+		curgenes.Clear();
+		totalstoppedtiles.Clear();
 		startingposition = new Vector2(startx,starty);
 		//usedlruds = 0;
 		currenttiles = tiles;
 		totalstoppedtiles.Add(startingposition);
-		stoppedmaps.Add(new Map(currenttiles));
-		CheckAndCreate(0, startx, starty, currenttiles, initialgenes, totalstoppedtiles, 0, new List<Vector2>(), stoppedmaps);	//Creates first worker (Unless he can move more than one place)
+		//stoppedmaps.Add(new Map(currenttiles));
+		//initialturnedperturn.Clear();
+		//initialturnedperturn.Add(0);
+		CheckAndCreate(0, startx, starty, currenttiles, initialgenes, totalstoppedtiles, 0, new List<Vector2>());	//Creates first worker (Unless he can move more than one place)
 		if(workers.Count == 0){ //If Start tile is Walled up, No solution.
 //			Debug.Log("Cant");
 			return;
@@ -157,14 +165,16 @@ public class SolveMethod : MonoBehaviour {
 			}
 		}*/
 	}
-	public void CheckAndCreate(int newturns, int x, int y,string[,] thistiles, List<string> newgenes, List<Vector2> newstoppedtiles, int newlrud, List<Vector2> newlrudpos, List<Map> newstoppedmaps){
+	public void CheckAndCreate(int newturns, int x, int y,string[,] thistiles, List<string> newgenes, List<Vector2> newstoppedtiles, int newlrud, List<Vector2> newlrudpos){
 		//workers.Clear();
 		List <string> genes = newgenes;
 		List <Vector2> mystoppedtiles = newstoppedtiles;
 		turns = newturns;
 		lrud = newlrud;
 		lrudpos = newlrudpos;
-		List<Map> mystoppedmaps = newstoppedmaps;
+		//List<Map> mystoppedmaps = newstoppedmaps;
+		//int mypiecesturned = newpiecesturned;
+		//List<int>myturnedperturn = newturnedperturn;
 		if(x<CreateMethod.mapdimension-1){
 			if(thistiles[x+1,y] != "Wall"){//Checking Right
 				if(turns == 0 && thistiles[x+1,y] == "Goal"){
@@ -216,12 +226,14 @@ public class SolveMethod : MonoBehaviour {
 				curgenes = lastgen[i].mygenes;
 				turns = lastgen[i].turns;	
 				lrud = lastgen[i].lrud;	
-				lrudpos = new List<Vector2>(lastgen[i].lrudpos);
-				currentstoppedtiles = new List<Vector2>(lastgen[i].stoppedtiles);	
+				lrudpos = lastgen[i].lrudpos;
+				//currentstoppedtiles = lastgen[i].stoppedtiles;	
+				//int currentpiecesturned = lastgen[i].piecesturned;
+				//currentturnedperturn = lastgen[i].turnedperturn;
 				//currentstoppedmaps = new List<Map>(lastgen[i].stoppedmaps);
 																		//Copy the genes of the worker for the new bots
 				//Debug.Log(lastgen[i].mytiles[2,2]);
-				CheckAndCreate(turns, lastgen[i].x, lastgen[i].y, lastgen[i].mytiles, curgenes, currentstoppedtiles, lrud, lrudpos, stoppedmaps);	
+				CheckAndCreate(turns, lastgen[i].x, lastgen[i].y, lastgen[i].mytiles, curgenes, lastgen[i].stoppedtiles, lrud, lrudpos);	
 				//Debug.Log(workers.Count);
 																								//Create new workers with genes + new gene depending on where they can go
 				//lastgen = new List<Worker>(workers);											//New Generation Becomes the past.
