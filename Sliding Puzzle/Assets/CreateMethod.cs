@@ -352,6 +352,16 @@ public class CreateMethod : MonoBehaviour {
 		Debug.Log(themap[(int)SolveMethod.bestsolution.solutionpositions[0].x, (int)SolveMethod.bestsolution.solutionpositions[0].y+1]);
 	*/
 	}
+	public bool DoubleHit(){
+//		Debug.Log(SolveMethod.bestsolution.piecesused + " Plus " + piecetiles.Count);
+		if(SolveMethod.bestsolution.piecesused > piecetiles.Count){
+			Debug.Log(SolveMethod.bestsolution.piecesused + " Plus " + piecetiles.Count);
+			return true;
+		}
+		else{
+			return false;			
+		}
+	}
 	public IEnumerator GenerateUntilConditions(){
 //		monstertile1 = monster1;
 //		monstertile2 = monster2;
@@ -367,7 +377,7 @@ public class CreateMethod : MonoBehaviour {
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2]>startingturns-1){// && SolveMethod.bestsolution.lrud >0){
 //						Debug.Log("Conditions were met ");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
-							if(AppropriateLrud() && !CheckWallHug() && !CheckBoring()){
+							if(AppropriateLrud() && !CheckWallHug() && !CheckBoring() && DoubleHit()){
 //								Debug.Log("Conditions were met without hug ");
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[2]);
@@ -385,7 +395,7 @@ public class CreateMethod : MonoBehaviour {
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] > startingturns-1){ //&& SolveMethod.bestsolution.lrud >0){
 						//Debug.Log("Conditions were met");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION\
-							if(AppropriateLrud() && !CheckBoring() && !CheckWallHug() ){
+							if(AppropriateLrud() && !CheckWallHug() && DoubleHit()){
 								//Debug.Log("Conditions were met without hug ");
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[1]);
@@ -836,7 +846,7 @@ public class CreateMethod : MonoBehaviour {
 				break;
 			case 8:
 				wallmax = Random.Range(1,10);
-				lavamax = Random.Range(0,8);
+				lavamax = Random.Range(0,7);
 				woodmax = Random.Range(1,11);
 				fragilemax = Random.Range(1,10);
 				break;
@@ -1042,7 +1052,7 @@ public class CreateMethod : MonoBehaviour {
 	}
 	public void Createfourbyfour(){
 		mapdimension = totaldimensions;
-		icedimensions = Random.Range(7,9);
+		//icedimensions = Random.Range(7,9);
 		//desiredturns = icedimensions;
 		startingturns = desiredturns;
 		AssignWallCounter();
@@ -1497,7 +1507,7 @@ public class CreateMethod : MonoBehaviour {
 		}*/
 		//piecetiles = new List<string>();
 		int randomint  = 0;//Random.Range(0, 10);
-		int[] validchoices = {0};
+		int[] validchoices = {1,2,3,4};
 		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		switch(randomint){
 			case 0:
@@ -1536,7 +1546,8 @@ public class CreateMethod : MonoBehaviour {
 		}
 		//monster1 = "WallSeed";
 		//randomint  = Random.Range(0, 5);
-		int[] validchoices2 = {0,1,2,3,4,6,7,8,9,10};//,5,6,7,8,9,10};
+		//int[] validchoices2 = {0,1,2,3,4,6,7,8,9,10};//,5,6,7,8,9,10};
+		int[] validchoices2 = {5};
 		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
 //		Debug.Log(randomint);
 

@@ -108,6 +108,8 @@ public class SolveMethod : MonoBehaviour {
 
 	public static int bestturns;
 
+	public static int piecesused;
+
 	void Start(){
 			//TryEverything();
 		//Debug.Log("Solve");
@@ -140,11 +142,13 @@ public class SolveMethod : MonoBehaviour {
 		startingposition = new Vector2(startx,starty);
 		//usedlruds = 0;
 		currenttiles = tiles;
+		//pieceused = 0;
 		totalstoppedtiles.Add(startingposition);
+
 		//stoppedmaps.Add(new Map(currenttiles));
 		//initialturnedperturn.Clear();
 		//initialturnedperturn.Add(0);
-		CheckAndCreate(0, startx, starty, currenttiles, initialgenes, totalstoppedtiles, 0, new List<Vector2>());	//Creates first worker (Unless he can move more than one place)
+		CheckAndCreate(0, startx, starty, currenttiles, initialgenes, totalstoppedtiles, 0, new List<Vector2>(), 0);	//Creates first worker (Unless he can move more than one place)
 		if(workers.Count == 0){ //If Start tile is Walled up, No solution.
 //			Debug.Log("Cant");
 			return;
@@ -165,13 +169,14 @@ public class SolveMethod : MonoBehaviour {
 			}
 		}*/
 	}
-	public void CheckAndCreate(int newturns, int x, int y,string[,] thistiles, List<string> newgenes, List<Vector2> newstoppedtiles, int newlrud, List<Vector2> newlrudpos){
+	public void CheckAndCreate(int newturns, int x, int y,string[,] thistiles, List<string> newgenes, List<Vector2> newstoppedtiles, int newlrud, List<Vector2> newlrudpos, int newpiecesused){
 		//workers.Clear();
 		List <string> genes = newgenes;
 		List <Vector2> mystoppedtiles = newstoppedtiles;
 		turns = newturns;
 		lrud = newlrud;
 		lrudpos = newlrudpos;
+
 		//List<Map> mystoppedmaps = newstoppedmaps;
 		//int mypiecesturned = newpiecesturned;
 		//List<int>myturnedperturn = newturnedperturn;
@@ -181,7 +186,7 @@ public class SolveMethod : MonoBehaviour {
 				}
 				else{
 		//			Debug.Log("Cloning Right");
-					Worker worker = new Worker(turns, x, y, thistiles, "Right", genes, newstoppedtiles,lrud, lrudpos);
+					Worker worker = new Worker(turns, x, y, thistiles, "Right", genes, newstoppedtiles,lrud, lrudpos, newpiecesused);
 					workers.Add(worker);
 				}		
 			}
@@ -192,7 +197,7 @@ public class SolveMethod : MonoBehaviour {
 				}
 				else{
 		//			Debug.Log("Cloning Left");
-					Worker worker = new Worker(turns, x, y, thistiles, "Left", genes, newstoppedtiles,  lrud, lrudpos);
+					Worker worker = new Worker(turns, x, y, thistiles, "Left", genes, newstoppedtiles,  lrud, lrudpos, newpiecesused);
 					workers.Add(worker);
 				}
 			}
@@ -203,7 +208,7 @@ public class SolveMethod : MonoBehaviour {
 				}
 				else{
 	//				Debug.Log("Cloning Down");
-					Worker worker = new Worker(turns, x, y, thistiles, "Down", genes, newstoppedtiles, lrud, lrudpos);
+					Worker worker = new Worker(turns, x, y, thistiles, "Down", genes, newstoppedtiles, lrud, lrudpos, newpiecesused);
 					workers.Add(worker);
 				}
 			}
@@ -214,7 +219,7 @@ public class SolveMethod : MonoBehaviour {
 				}
 				else{
 					//				Debug.Log("Cloning Up");
-					Worker worker = new Worker(turns, x, y, thistiles, "Up", genes, newstoppedtiles,  lrud, lrudpos);
+					Worker worker = new Worker(turns, x, y, thistiles, "Up", genes, newstoppedtiles,  lrud, lrudpos, newpiecesused);
 					workers.Add(worker);
 				}
 			}	
@@ -233,7 +238,7 @@ public class SolveMethod : MonoBehaviour {
 				//currentstoppedmaps = new List<Map>(lastgen[i].stoppedmaps);
 																		//Copy the genes of the worker for the new bots
 				//Debug.Log(lastgen[i].mytiles[2,2]);
-				CheckAndCreate(turns, lastgen[i].x, lastgen[i].y, lastgen[i].mytiles, curgenes, lastgen[i].stoppedtiles, lrud, lrudpos);	
+				CheckAndCreate(turns, lastgen[i].x, lastgen[i].y, lastgen[i].mytiles, curgenes, lastgen[i].stoppedtiles, lrud, lrudpos, lastgen[i].piecesused);	
 				//Debug.Log(workers.Count);
 																								//Create new workers with genes + new gene depending on where they can go
 				//lastgen = new List<Worker>(workers);											//New Generation Becomes the past.

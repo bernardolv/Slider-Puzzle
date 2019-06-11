@@ -16,6 +16,7 @@ public class Solution{
 	public List<Vector2> stoppedtiles = new List<Vector2>();
 	public int lrud;
 	public string[,] solutionmap;
+	public int piecesused;
 	public Solution(int num, int turns, List<string> newgenes, Vector2 theplace){
 		numsolution = num;
 		myturns = turns;
@@ -64,5 +65,15 @@ public class Solution{
 		solutionpositions = new List<Vector2>(solutionpieces);
 		stoppedtiles = new List<Vector2>(stopped);
 		lrud = newlrud;
+	}
+	public Solution(int num, int turns, List<string> newgenes, List<Vector2> solutionpieces, List<string> piecenames, List<Vector2> stopped, int newlrud, int newpiecesused){
+		numsolution = num;
+		myturns = turns;
+		mygenes = newgenes;
+		piecetags = new List<string>(piecenames);
+		solutionpositions = new List<Vector2>(solutionpieces);
+		stoppedtiles = new List<Vector2>(stopped);
+		lrud = newlrud;
+		piecesused = newpiecesused;
 	}
 }

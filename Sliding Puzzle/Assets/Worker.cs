@@ -5,7 +5,8 @@ using UnityEngine;
 public class Worker{
 
 	public Solution mysolution = new Solution();
-	public int turns;												//number of moves the worker has made
+	public int turns;		//number of moves the worker has made
+	public int piecesused;								
 	public string[,] mytiles = new string[8,8];						//This is the map
 	public List<Vector2> stoppedtiles;	
 	Vector2 laststopped;							//Where the worker has stopped.
@@ -80,7 +81,7 @@ public class Worker{
 		stoppedmaps = newstoppedmaps;
 //		Debug.Log("Myposition" + x + "+" + y);
 	}
-	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
+	/*public Worker(int newturns, int newx, int newy,string[,] newtiles, 
 		string newdirection, List<string> newgenes, List<Vector2> newstopped, int newlrud, List<Vector2> newlrudpos, int newpiecesturned){
 		turns = newturns;
 		x= newx;
@@ -94,7 +95,7 @@ public class Worker{
 		//stoppedmaps = newstoppedmaps;
 		piecesturned = newpiecesturned;
 //		Debug.Log("Myposition" + x + "+" + y);
-	}
+	}*/
 	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
 		string newdirection, List<string> newgenes, List<Vector2> newstopped, int newlrud, List<Vector2> newlrudpos, List<int> newturnedperturn){
 		turns = newturns;
@@ -111,7 +112,23 @@ public class Worker{
 		piecesturned = turnedperturn[turnedperturn.Count-1];
 //		Debug.Log("Myposition" + x + "+" + y);
 	}
-
+	public Worker(int newturns, int newx, int newy,string[,] newtiles, 
+		string newdirection, List<string> newgenes, List<Vector2> newstopped, int newlrud, List<Vector2> newlrudpos, int newpiecesused){
+		piecesused = newpiecesused;
+		turns = newturns;
+		x= newx;
+		y = newy;
+		mytiles = (string[,]) newtiles.Clone();
+		direction = newdirection;
+		mygenes = new List<string>(newgenes);
+		stoppedtiles = new List<Vector2>(newstopped);
+		lrud = newlrud;
+		lrudpos = newlrudpos;
+		//stoppedmaps = newstoppedmaps;
+		//turnedperturn = newturnedperturn;
+//		piecesturned = turnedperturn[turnedperturn.Count-1];
+//		Debug.Log("Myposition" + x + "+" + y);
+	}
 	public void Move(){
 		mygenes.Add(direction);
 		int shiftx = 0;
@@ -258,7 +275,7 @@ public class Worker{
 				y = tiley;
 				done = true;
 				mysolutionnumber = SolveMethod.numberofsolutions;
-				mysolution = new Solution(mysolutionnumber, turns, mygenes, SolveMethod.solutionpieceposition, SolveMethod.solutionpiecenames, stoppedtiles, lrud);
+				mysolution = new Solution(mysolutionnumber, turns, mygenes, SolveMethod.solutionpieceposition, SolveMethod.solutionpiecenames, stoppedtiles, lrud, piecesused);
 				if(turns<=SolveMethod.bestturns || SolveMethod.bestturns == 0){
 					SolveMethod.solutions.Add(mysolution);
 					SolveMethod.bestturns = turns;
@@ -312,6 +329,7 @@ public class Worker{
 			mytiles[x,y] = "Hole";
 			//newtag = "Hole";
 			isshifted = true;
+			piecesused++;
 
 		}		
 		if(newtag == "FragileLeft"){
@@ -326,7 +344,7 @@ public class Worker{
 			mytiles[x,y] = "Hole";
 			//newtag = "Hole";
 			isshifted = true;
-
+			piecesused++;
 		}		
 		if(newtag == "FragileRight"){
 			x=tilex;
@@ -339,7 +357,7 @@ public class Worker{
 			mytiles[x,y] = "Hole";
 			//newtag = "Hole";
 			isshifted = true;
-
+			piecesused++;
 		}		
 		if(newtag == "FragileDown"){
 			x=tilex;
@@ -352,7 +370,7 @@ public class Worker{
 			mytiles[x,y] = "Hole";
 			//newtag = "Hole";
 			isshifted = true;
-
+			piecesused++;
 		}			
 		if(newtag == "Wall"){
 			if(firstmove){
@@ -370,6 +388,11 @@ public class Worker{
 			previoustag = "Wall";
 			//Debug.Log("Hitit");
 			//Check for fragile
+			//Check if it's a wall in Solvemethod.ogtiles too.
+			if(SolveMethod.ogtiles[tilex,tiley] == "Ice"){
+				//Debug.Log(x + " " + y + SolveMethod.ogtiles[x,y]);
+				piecesused++;
+			}
 		}
 		if(newtag == "Left"){
 			/*if(previoustag == "Right"){
@@ -390,6 +413,7 @@ public class Worker{
 			previoustag = "Left";
 			isshifted = true;
 //			Debug.Log(tilex + "" + tiley);
+			piecesused++;
 		}
 		if(newtag == "Right"){
 			/*if(previoustag == "Left"){
@@ -408,7 +432,7 @@ public class Worker{
 			}
 			previoustag = "Right";
 			isshifted = true;
-
+			piecesused++;
 		}
 		if(newtag == "Up"){
 			/*if(previoustag == "Down"){
@@ -427,7 +451,7 @@ public class Worker{
 			}
 			previoustag = "Up";
 			isshifted = true;
-
+			piecesused++;
 		}
 		if(newtag == "Down"){
 			/*if(previoustag == "Up"){
@@ -446,7 +470,7 @@ public class Worker{
 			}
 			previoustag = "Down";
 			isshifted = true;
-
+			piecesused++;
 		}
 		if(newtag == "WallSeed"){
 			x = tilex;
