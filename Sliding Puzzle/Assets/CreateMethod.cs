@@ -131,20 +131,20 @@ public class CreateMethod : MonoBehaviour {
 		//monstertile2 = "None";
 		ANNBrain.ann = new ANN(16, 16,2,16,.1f);
 		SolveMethod.classifier = new float[] {0};
-		/*if(loadFromFile){
+		if(loadFromFile){
 			LoadWeightsFromFile();
 			trainingDone=true;
 			StartCoroutine(TestTrainingSet());
 		}
 		else{
 			StartCoroutine(LoadTrainingSet());			
-		}*/
+		}
 		waslasttrue = false;
 		//CreateTest();
 		////ANNBrain.InitializeClassifiers(1);
 		//StartCoroutine(LoadTrainingSet());
 		//StartCoroutine(TestTrainingSet());
-		//GenerateAndDraw(1);sssss
+		//GenerateAndDraw(1);
 		//CreateSeed();
 		//CreateAdvSeed();
 		//StartCoroutine(GenerateUntilConditions());
@@ -160,7 +160,6 @@ public class CreateMethod : MonoBehaviour {
 
 	public void CreateSeed(){
 		isicetaken =false;
-		//4
 		CreateBase();
 		PopulateDoorPool();
 		AssignGoalAndStart();
@@ -168,7 +167,7 @@ public class CreateMethod : MonoBehaviour {
 		PopulateIcePool();
 		SolveMethod.startx = Startx;
 		SolveMethod.starty = Starty;
-		Solver.TryPieces(themap);
+		//Solver.TryPieces(themap);
 
 		//IntelligentAction();
 		DrawMap();
@@ -377,7 +376,7 @@ public class CreateMethod : MonoBehaviour {
 					if(SolveMethod.bestsolutions[0] == 0 && SolveMethod.bestsolutions[1] == 0 && SolveMethod.bestsolutions[2]>startingturns-1){// && SolveMethod.bestsolution.lrud >0){
 //						Debug.Log("Conditions were met ");
 						if(SolveMethod.besthaswallhug.Count == 0 && !SolveMethod.gottago){ //CHECKS FOR WALLHUG IN SOLUTION
-							if(AppropriateLrud() && !CheckWallHug() && !CheckBoring() && DoubleHit()){
+							if(AppropriateLrud() && !CheckWallHug() ){//&& !CheckBoring() && DoubleHit()){
 //								Debug.Log("Conditions were met without hug ");
 								conditionsmet = true;
 								Debug.Log("Map numero " + (i+1) + " Turns " + SolveMethod.bestsolutions[2]);
@@ -860,7 +859,7 @@ public class CreateMethod : MonoBehaviour {
 				wallmax = Random.Range(1,8);
 				lavamax = Random.Range(0,6);
 				woodmax = Random.Range(0,9);
-				fragilemax = Random.Range(0,6);
+				fragilemax = 0;// Random.Range(0,6);
 				break;
 			case 5:
 				/*wallmax = Random.Range(2,3);
@@ -869,7 +868,7 @@ public class CreateMethod : MonoBehaviour {
 				wallmax = Random.Range(0,5);
 				lavamax = Random.Range(0,4);
 				woodmax = Random.Range(0,6);
-				fragilemax = Random.Range(0,7);
+				fragilemax = 0;//Random.Range(0,7);
 				break;
 			case 4:
 				// wallmax = Random.Range(0,4);
@@ -879,8 +878,8 @@ public class CreateMethod : MonoBehaviour {
 
 				wallmax = Random.Range(1,4);
 				lavamax = Random.Range(0,3);
-				woodmax = Random.Range(0,2);
-				fragilemax = Random.Range(0,5);			
+				woodmax = Random.Range(0,4);
+				fragilemax = 0;// Random.Range(0,5);			
 				break;
 		}
 
@@ -1214,6 +1213,13 @@ public class CreateMethod : MonoBehaviour {
 //			Debug.Log("doorable" + myx + " " + myy); 
 		}
 	}
+	public static void RemoveAdjacentDoorCandidates(Vector2 origin){
+		doorable.Remove(origin+Vector2.down);
+		doorable.Remove(origin+Vector2.up);
+		doorable.Remove(origin+Vector2.right);
+		doorable.Remove(origin+Vector2.left);
+
+	}
 	public static void AssignGoalAndStart(){ //grabs the doopool and 1 start and goal
 		int max = doorable.Count;
 		int num = Random.Range(0,max);
@@ -1223,6 +1229,7 @@ public class CreateMethod : MonoBehaviour {
 		Vector2 Goal = doorable[num];
 		Goalx = Mathf.RoundToInt(Goal.x);
 		Goaly = Mathf.RoundToInt(Goal.y);
+		RemoveAdjacentDoorCandidates(Goal);
 		generatedmap[Mathf.RoundToInt(Goal.x),Mathf.RoundToInt(Goal.y)] = "Goal";
 		doorable.Remove(Goal);
 		max = doorable.Count;
@@ -1507,7 +1514,7 @@ public class CreateMethod : MonoBehaviour {
 		}*/
 		//piecetiles = new List<string>();
 		int randomint  = 0;//Random.Range(0, 10);
-		int[] validchoices = {1,2,3,4};
+		int[] validchoices = {0};
 		randomint = validchoices[Random.Range(0,validchoices.Length)];
 		switch(randomint){
 			case 0:
@@ -1547,7 +1554,7 @@ public class CreateMethod : MonoBehaviour {
 		//monster1 = "WallSeed";
 		//randomint  = Random.Range(0, 5);
 		//int[] validchoices2 = {0,1,2,3,4,6,7,8,9,10};//,5,6,7,8,9,10};
-		int[] validchoices2 = {5};
+		int[] validchoices2 = {0};
 		randomint = validchoices2[Random.Range(0,validchoices2.Length)];
 //		Debug.Log(randomint);
 
